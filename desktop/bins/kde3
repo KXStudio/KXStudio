@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export PATH=/opt/kde3/bin:/opt/kde3/games:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/local/games:/usr/sbin:/usr/bin:/usr/games:/sbin:/bin
+export KDEDIRS=/opt/kde3/:/usr
+export KDEHOME=$HOME/.kde3
+export XDG_DATA_DIRS=/opt/kde3/share:/usr/share
+export MANPATH=/opt/kde3/share/man:/usr/local/share/man:/usr/share/man
+
+exec "$@"
