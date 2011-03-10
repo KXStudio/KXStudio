@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories=Qt;KDE;System;TerminalEmulator;
+Exec=yakuake
+Icon=yakuake
+Name=Yakuake
+OnlyShowIn=KDE;
+Path=
+StartupNotify=false
+Terminal=false
+TerminalOptions=
+Type=Application
