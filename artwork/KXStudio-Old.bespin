@@ -1,5 +1,5 @@
 [BespinStyle]
-StoreName=KXStudio
+StoreName=KXStudio Old
 ARGB.Blacklist="smplayer,amarok,dragonplayer,vlc,vlc-wrapper,kscreenlocker"
 ARGB.Glassy=true
 Bg.Blur=false
