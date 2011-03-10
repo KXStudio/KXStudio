@@ -1,12 +1,13 @@
 <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
-"http://standards.freedesktop.org/menu-spec/menu-1.0.dtd">
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
 
 <Menu>
+
   <Name>Applications</Name>
-  <MergeFile type="parent">/etc/xdg/menus/applications.menu</MergeFile>
+
   <Menu>
     <Name>Multimedia</Name>
-<!--     <Directory>AudioVideo.directory</Directory> -->
+    <Directory>AudioVideo.directory</Directory>
 
     <Layout>
       <Merge type="menus"/>
@@ -84,6 +85,7 @@
       <Filename>hdspmixer.desktop</Filename>
       <Filename>ingen.desktop</Filename>
       <Filename>ingen-svn.desktop</Filename>
+      <Filename>j2sc.desktop</Filename>
       <Filename>jackbeat.desktop</Filename>
       <Filename>jack-capture.desktop</Filename>
       <Filename>jack-capture-gui.desktop</Filename>
@@ -194,8 +196,16 @@
       <Filename>zynaddsubfx.desktop</Filename>
       <Filename>zynjacku.desktop</Filename>
 
+      <Filename>kde-amarok.desktop</Filename>
+      <Filename>kde-k3b.desktop</Filename>
+      <Filename>kde-kaffeine.desktop</Filename>
+      <Filename>kde-kdenlive.desktop</Filename>
+      <Filename>kde-kmid.desktop</Filename>
+      <Filename>kde-kmix.desktop</Filename>
+      <Filename>kde-kmplayer.desktop</Filename>
       <Filename>kde-openoctave.desktop</Filename>
       <Filename>kde-pana.desktop</Filename>
+
       <Filename>kde4-amarok.desktop</Filename>
       <Filename>kde4-bangarang.desktop</Filename>
       <Filename>kde4-dragonplayer.desktop</Filename>
@@ -229,17 +239,13 @@
         <Filename>bitmeter.desktop</Filename>
         <Filename>bristol.desktop</Filename>
         <Filename>calf.desktop</Filename>
-        <Filename>capsaicin.desktop</Filename>
-        <Filename>drumsynth.desktop</Filename>
-        <Filename>eqinox.desktop</Filename>
         <Filename>festige.desktop</Filename>
         <Filename>fmit.desktop</Filename>
         <Filename>genpo.desktop</Filename>
         <Filename>gtick.desktop</Filename>
         <Filename>guitarix.desktop</Filename>
-        <Filename>hexter.desktop</Filename>
-        <Filename>highlife.desktop</Filename>
         <Filename>jamin.desktop</Filename>
+        <Filename>jost.desktop</Filename>
         <Filename>psynth3d.desktop</Filename>
         <Filename>qsampler.desktop</Filename>
         <Filename>qsynth.desktop</Filename>
@@ -250,17 +256,12 @@
         <Filename>jsampler.desktop</Filename>
         <Filename>lash-synth.desktop</Filename>
         <Filename>lingot.desktop</Filename>
-        <Filename>ll-scope.desktop</Filename>
         <Filename>lv2rack.desktop</Filename>
         <Filename>meterbridge.desktop</Filename>
         <Filename>minicomputer.desktop</Filename>
         <Filename>monobristol.desktop</Filename>
-        <Filename>nekobee.desktop</Filename>
-        <Filename>nekobee-juced.desktop</Filename>
         <Filename>phasex.desktop</Filename>
         <Filename>rakarrack.desktop</Filename>
-        <Filename>soundcrab.desktop</Filename>
-        <Filename>vex.desktop</Filename>
         <Filename>vocproc.desktop</Filename>
         <Filename>yoshimi.desktop</Filename>
         <Filename>zonage.desktop</Filename>
@@ -332,6 +333,7 @@
         <Filename>wine-Programs-Renoise 2.5.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.5.1-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.6.0-Renoise.desktop</Filename>
+        <Filename>wine-Programs-Renoise 2.6.1-Renoise.desktop</Filename>
       </Include>
     </Menu>
 
@@ -384,6 +386,8 @@
         <Filename>qdvdauthor.desktop</Filename>
         <Filename>simplelabeler.desktop</Filename>
 
+        <Filename>kde-k3b.desktop</Filename>
+
         <Filename>kde4-k3b.desktop</Filename>
         <Filename>kde4-k9copy.desktop</Filename>
         <Filename>kde4-k9copy_assistant.desktop</Filename>
@@ -403,6 +407,7 @@
         <Filename>gmerlin-plugincfg.desktop</Filename>
         <Filename>hdspconf.desktop</Filename>
         <Filename>hdspmixer.desktop</Filename>
+        <Filename>j2sc.desktop</Filename>
         <Filename>jack-netmanager-gtk.desktop</Filename>
         <Filename>jack2-simple-config.desktop</Filename>
         <Filename>ladiconf.desktop</Filename>
@@ -419,6 +424,8 @@
         <Filename>qxgedit.desktop</Filename>
         <Filename>rmedigicontrol.desktop</Filename>
         <Filename>ubuntustudio-controls.desktop</Filename>
+
+        <Filename>kde-kmix.desktop</Filename>
 
         <Filename>kde4-kmidimon.desktop</Filename>
         <Filename>kde4-kmix.desktop</Filename>
@@ -448,11 +455,17 @@
         <Filename>vlc.desktop</Filename>
         <Filename>vlc-git.desktop</Filename>
 
+        <Filename>kde-amarok.desktop</Filename>
+        <Filename>kde-kaffeine.desktop</Filename>
+        <Filename>kde-kmid.desktop</Filename>
+        <Filename>kde-kmplayer.desktop</Filename>
         <Filename>kde-pana.desktop</Filename>
+
         <Filename>kde4-amarok.desktop</Filename>
         <Filename>kde4-bangarang.desktop</Filename>
         <Filename>kde4-dragonplayer.desktop</Filename>
         <Filename>kde4-juk.desktop</Filename>
+        <Filename>kde4-kaffeine.desktop</Filename>
         <Filename>kde4-kmid.desktop</Filename>
         <Filename>kde4-kmid2.desktop</Filename>
         <Filename>kde4-kmp.desktop</Filename>
@@ -485,6 +498,8 @@
         <Filename>stopmotion.desktop</Filename>
         <Filename>vlmc.desktop</Filename>
         <Filename>xjadeo.desktop</Filename>
+
+        <Filename>kde-kdenlive.desktop</Filename>
 
         <Filename>kde4-kdenlive.desktop</Filename>
         <Filename>kde4-recorditnow.desktop</Filename>
