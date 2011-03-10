@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<gconf>
+        <entry name="menus_have_icons" type="bool" value="true"/>
+        <entry name="buttons_have_icons" type="bool" value="true"/>
+        <entry name="monospace_font_name" type="string">
+                <stringvalue>DejaVu Sans Mono 8</stringvalue>
+        </entry>
+        <entry name="document_font_name" type="string">
+                <stringvalue>DejaVu Sans 8</stringvalue>
+        </entry>
+        <entry name="font_name" type="string">
+                <stringvalue>DejaVu Sans 8</stringvalue>
+        <entry name="icon_theme" type="string">
+        </entry>
+                <stringvalue>Oxygen</stringvalue>
+        </entry>
+        <entry name="gtk_theme" type="string">
+                <stringvalue>QtCurve</stringvalue>
+        </entry>
+</gconf>

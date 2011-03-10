@@ -1,0 +1,7 @@
+[ScreenSaver]
+Enabled=true
+Lock=true
+PlasmaEnabled=false
+Saver=glmatrix.desktop
+LockGrace=60000
+Timeout=900
