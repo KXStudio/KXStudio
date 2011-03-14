@@ -6,7 +6,7 @@ Name_4=
 Number=4
 
 [Effect-Shadow]
-Color=8,9,10
+Color=22,26,29
 Fuzzyness=20
 IntensifyActiveShadow=true
 Opacity=0.4
@@ -14,14 +14,15 @@ Size=17
 XOffset=0
 YOffset=3
 
+[Plugins]
+kwin4_effect_blurEnabled=false
+kwin4_effect_shadowEnabled=false
+kwin4_effect_translucencyEnabled=false
+
 [Style]
 BorderSize=1
 ButtonsOnLeft=MS
 ButtonsOnRight=LIAX
 CustomButtonPositions=true
-PluginLib=kwin3_plastik
+PluginLib=kwin3_qtcurve
 ShowToolTips=true
-
-[Plugins]
-kwin4_effect_blurEnabled=false
-kwin4_effect_translucencyEnabled=false

@@ -1,0 +1,16 @@
+[General Options]
+ShowTrayIcon=true
+
+[Server 0]
+Password=
+Port=8001
+SSLEnabled=false
+Server=irc.freenode.net
+
+[Channel 0]
+Name=#kxstudio
+Password=
+
+[ServerGroup 0]
+ServerList=Server 0
+AutoJoinChannels=Channel 0

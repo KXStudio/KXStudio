@@ -1,0 +1,14 @@
+# Additional variables for KXStudio
+
+# Set 'history' format to show more useful info
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# Wine Real-Time Schedulling
+#export WINE_RT=15
+#export WINE_SVR_RT=10
+
+# Fix globalmenu
+if [ -f /usr/lib/gtk-2.0/modules/libglobalmenu-plugin.so ]; then
+  export GTK_MODULES=globalmenu-plugin
+fi
+

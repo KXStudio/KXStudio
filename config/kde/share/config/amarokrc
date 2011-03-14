@@ -1,0 +1,9 @@
+[General Options]
+Show Splashscreen=false
+
+[Notification Messages]
+hideOnCloseInfo=false
+
+[OSD]
+Osd Enabled=true
+

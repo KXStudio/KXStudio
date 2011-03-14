@@ -1,0 +1,19 @@
+# Additional variables for KXStudio
+
+if [ -f $HOME/.bash_aliases ]; then
+  . $HOME/.bash_aliases
+else
+
+  # Set 'history' format to show more useful info
+  export HISTTIMEFORMAT="%d/%m/%y %T "
+
+  # Wine Real-Time Scheduling
+  #export WINE_RT=15
+  #export WINE_SVR_RT=10
+
+  # Fix globalmenu
+  if [ -f /usr/lib/gtk-2.0/modules/libglobalmenu-plugin.so ]; then
+    export GTK_MODULES=globalmenu-plugin
+  fi
+
+fi

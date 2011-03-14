@@ -1,0 +1,56 @@
+# created by KDE, Mon Mar 14 04:03:16 2011
+#
+# If you do not want KDE to override your GTK settings, select
+# Appearance -> Colors in the System Settings and disable the checkbox
+# "Apply colors to non-KDE4 applications"
+#
+#
+style "default"
+{
+  bg[NORMAL] = { 0.067, 0.067, 0.067 }
+  bg[SELECTED] = { 0.157, 0.157, 0.157 }
+  bg[INSENSITIVE] = { 0.067, 0.067, 0.067 }
+  bg[ACTIVE] = { 0.369, 0.369, 0.369 }
+  bg[PRELIGHT] = { 0.067, 0.067, 0.067 }
+
+  base[NORMAL] = { 0.027, 0.027, 0.027 }
+  base[SELECTED] = { 0.157, 0.157, 0.157 }
+  base[INSENSITIVE] = { 0.067, 0.067, 0.067 }
+  base[ACTIVE] = { 0.157, 0.157, 0.157 }
+  base[PRELIGHT] = { 0.157, 0.157, 0.157 }
+
+  text[NORMAL] = { 0.902, 0.902, 0.902 }
+  text[SELECTED] = { 1.000, 1.000, 1.000 }
+  text[INSENSITIVE] = { 0.369, 0.369, 0.369 }
+  text[ACTIVE] = { 1.000, 1.000, 1.000 }
+  text[PRELIGHT] = { 1.000, 1.000, 1.000 }
+
+  fg[NORMAL] = { 0.941, 0.941, 0.941 }
+  fg[SELECTED] = { 1.000, 1.000, 1.000 }
+  fg[INSENSITIVE] = { 0.369, 0.369, 0.369 }
+  fg[ACTIVE] = { 0.941, 0.941, 0.941 }
+  fg[PRELIGHT] = { 0.941, 0.941, 0.941 }
+}
+
+class "*" style "default"
+
+gtk-alternative-button-order = 1
+
+style "ToolTip"
+{
+  bg[NORMAL] = { 0.941, 0.941, 0.941 }
+  base[NORMAL] = { 0.941, 0.941, 0.941 }
+  text[NORMAL] = { 0.275, 0.275, 0.275 }
+  fg[NORMAL] = { 0.275, 0.275, 0.275 }
+}
+
+widget "gtk-tooltip" style "ToolTip"
+widget "gtk-tooltips" style "ToolTip"
+
+style "MenuItem"
+{
+  bg[PRELIGHT] = { 0.157, 0.157, 0.157 }
+}
+
+class "*MenuItem" style "MenuItem"
+
