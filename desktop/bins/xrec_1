@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Set up nested X server
+Xephyr -keybd ephyr,,,xkbmodel=evdev -br -reset -screen 1280x720x24 -dpi 96 :2 &
+
+sleep 3
+export DISPLAY=:2.0
+export KWIN_COMPOSE=N
+
+killall plasma-desktop
+plasma-desktop
+kwin
+
+export DISPLAY=:0
+plasma-desktop
