@@ -3,4 +3,5 @@ KERNEL=="raw1394", GROUP="audio", MODE="0664"
 
 # For MIDI sequencers, values taken from http://wiki.linuxmusicians.com/doku.php?id=system_configuration#hardware_timers
 KERNEL=="hpet", GROUP="audio", MODE="0664"
+KERNEL=="rtc", GROUP="audio", MODE="0664"
 KERNEL=="rtc0", GROUP="audio", MODE="0664"
