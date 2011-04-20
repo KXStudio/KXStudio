@@ -5,7 +5,7 @@ Comment=
 
 [X-GNOME-Metatheme]
 GtkTheme=QtCurve
-MetacityTheme=Simple
+MetacityTheme=Clearlooks
 IconTheme=KXStudio
 CursorTheme=oxy-black
 CursorSize=18
