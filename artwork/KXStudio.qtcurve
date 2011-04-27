@@ -1,8 +1,16 @@
+[ActiveShadows]
+Color=7,7,7
+ColorType=5
+
+[InactiveShadows]
+Color=11,11,11
+ColorType=5
+
 [KWin]
 BorderSize=3
 CustomShadows=true
 InnerBorder=0
-OuterBorder=0
+OuterBorder=1
 
 [Settings]
 activeTabAppearance=flat
