@@ -1,16 +1,8 @@
-[ActiveShadows]
-Color=7,7,7
-ColorType=5
-
-[InactiveShadows]
-Color=11,11,11
-ColorType=5
-
 [KWin]
 BorderSize=3
 CustomShadows=true
 InnerBorder=0
-OuterBorder=1
+OuterBorder=0
 
 [Settings]
 activeTabAppearance=flat
@@ -151,7 +143,7 @@ titlebarButtonAppearance=flat
 titlebarButtons=164
 titlebarEffect=none
 titlebarIcon=title
-toolbarAppearance=darkinverted
+toolbarAppearance=flat
 toolbarBorders=dark
 toolbarSeparators=dots
 toolbarTabs=false
