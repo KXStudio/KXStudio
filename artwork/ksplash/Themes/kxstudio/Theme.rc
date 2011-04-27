@@ -1,0 +1,9 @@
+[KSplash Theme: KXStudio]
+Name = KXStudio Splash Screen
+Description = KXStudio Splash Screen
+Version = 1.0
+Author = falkTX <falktx@gmail.com>
+Homepage = http://www.kde.org
+
+# Theme behaviour settings.
+Engine = KSplashX

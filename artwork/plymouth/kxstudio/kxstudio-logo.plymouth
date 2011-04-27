@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=KXStudio
+Description=A theme that features a black background with the KXStudio logo.
+ModuleName=script
+
+[script]
+ImageDir=/lib/plymouth/themes/kxstudio-logo
+ScriptFile=/lib/plymouth/themes/kxstudio-logo/kxstudio.script
