@@ -89,8 +89,8 @@ ForegroundPositive=100,230,100
 ForegroundVisited=230,100,230
 
 [General]
-ColorScheme=KXStudio3.colors
-Name=KXStudio3.colors
+ColorScheme=KXStudio
+Name=KXStudio
 shadeSortColumn=true
 
 [KDE]
