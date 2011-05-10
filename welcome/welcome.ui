@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Wizard</class>
- <widget class="QWizard" name="Wizard">
+ <class>WelcomeW</class>
+ <widget class="QWizard" name="WelcomeW">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -58,8 +58,7 @@
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>&lt;p&gt;KXStudio is a set of tools useful for multimedia production.
-&lt;/p&gt;&lt;p&gt;KXStudio makes extensive use of JACK, making it the default sound server on the system. Non-JACK applications are &quot;bridged&quot;, to make sure you never have to worry about the 'linux audio mess' [link will go here].
-(more details)
+&lt;/p&gt;&lt;p&gt;This is a small application designed to help users with the update proccess.&lt;br&gt;If you come from a fresh install, it's recommended to force reset of all settings.
 &lt;/p&gt;</string>
         </property>
         <property name="alignment">
@@ -125,7 +124,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QCheckBox" name="checkBox_3">
+          <widget class="QRadioButton" name="radioButton">
            <property name="text">
             <string>Reset basic settings</string>
            </property>
@@ -155,15 +154,15 @@
            <item>
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>This will reset/update your settings for the basic applications, like Dolphin,
-</string>
+              <string>This will reset/update your settings only for some basic applications, and 
+copy other definitions if they don't exist yet.</string>
              </property>
             </widget>
            </item>
           </layout>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_2">
+          <widget class="QRadioButton" name="radioButton_2">
            <property name="text">
             <string>Force reset of all settings (useful for new installs)</string>
            </property>
@@ -190,7 +189,8 @@
            <item>
             <widget class="QLabel" name="label_9">
              <property name="text">
-              <string>TextLabel</string>
+              <string>This will force reset all user settings, even if prior definitions already exist. 
+Use it to clean up your settings, or if you just installed KXStudio.</string>
              </property>
             </widget>
            </item>
@@ -237,8 +237,7 @@
           <widget class="QLabel" name="label_10">
            <property name="text">
             <string>Update your theme to the one default in KXStudio.
-The theme is very dark and simplistic.
-Uses the QtCurve rendering engine and the Oxygen icon theme.</string>
+The theme is very dark and flat, using QtCurve, and the Oxygen icon theme.</string>
            </property>
           </widget>
          </item>

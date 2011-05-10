@@ -913,5 +913,32 @@ style "KDE4-icons"
 		{ "32x32/actions/bookmarks-organize.png", *, *, "gtk-dialog" },
 		{ "16x16/actions/bookmarks-organize.png" }
 	}
+	stock["gimp-edit"]={
+		{ "16x16/actions/edit.png", *, *, "gtk-small-toolbar" },
+		{ "22x22/actions/edit.png", *, *, "gtk-large-toolbar" },
+		{ "32x32/actions/edit.png", *, *, "gtk-dnd" },
+		{ "16x16/actions/edit.png", *, *, "gtk-button" },
+		{ "16x16/actions/edit.png", *, *, "gtk-menu" },
+		{ "32x32/actions/edit.png", *, *, "gtk-dialog" },
+		{ "16x16/actions/edit.png" }
+	}
+	stock["gimp-reset"]={
+		{ "16x16/actions/reload.png", *, *, "gtk-small-toolbar" },
+		{ "22x22/actions/reload.png", *, *, "gtk-large-toolbar" },
+		{ "32x32/actions/reload.png", *, *, "gtk-dnd" },
+		{ "16x16/actions/reload.png", *, *, "gtk-button" },
+		{ "16x16/actions/reload.png", *, *, "gtk-menu" },
+		{ "32x32/actions/reload.png", *, *, "gtk-dialog" },
+		{ "16x16/actions/reload.png" }
+	}
+	stock["gimp-images"]={
+		{ "16x16/mimetypes/image.png", *, *, "gtk-small-toolbar" },
+		{ "22x22/mimetypes/image.png", *, *, "gtk-large-toolbar" },
+		{ "32x32/mimetypes/image.png", *, *, "gtk-dnd" },
+		{ "16x16/mimetypes/image.png", *, *, "gtk-button" },
+		{ "16x16/mimetypes/image.png", *, *, "gtk-menu" },
+		{ "32x32/mimetypes/image.png", *, *, "gtk-dialog" },
+		{ "16x16/mimetypes/image.png" }
+	}
 }
 class "*" style "KDE4-icons"
