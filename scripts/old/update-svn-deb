@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Script to automatically update svn based debs and rebuild
+# Please do the upload yourself, as this may take some time...
+
+export LANG="C"
+ALL=`ls`
+
+# Run the action against all folders
+for i in $ALL; do
+  if [ -d $i/.svn ]; then
+    cd $i
+
+    # Package version type
+    DEBIAN=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("svn","svn\n")' | head -n 1`
+
+    # Get Revision, update and get revision again
+    CUR_SVN=`svn info . | grep Revision | awk '{printf$2}'`
+    svn update .
+    NEXT_SVN=`svn info . | grep Revision | awk '{printf$2}'`
+
+    # Check if we got a new SVN revision
+    if [ "$CUR_SVN" != "$NEXT_SVN" ]; then
+        echo "New SVN Available!!"
+        echo "RUNNING AUTO-SCRIPT NOW!"
+        VERSION="$DEBIAN""$NEXT_SVN""-0~ppa1"
+        dch -v $VERSION "New SVN (scripted)"
+        debuild -S -sa
+    else
+        echo "New SVN NOT available..."
+    fi
+
+    cd ..
+  fi
+done

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=KXStudio
+Type=X-GNOME-Metatheme
+Comment=
+
+[X-GNOME-Metatheme]
+GtkTheme=QtCurve
+MetacityTheme=KXStudio
+IconTheme=oxygen
+CursorTheme=oxy-black
+CursorSize=18
+NotificationTheme=ubuntu

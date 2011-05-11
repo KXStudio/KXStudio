@@ -1,0 +1,6 @@
+/home/*/.log/ladish/*.log {
+  rotate 10
+  size 10M
+  missingok
+  compress
+}

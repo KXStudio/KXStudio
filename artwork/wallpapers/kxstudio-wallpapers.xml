@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+
+  <wallpaper>
+    <name>KXStudio Black</name>
+    <filename>/usr/share/wallpapers/KXStudio-Black/contents/images/1600x1200.jpg</filename>
+    <options>zoom</options>
+    <pcolor>#000000</pcolor>
+    <scolor>#000000</scolor>
+    <shade_type>solid</shade_type>
+  </wallpaper>
+
+  <wallpaper>
+    <name>KXStudio Heartbeat</name>
+    <filename>/usr/share/wallpapers/KXStudio-Heartbeat/contents/images/1920x1200.png</filename>
+    <options>zoom</options>
+    <pcolor>#000000</pcolor>
+    <scolor>#000000</scolor>
+    <shade_type>solid</shade_type>
+  </wallpaper>
+
+  <wallpaper>
+    <name>KXStudio KDE3</name>
+    <filename>/usr/share/wallpapers/KXStudio-KDE3/contents/images/1920x1440.jpg</filename>
+    <options>zoom</options>
+    <pcolor>#000000</pcolor>
+    <scolor>#000000</scolor>
+    <shade_type>solid</shade_type>
+  </wallpaper>
+
+  <wallpaper>
+    <name>KXStudio Stripes</name>
+    <filename>/usr/share/wallpapers/KXStudio-Stripes/contents/images/1920x1200.jpg</filename>
+    <options>zoom</options>
+    <pcolor>#000000</pcolor>
+    <scolor>#000000</scolor>
+    <shade_type>solid</shade_type>
+  </wallpaper>
+
+</wallpapers>
