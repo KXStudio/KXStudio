@@ -1,0 +1,6 @@
+/home/*/.log/jack/*.log {
+  rotate 10
+  size 20M
+  missingok
+  compress
+}

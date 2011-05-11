@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Maverick
+VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("lucid","maverick")' | awk 'sub("\\\)","\n")' | head -n 1`
+dch --force-distribution -D maverick -v $VERSION "Maverick build"
+debuild -S -sa
+
+# Natty
+VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("maverick","natty")' | awk 'sub("\\\)","\n")' | head -n 1`
+dch --force-distribution -D natty -v $VERSION "Natty build"
+debuild -S -sa

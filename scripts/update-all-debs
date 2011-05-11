@@ -1,0 +1,59 @@
+#!/bin/bash
+
+export LANG="C"
+ALL=`ls`
+
+# GIT
+for i in $ALL; do
+  if [ -d $i/.git ]; then
+    cd $i
+
+    # Package version type
+    DEBIAN=`cat debian/changelog | head -n 1 | awk '{printf$2"\n"}' | awk 'sub("\\\(","")' | awk 'sub("git","git\n")' | head -n 1`
+    DATE=`date +"20%y%m%d"`
+
+    # Check if it has updates
+    TEST_GIT=`git pull`
+    if [ "$TEST_GIT" != "Already up-to-date." ]; then
+        echo "New Git Available!!"
+        echo "RUNNING AUTO-SCRIPT NOW!"
+        VERSION="$DEBIAN""$DATE""-0~lucid1"
+        dch --force-distribution -D lucid -v "$VERSION" "New Git (scripted)"
+        debuild -S -sa
+        update-deb-distrib
+    else
+        echo "New Git NOT available..."
+    fi
+
+    cd ..
+  fi
+done
+
+# SVN
+for i in $ALL; do
+  if [ -d $i/.svn ]; then
+    cd $i
+
+    # Package version type
+    DEBIAN=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("svn","svn\n")' | head -n 1`
+
+    # Get Revision, update and get revision again
+    CUR_SVN=`svn info . | grep Revision | awk '{printf$2}'`
+    svn update .
+    NEXT_SVN=`svn info . | grep Revision | awk '{printf$2}'`
+
+    # Check if we got a new SVN revision
+    if [ "$CUR_SVN" != "$NEXT_SVN" ]; then
+        echo "New SVN Available!!"
+        echo "RUNNING AUTO-SCRIPT NOW!"
+        VERSION="$DEBIAN""$NEXT_SVN""-0~lucid1"
+        dch --force-distribution -D lucid -v "$VERSION" "New SVN (scripted)"
+        debuild -S -sa
+        update-deb-distrib
+    else
+        echo "New SVN NOT available..."
+    fi
+
+    cd ..
+  fi
+done
