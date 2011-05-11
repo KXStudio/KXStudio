@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec python /usr/share/kxstudio/welcome/welcome.py "$@"

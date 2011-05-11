@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=KXStudio Welcome (First Run)
+GenericName=KXStudio Welcome Screen
+Comment=Update the KXStudio Desktop settings
+Exec=kxstudio-welcome --first-run

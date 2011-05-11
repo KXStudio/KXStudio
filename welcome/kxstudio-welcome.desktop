@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=KXStudio Welcome
+GenericName=KXStudio Welcome Screen
+Comment=Update the KXStudio Desktop settings
+Exec=kxstudio-welcome
+Icon=start-here
+Terminal=false
+Type=Application
+Categories=System;Settings;
