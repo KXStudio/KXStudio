@@ -1,9 +1,0 @@
-# This is not really a .desktop file like the rest, but it is useful to treat
-# it as such
-
-[KdmGreeterTheme]
-Greeter=kxstudio.xml
-Name=KXStudio
-Author=Ivan Čukić, falkTX
-Copyright=GPLv3 Ivan Čukić, falkTX
-Screenshot=screenshot.png

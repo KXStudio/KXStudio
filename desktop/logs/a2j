@@ -1,6 +1,0 @@
-/home/*/.log/a2j/*.log {
-  rotate 10
-  size 10M
-  missingok
-  compress
-}
