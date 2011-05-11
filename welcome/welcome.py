@@ -116,6 +116,9 @@ def create_folder_for_file(sfile):
     if not os.path.exists(folder):
       os.system("mkdir -p %s" % (folder))
 
+def do_remove_old_stuff():
+  os.system("rm -f '%s/.kde/env/kxstudio-session-start.sh'" % (HOME))
+
 def do_copy_all():
   for sfile in CONFIG_ALL:
     create_folder_for_file(sfile)
@@ -180,6 +183,7 @@ class CopyStuffThread(QThread):
         self.emit(SIGNAL("setLabelPixmap(int, int)"), 0, 1)
         if (self._copy):
           sleep(1)
+          do_remove_old_stuff()
           if (self._copy_all):
             do_copy_all()
           elif (self._copy_basic):
