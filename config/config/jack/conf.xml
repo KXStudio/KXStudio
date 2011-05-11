@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<jack>
+ <engine>
+  <option name="driver">alsa</option>
+  <option name="realtime">true</option>
+ </engine>
+ <drivers>
+  <driver name="alsa">
+   <option name="rate">44100</option>
+   <option name="nperiods">2</option>
+  </driver>
+ </drivers>
+</jack>
