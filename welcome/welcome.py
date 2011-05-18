@@ -140,6 +140,7 @@ def do_copy_theme():
     os.system("cp '/usr/share/kxstudio/config/%s' '%s/.%s'" % (sfile, HOME, sfile))
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
+  os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/gtk_theme "QtCurve"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/icon_theme "Oxygen Mono Dark"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono 8"')
