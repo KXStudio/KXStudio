@@ -141,7 +141,7 @@ def do_copy_theme():
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/gtk_theme "QtCurve"')
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/icon_theme "oxygen"')
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/icon_theme "Oxygen Mono Dark"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/font_name "DejaVu Sans 8"')
