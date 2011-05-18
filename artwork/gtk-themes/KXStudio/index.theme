@@ -6,7 +6,7 @@ Comment=
 [X-GNOME-Metatheme]
 GtkTheme=QtCurve
 MetacityTheme=KXStudio
-IconTheme=oxygen
+IconTheme=Oxygen Mono Dark
 CursorTheme=oxy-black
 CursorSize=18
 NotificationTheme=ubuntu
