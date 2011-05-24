@@ -27,9 +27,11 @@
       <Filename>ardour-gtk.desktop</Filename>
       <Filename>arpage.desktop</Filename>
       <Filename>audacity.desktop</Filename>
+      <Filename>audacious.desktop</Filename>
       <Filename>audacious2.desktop</Filename>
       <Filename>audacious2-gtkui.desktop</Filename>
       <Filename>azr3-jack.desktop</Filename>
+      <Filename>banshee.desktop</Filename>
       <Filename>banshee-1.desktop</Filename>
       <Filename>beast.desktop</Filename>
       <Filename>bitmeter.desktop</Filename>
@@ -53,11 +55,13 @@
       <Filename>dvdstyler.desktop</Filename>
       <Filename>echomixer.desktop</Filename>
       <Filename>energyxt2.desktop</Filename>
+      <Filename>energyxt2-32bit.desktop</Filename>
       <Filename>envy24_control.desktop</Filename>
       <Filename>eqinox.desktop</Filename>
       <Filename>festige.desktop</Filename>
       <Filename>ffado.org-ffadomixer.desktop</Filename>
       <Filename>fmit.desktop</Filename>
+      <Filename>foo-yc20.desktop</Filename>
       <Filename>freebirth.desktop</Filename>
       <Filename>freemix.desktop</Filename>
       <Filename>freqtweak.desktop</Filename>
@@ -77,6 +81,7 @@
       <Filename>gnome-sound-recorder.desktop</Filename>
       <Filename>gnormalize.desktop</Filename>
       <Filename>gtick.desktop</Filename>
+      <Filename>gtk-recordmydesktop.desktop</Filename>
       <Filename>guitarix.desktop</Filename>
       <Filename>hexter.desktop</Filename>
       <Filename>highlife.desktop</Filename>
@@ -123,6 +128,7 @@
       <Filename>mhwaveedit.desktop</Filename>
       <Filename>milkytracker.desktop</Filename>
       <Filename>minicomputer.desktop</Filename>
+      <Filename>minitube.desktop</Filename>
       <Filename>mixxx.desktop</Filename>
       <Filename>monobristol.desktop</Filename>
       <Filename>mplayer.desktop</Filename>
@@ -241,6 +247,7 @@
         <Filename>calf.desktop</Filename>
         <Filename>festige.desktop</Filename>
         <Filename>fmit.desktop</Filename>
+        <Filename>foo-yc20.desktop</Filename>
         <Filename>genpo.desktop</Filename>
         <Filename>gtick.desktop</Filename>
         <Filename>guitarix.desktop</Filename>
@@ -328,12 +335,14 @@
         <Filename>wine-Programs-Image-Line-FL Studio 7-FL Studio 7.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 8-FL Studio 8.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 9-FL Studio 9.desktop</Filename>
+        <Filename>wine-Programs-Image-Line-FL Studio 10-FL Studio 10.desktop</Filename>
         <Filename>wine-Programs-REAPER-REAPER.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.1.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.5.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.5.1-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.6.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.6.1-Renoise.desktop</Filename>
+        <Filename>wine-Programs-Renoise 2.7.0-Renoise.desktop</Filename>
       </Include>
     </Menu>
 
@@ -437,12 +446,15 @@
       <Directory>kxstudio-media-players.directory</Directory>
       <Include>
         <Filename>amarok-kde3.desktop</Filename>
+        <Filename>audacious.desktop</Filename>
         <Filename>audacious2.desktop</Filename>
         <Filename>audacious2-gtkui.desktop</Filename>
+        <Filename>banshee.desktop</Filename>
         <Filename>banshee-1.desktop</Filename>
         <Filename>clementine.desktop</Filename>
         <Filename>drumstick-guiplayer.desktop</Filename>
         <Filename>gmerlin-player.desktop</Filename>
+        <Filename>minitube.desktop</Filename>
         <Filename>mplayer.desktop</Filename>
         <Filename>qmmp.desktop</Filename>
         <Filename>realplay.desktop</Filename>
@@ -489,6 +501,7 @@
         <Filename>gmerlin-camelot.desktop</Filename>
         <Filename>gmerlin-transcoder.desktop</Filename>
         <Filename>gmerlin-visualizer.desktop</Filename>
+        <Filename>gtk-recordmydesktop.desktop</Filename>
         <Filename>kino.desktop</Filename>
         <Filename>Kino.desktop</Filename>
         <Filename>LiVES.desktop</Filename>

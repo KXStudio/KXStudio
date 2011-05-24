@@ -22,9 +22,11 @@
       <Filename>ardour-gtk.desktop</Filename>
       <Filename>arpage.desktop</Filename>
       <Filename>audacity.desktop</Filename>
+      <Filename>audacious.desktop</Filename>
       <Filename>audacious2.desktop</Filename>
       <Filename>audacious2-gtkui.desktop</Filename>
       <Filename>azr3-jack.desktop</Filename>
+      <Filename>banshee.desktop</Filename>
       <Filename>banshee-1.desktop</Filename>
       <Filename>beast.desktop</Filename>
       <Filename>bitmeter.desktop</Filename>
@@ -48,11 +50,13 @@
       <Filename>dvdstyler.desktop</Filename>
       <Filename>echomixer.desktop</Filename>
       <Filename>energyxt2.desktop</Filename>
+      <Filename>energyxt2-32bit.desktop</Filename>
       <Filename>envy24_control.desktop</Filename>
       <Filename>eqinox.desktop</Filename>
       <Filename>festige.desktop</Filename>
       <Filename>ffado.org-ffadomixer.desktop</Filename>
       <Filename>fmit.desktop</Filename>
+      <Filename>foo-yc20.desktop</Filename>
       <Filename>freebirth.desktop</Filename>
       <Filename>freemix.desktop</Filename>
       <Filename>freqtweak.desktop</Filename>
@@ -72,6 +76,7 @@
       <Filename>gnome-sound-recorder.desktop</Filename>
       <Filename>gnormalize.desktop</Filename>
       <Filename>gtick.desktop</Filename>
+      <Filename>gtk-recordmydesktop.desktop</Filename>
       <Filename>guitarix.desktop</Filename>
       <Filename>hexter.desktop</Filename>
       <Filename>highlife.desktop</Filename>
@@ -118,6 +123,7 @@
       <Filename>mhwaveedit.desktop</Filename>
       <Filename>milkytracker.desktop</Filename>
       <Filename>minicomputer.desktop</Filename>
+      <Filename>minitube.desktop</Filename>
       <Filename>mixxx.desktop</Filename>
       <Filename>monobristol.desktop</Filename>
       <Filename>mplayer.desktop</Filename>
@@ -159,7 +165,7 @@
       <Filename>realplay.desktop</Filename>
       <Filename>reaper.desktop</Filename>
       <Filename>renoise.desktop</Filename>
-      <Filename>renoise-x64.desktop</Filename>
+      <Filename>renoise-32bit.desktop</Filename>
       <Filename>rhythmbox.desktop</Filename>
       <Filename>rmedigicontrol.desktop</Filename>
       <Filename>rosegarden.desktop</Filename>
