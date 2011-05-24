@@ -8,7 +8,7 @@
 
   <Menu>
     <Name>Multimedia</Name>
-    <Directory>AudioVideo.directory</Directory>
+    <!-- <Directory>AudioVideo.directory</Directory> -->
 
     <Exclude>
       <Filename>2mandvd.desktop</Filename>
@@ -227,6 +227,7 @@
       <Filename>kde4-recorditnow.desktop</Filename>
       <Filename>kde4-sparklemedia.desktop</Filename>
     </Exclude>
+    <AppDir>/usr/local/share/applications</AppDir>
 
   </Menu>
 
