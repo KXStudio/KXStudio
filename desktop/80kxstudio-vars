@@ -8,10 +8,10 @@ else
   export HISTTIMEFORMAT="%d/%m/%y %T "
 
   # For OSS Applications
-  export LD_PRELOAD=/usr/lib/libjackasyn.so.0${LD_PRELOAD:+:$LD_PRELOAD}
+  #export LD_PRELOAD=/usr/lib/libjackasyn.so.0${LD_PRELOAD:+:$LD_PRELOAD}
 
   # SDL OSS -> JACK
-  export SDL_DRIVER=OSS
+  #export SDL_DRIVER=OSS
 
   # Wine Real-Time Scheduling
   #export WINE_RT=15
