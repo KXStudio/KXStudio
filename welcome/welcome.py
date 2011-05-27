@@ -36,6 +36,7 @@ CONFIG_ALL = (
   "pulse/client.conf",
   "pulse/daemon.conf",
   "renoise/V2.6.1/Config.xml",
+  "renoise/V2.7.0/Config.xml",
   "traverso/Traverso-DAW/Traverso.ini",
 
   "config/ardour3/ardour.rc",
@@ -141,15 +142,19 @@ def do_copy_theme():
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
+  os.system('gconftool-2 -t str -s /apps/metacity/general/titlebar_font "DejaVu Sans Bold 8"')
+  os.system('gconftool-2 -t str -s /apps/nautilus/preferences/desktop_font "DejaVu Sans 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/gtk_theme "QtCurve"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/icon_theme "Oxygen Mono Dark"')
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono 8"')
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/font_name "DejaVu Sans 8"')
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans 8"')
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono 8"')
 
 def do_wine_stuff():
   if (os.path.exists("/usr/bin/wineboot")):
     os.system("wineboot")
+    #os.system("sed -i 's/\[drivers32\]/\[drivers32\]\nMSACM.vorbis=vorbis.acm/' ~/.wine/drive_c/windows/system.ini")
+
     if (os.path.exists("/usr/lib/wine/wineasio.dll.so") or os.path.exists("/usr/lib32/wine/wineasio.dll.so")):
       os.system("regsvr32 wineasio.dll")
 
