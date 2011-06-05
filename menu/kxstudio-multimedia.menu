@@ -40,7 +40,11 @@
       <Filename>brasero-nautilus.desktop</Filename>
       <Filename>bristol.desktop</Filename>
       <Filename>calf.desktop</Filename>
-      <Filename>capsaicin.desktop</Filename>
+      <Filename>carla.desktop</Filename>
+      <Filename>carla-control.desktop</Filename>
+      <Filename>carla-wine.desktop</Filename>
+      <Filename>catia.desktop</Filename>
+      <Filename>claudia.desktop</Filename>
       <Filename>cinelerra.desktop</Filename>
       <Filename>cinecutie.desktop</Filename>
       <Filename>clementine.desktop</Filename>
@@ -170,7 +174,7 @@
       <Filename>realplay.desktop</Filename>
       <Filename>reaper.desktop</Filename>
       <Filename>renoise.desktop</Filename>
-      <Filename>renoise-x64.desktop</Filename>
+      <Filename>renoise-32bit.desktop</Filename>
       <Filename>rhythmbox.desktop</Filename>
       <Filename>rmedigicontrol.desktop</Filename>
       <Filename>rosegarden.desktop</Filename>
@@ -245,6 +249,8 @@
         <Filename>bitmeter.desktop</Filename>
         <Filename>bristol.desktop</Filename>
         <Filename>calf.desktop</Filename>
+        <Filename>carla.desktop</Filename>
+        <Filename>carla-wine.desktop</Filename>
         <Filename>festige.desktop</Filename>
         <Filename>fmit.desktop</Filename>
         <Filename>foo-yc20.desktop</Filename>
@@ -350,6 +356,9 @@
       <Name>Audio Tools</Name>
       <Directory>kxstudio-audio-tools.directory</Directory>
       <Include>
+        <Filename>carla-control.desktop</Filename>
+        <Filename>catia.desktop</Filename>
+        <Filename>claudia.desktop</Filename>
         <Filename>drumstick-drumgrid.desktop</Filename>
         <Filename>drumstick-vpiano.desktop</Filename>
         <Filename>gjackclock.desktop</Filename>
