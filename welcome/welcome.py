@@ -37,6 +37,7 @@ CONFIG_ALL = (
   "pulse/daemon.conf",
   "renoise/V2.6.1/Config.xml",
   "renoise/V2.7.0/Config.xml",
+  "renoise/V2.7.1/Config.xml",
   "traverso/Traverso-DAW/Traverso.ini",
 
   "config/ardour3/ardour.rc",
