@@ -2,59 +2,8 @@
 
 case $1 in
 
-    prepare)
-if [ ! -f /usr/share/kxstudio/make_live/install/mt86plus ]; then
- echo "Not installed correctly!!"
- exit
-fi
-
-if [ -d /tmp/livecd ]; then
-rm -rf /tmp/livecd
-fi
-mkdir -p /tmp/livecd
-mkdir -p ~/livecd
-mkdir -p ~/livecd/cd
-mkdir -p ~/livecd/cd/.disk
-sudo cp -r /usr/share/kxstudio/make_live/* ~/livecd/cd
-echo "done"
-    ;;
-
-    mount)
-if [ $2"0" == "0" ]; then
-echo "usage: $0 mount <iso-image>"
-exit
-fi
-
-if [ -d /tmp/livecd ]; then
-rm -rf /tmp/livecd
-fi
-mkdir -p /tmp/livecd
-sudo mount -o loop $2 /tmp/livecd
-mkdir -p ~/livecd
-mkdir -p ~/livecd/cd
-rsync --exclude=/casper/filesystem.squashfs -a /tmp/livecd/ ~/livecd/cd
-sudo rm -rf ~/livecd/cd/autorun.inf ~/livecd/cd/pics ~/livecd/cd/wubi.exe
-#sudo rm -rf ~/livecd/cd/dists ~/livecd/cd/pool ~/livecd/cd/ubuntu
-echo "done"
-    ;;
-
     squash)
-# sudo mkdir ~/livecd/custom/ ~/livecd/squashfs/
-# sudo modprobe squashfs
-# sudo mount -t squashfs -o loop /tmp/livecd/casper/filesystem.squashfs ~/livecd/squashfs/
-# sudo cp -a ~/livecd/squashfs/* ~/livecd/custom
-
-case $2 in
-
-        i386|amd64)
-sudo debootstrap --arch=$2 lucid ~/livecd/custom
-echo "done"
-        ;;
-
-        *)
-echo "usage: $0 squash <arch>"
-        ;;
-esac
+sudo debootstrap --arch=$3 $2 ~/livecd/custom
     ;;
 
     custom)
@@ -76,10 +25,9 @@ apt-get install kxstudio-repos -y
 apt-get update
 apt-get dist-upgrade
 apt-get install ubuntu-standard laptop-detect os-prober
-apt-get install kxstudio-kernel-generic-pae|kxstudio-kernel-preempt
-apt-get install kxstudio-desktop-full kxstudio-meta-conflict
-apt-get install kxstudio-meta-conflict
-apt-get remove kxstudio-meta-conflict vst-plugin-hypercyclic vst-plugin-pizmidi-pack vst-plugin-pizmidi-pack-extra
+apt-get install kxstudio-kernel-generic
+apt-get install kxstudio-meta-conflict kxstudio-desktop-kde4|gnome|unity
+apt-get remove kxstudio-meta-conflict
 apt-get autoremove
 
 # ----- PAUSE HERE ------ #
@@ -94,10 +42,14 @@ apt-get install ubiquity-frontend-kde casper lupin-casper discover1 jfsutils ntf
 
 # Other hacks:
 adduser ubuntu
+addgroup ubuntu admin
 addgroup ubuntu audio
 addgroup ubuntu video
 addgroup ubuntu sixad
-addgroup ubuntu admin
+su ubuntu
+wineboot
+regsvr32 wineasio.dll
+exit
 
 # No passwd hack:
 nano /etc/shadow
@@ -138,52 +90,6 @@ echo "done"
 exit
     ;;
 
-    mkrepo)
-if [ ! -d $2 ]; then
-echo "$2 is not a folder!"
-exit
-fi
-
-sudo mkdir -p ~/livecd/cd/pool/extra/
-sudo cp $2/* ~/livecd/cd/pool/extra/
-
-FOLDERS="0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v x y z"
-
-cd ~/livecd/cd/pool/extra/
-for i in $FOLDERS; do
-sudo mkdir -p ./$i/
-sudo cp ./$i* ./$i/ > /dev/null
-done
-sudo rmdir ./* > /dev/null
-sudo rm ./* > /dev/null
-    ;;
-
-    mkrelease)
-#start
-case $2 in
-    amd64|i386)
-sudo mkdir -p ~/livecd/cd/dists/lucid/extra/binary-$2
-sudo cp /usr/share/kxstudio/make_alternate/Release.bak_ ~/livecd/cd/dists/lucid/
-sudo sed "s/M_WWW_M/$2/" -i ~/livecd/cd/dists/lucid/Release.bak_
-sudo cp /usr/share/kxstudio/make_alternate/Release ~/livecd/cd/dists/lucid/extra/binary-$2/
-sudo sed "s/M_WWW_M/$2/" -i ~/livecd/cd/dists/lucid/extra/binary-$2/Release
-cd ~/livecd/cd/
-sudo su root -c "apt-ftparchive packages pool/extra > dists/lucid/extra/binary-$2/Packages"
-sudo su root -c "apt-ftparchive packages pool/extra | gzip -c -9 > dists/lucid/extra/binary-$2/Packages.gz"
-sudo rm -f dists/lucid/Release dists/lucid/Release.gpg
-sudo cp dists/lucid/Release.bak_ dists/lucid/Release
-sudo su root -c "apt-ftparchive release dists/lucid >> dists/lucid/Release"
-sudo gpg --default-key 29213837 --output dists/lucid/Release.gpg -ba dists/lucid/Release
-sudo rm -f dists/lucid/Release.bak_
-    ;;
-    *)
-echo "wrong arch type, must be amd64 or i386"
-exit
-    ;;
-esac
-#end
-    ;;
-
     mkboot)
 cd ~/livecd/
 sudo rm -f cd/casper/vmlinuz cd/casper/initrd.lz
@@ -194,7 +100,6 @@ cd ~/livecd/cd/casper
 sudo mkdir ext
 cd ext
 sudo su root -c '7z x -so ../initrd_tmp.gz | cpio -id'
-#sudo sed -i "s/log_end_msg/\/root\/usr\/sbin\/addgroup audio \"\$USERNAME\"\n\/root\/usr\/sbin\/addgroup video \"\$USERNAME\"\n\/root\/usr\/sbin\/addgroup sixad \"\$USERNAME\"\nlog_end_msg/" scripts/casper-bottom/10adduser
 sudo su root -c 'find . | cpio --dereference -o -H newc | lzma -7 > ../initrd.lz'
 cd ..
 sudo rm -rf ext initrd_tmp.gz
@@ -203,61 +108,7 @@ echo "done"
     ;;
 
     mkart)
-ARG2="$2"
-ARG3="$3"
-if [ $ARG3"0" == "0" ]; then
-echo "usage: $0 mkart <type> <path-to-KXStudio-Artwork>"
-exit
-fi
-
-#start
-case $ARG2 in
-
-        live32)
-sudo cp $ARG3/ISO/_disk/live32/* ~/livecd/cd/.disk
-sudo cp ~/livecd/cd/README.diskdefines_i386 ~/livecd/cd/README.diskdefines
-sudo rm ~/livecd/cd/README.diskdefines_*
-        ;;
-
-        live64)
-sudo cp $ARG3/ISO/_disk/live64/* ~/livecd/cd/.disk
-sudo cp ~/livecd/cd/README.diskdefines_amd64 ~/livecd/cd/README.diskdefines
-sudo rm ~/livecd/cd/README.diskdefines_*
-        ;;
-
-        alt32)
-sudo cp $ARG3/ISO/_disk/alt32/* ~/livecd/cd/.disk
-sudo cp -r $ARG3/ISO/alternate/* ~/livecd/cd/
-sudo cp $ARG3/ISO/README.diskdefines_i386 ~/livecd/cd/README.diskdefines
-        ;;
-
-        alt64)
-sudo cp $ARG3/ISO/_disk/alt64/* ~/livecd/cd/.disk
-sudo cp -r $ARG3/ISO/alternate/* ~/livecd/cd/
-sudo cp $ARG3/ISO/README.diskdefines_amd64 ~/livecd/cd/README.diskdefines
-        ;;
-
-        net)
-sudo cp $ARG3/ISO/isolinux/splash.png ~/livecd/cd/
-sudo cp $ARG3/ISO/_disk/net/* ~/livecd/cd/
-        ;;
-
-
-        *)
-echo "usage: $0 mkart <type> <path-to-KXStudio-Artwork>
-
-type can be:
-  live32
-  live64
-  alt32
-  alt64
-  net
-"
-exit
-        ;;
-
-esac
-#end
+echo "TODO"
     ;;
 
     md5sum)
@@ -289,54 +140,19 @@ sudo rm -rf ~/livecd/
 echo "done"
     ;;
 
-    h|-h|help|-help|--help)
-echo "Correct Order to Create ISOs:
-
-LiveDVD:
-- prepare
-- squash <arch>
-- custom
-- custom_end
-- mksquash
-- mkboot
-- mkart live32|live64 ART
-- md5sum
-- iso <label>
-
-AlternateDVD:
-- mount ISO [alternateCD]
-- alt_copy amd64|i386 REPO
-- mkart alt32|alt64 ART
-- iso
-
-NetBoot:
-- mount ISO [ubuntu net-boot]
-- mkart net ART
-- iso <label>
-
-"
-    ;;
-
     *)
 echo "usage: $0 <cmd>
 
-cmd can be: (Alternate/Live/Netboot)
+ 1 - squash <version> <arch> [version=lucid/maverick/natty] [arch=i386/amd64]
+ 2 - custom
+ 3 - custom_end
+ 4 - mksquash
+ 5 - mkboot
+ 6 - mkart <type> <path-to-KXStudio-Artwork>
+ 7 - md5sum
+ 8 - iso <label>
 
- L 1 - prepare
-A N1 - mount <iso-image>
- L 2 - squash <arch>
- L 3 - custom
- L 4 - custom_end
- L 5 - mksquash
-A  2 - mkrepo <path-to-debs>
-A  3 - mkrelease <arch>
- L 6 - mkboot
-ALN7 - mkart <type> <path-to-KXStudio-Artwork>
-AL 8 - md5sum
-ALN9 - iso <label>
-
-x - clean
-h - help
+ x - clean
 "
     ;;
 esac
