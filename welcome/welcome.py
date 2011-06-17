@@ -150,8 +150,8 @@ def do_copy_theme():
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/font_name "DejaVu Sans 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono 8"')
-  os.system('gconftool-2 -t bool -s /desktop/gnome/interface/buttons_have_icons true')
-  os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
+  #os.system('gconftool-2 -t bool -s /desktop/gnome/interface/buttons_have_icons true')
+  #os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
 
 def do_wine_stuff():
   if (os.path.exists("/usr/bin/wineboot")):
