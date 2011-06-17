@@ -1,5 +1,36 @@
 #!/bin/bash
 
+# Check dependencies
+if (which 7z > /dev/null); then true; else
+  echo "7z not found, please install it"
+  exit
+fi
+
+if (which cpio > /dev/null); then true; else
+  echo "cpio not found, please install it"
+  exit
+fi
+
+if (which lzma > /dev/null); then true; else
+  echo "lzma not found, please install it"
+  exit
+fi
+
+if (which debootstrap > /dev/null); then true; else
+  echo "debootstrap not found, please install it"
+  exit
+fi
+
+if (which mksquashfs > /dev/null); then true; else
+  echo "mksquashfs not found, please install it"
+  exit
+fi
+
+if (which mkisofs > /dev/null); then true; else
+  echo "mkisofs not found, please install it"
+  exit
+fi
+
 case $1 in
 
     squash)
@@ -165,7 +196,7 @@ sudo cp custom/boot/vmlinuz-2.6.* cd/casper/vmlinuz
 sudo cp custom/boot/initrd.img-2.6.* cd/casper/initrd_tmp.gz
 
 cd ~/livecd/cd/casper
-rm -rf ext
+sudo rm -rf ext
 sudo mkdir ext
 cd ext
 sudo su root -c '7z x -so ../initrd_tmp.gz | cpio -id'
@@ -177,7 +208,39 @@ echo "done"
     ;;
 
     mkart)
-echo "TODO"
+if [ ! -f ~/livecd/iso-stuff.7z ]; then
+  echo "Please copy iso-stuff.7z to ~/livecd before continuing"
+  exit
+fi
+
+ISO_ARCH="$2"
+ISO_NAME="$3"
+
+if [ $ISO_ARCH"0" == "0" ]; then
+echo "usage: $0 mkart <arch> <distro>"
+exit
+fi
+
+if [ $ISO_NAME"0" == "0" ]; then
+echo "usage: $0 mkart $ISO_ARCH <distro>"
+exit
+fi
+
+cd ~/livecd/cd
+sudo 7z x -y ../iso-stuff.7z
+
+sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i ~/livecd/cd/README.diskdefines
+sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/README.diskdefines
+sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/text.cfg
+sudo mkdir -p ~/livecd/cd/.disk/
+sudo su root -c 'echo "KXStudio 10.04.3 "Lucid Lynx" (Live 32bit)" > ./.disk/info'
+sudo su root -c 'echo "http://kxstudio.sourceforge.net/" > ./.disk/release_notes_url'
+echo "Please edit these files manually:
+~/livecd/cd/.disk/info
+~/livecd/cd/.disk/release_notes_url
+~/livecd/cd/README.diskdefines
+~/livecd/cd/preseed/live.seed
+"
     ;;
 
     md5sum)
@@ -217,9 +280,9 @@ echo "usage: $0 <cmd>
  3 - custom_end
  4 - mksquash
  5 - mkboot
- 6 - mkart <type> <path-to-KXStudio-Artwork>
+ 6 - mkart <arch> <distro-name> [arch=i386/amd64] [distro=KXStudio/Ubuntu/* (no spaces!)]
  7 - md5sum
- 8 - iso <label>
+ 8 - iso <label> [label=KXStudio_Live/* (no spaces!)]
 
  x - clean
 "

@@ -1,0 +1,4 @@
+# Install the KXStudio desktop.
+tasksel	tasksel/first	multiselect kxstudio-desktop
+# Keep some stuff installed
+ubiquity	ubiquity/keep-installed	string icedtea6-plugin
