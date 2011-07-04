@@ -79,7 +79,7 @@ $ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version
 #apt-get install ubiquity-frontend-gtk casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
 apt-get install ubiquity-frontend-kde casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
 
-# Other hacks, optional:
+# Other hacks, optional: (NOT WORKING! Don't use!)
 adduser ubuntu
 # ^ give it some random password, will be blanked afterwards
 addgroup ubuntu admin
