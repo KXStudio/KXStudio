@@ -1,0 +1,19 @@
+kxstudio-menu
+
+This is a simple set of files that will divide your desktop multimedia menu into 7 categories:
+ - Audio Plugins
+ - Audio Production
+ - Audio Tools
+ - Disc Production
+ - Hardware Configuration
+ - Media Players
+ - Video Production
+
+This module was specially made for users that install a lot of apps, so the multimedia menu becomes too big...
+
+
+Just do the usual '[sudo] make install' to install it.
+
+If your distro does not follow '/etc/X11/Xsession.d/' rules, insert this new line into your ~/.bashrc:
+export XDG_CONFIG_DIRS=/usr/share/kxstudio/menu/:/etc/xdg/
+
