@@ -1,0 +1,109 @@
+/*
+ * GeSHi CSS Inspired by TextMate
+ * Theme KXStudio
+ *
+ * Copyright 2008 Mark Story
+ * Copyright 2011 Filipe Coelho
+ *
+ * This work is licensed under the Creative Commons Attribution-Share Alike 2.5 Canada License.
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/2.5/ca/
+ * or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA
+ *
+ * @filesource
+ * @copyright                   Copyright 2008, Mark Story.
+ * @link                        http://mark-story.com
+ * @license                     http://creativecommons.org/licenses/by-sa/2.5/ca/
+ *
+ * This file has been modified by Filipe Coelho (aka 'falkTX'), to match KXStudio's theme
+ */
+
+/*
+ * Global geshi styles
+**********************/
+#main pre {
+        line-height: 1.5em;
+        font-size: 10px;
+        white-space: normal;
+        padding: 0;
+        border: 1px solid;
+}
+pre ol {
+        list-style: decimal;
+        list-style-position: outside;
+        padding: 0;
+        margin: 0;
+}
+#main pre ol li {
+        margin: 0 0 0 35px;
+        padding: 0;
+        color: rgb(240,240,240);
+        clear: none;
+}
+pre ol li div {
+        color: rgb(240,240,240);
+}
+
+/* comments */
+.co0, .co1,
+.coMULTI {
+        color: rgb(100,100,100);
+}
+
+/* brackets */
+.br0 {
+        color: rgb(230,230,230);
+}
+
+/* strings */
+.st0, .st_h {
+        color: rgb(230,100,100);
+}
+
+/* keywords */
+.kw1 {
+        color: rgb(240,240,240);
+        font-weight: 700;
+}
+.kw2 {
+        color: rgb(100,230,100);
+}
+
+.kw3 {
+        color: rgb(100,100,230);
+}
+
+/* numbers */
+.nu0 {
+        color: rgb(230,230,100);
+}
+
+/* vars */
+.re0, .re1, .re2 {
+        color: rgb(100,230,100);
+}
+
+/*
+ * CSS selectors
+*****************/
+/* classnames */
+[lang=css] .kw2,
+.css .kw2 {
+        color: rgb(240,240,240);
+        font-weight: 700;
+}
+.re1 {
+        color: rgb(240,240,240);
+        font-weight: 700;
+}
+/* css px */
+.re3 {
+        color: rgb(230,230,100);
+}
+
+/*
+ * Javascript
+****************/
+[lang=javascript] .me1,
+.javascript .me1 {
+        color: rgb(100,100,230);
+}

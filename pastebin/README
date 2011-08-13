@@ -1,0 +1,30 @@
+This folder contains the code for KXStudio's Pastebin.
+
+It's shared under the Public Domain.
+The full license is available at:
+http://creativecommons.org/licenses/publicdomain/
+
+
+To use it, download GeSHi first, and unpack the geshi folder in here.
+
+The file structure must be like this:
+ + geshi/<some-php-files>
+ - repo/
+ + repo/_error
+ - .htaccess
+ - download.php
+ - geshi.php
+ - index.php
+ - kxstudio.css
+
+NOTE:
+ -> htaccess has been renamed as usual
+ -> repo directory must have r+w permissions (we'll use it to store the files)
+
+
+To make this work, you'll need to:
+
+edit index/download.php and set $base_dir and $server_dir properly.
+edit index.php and set the server root path if needed (ie, href="/paste/kxstudio.css" -> href="/home/http/public_html/paste/kxstudio.css")
+^ change everything that starts with '/paste'.
+
