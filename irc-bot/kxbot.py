@@ -105,7 +105,7 @@ class IRC(object):
                 self.sendHello(irc, user)
 
               elif 'kxbot: tell ' in data:
-                irc.send('PRIVMSG %s :TODO\r\n' % (self.room, user))
+                irc.send('PRIVMSG %s :%s: TODO\r\n' % (self.room, user))
 
           # Hello messages
 
