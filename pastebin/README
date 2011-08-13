@@ -8,9 +8,10 @@ http://creativecommons.org/licenses/publicdomain/
 To use it, download GeSHi first, and unpack the geshi folder in here.
 
 The file structure must be like this:
- + geshi/<some-php-files>
- - repo/
- + repo/_error
+ + geshi
+  - *.php
+ + repo
+  - _error
  - .htaccess
  - download.php
  - geshi.php
@@ -25,6 +26,6 @@ NOTE:
 To make this work, you'll need to:
 
 edit index/download.php and set $base_dir and $server_dir properly.
-edit index.php and set the server root path if needed (ie, href="/paste/kxstudio.css" -> href="/home/http/public_html/paste/kxstudio.css")
+edit index.php and set the server root path if needed (ie, href="/paste/kxstudio.css" -> href="/~user/paste/kxstudio.css")
 ^ change everything that starts with '/paste'.
 
