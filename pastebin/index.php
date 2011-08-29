@@ -204,7 +204,7 @@ if (!empty($_GET["id"])) {
                             <option value="sdlbasic">SdlBasic</option>
                             <option value="smalltalk">Smalltalk</option>
                             <option value="smarty">Smarty</option>
-                            <option value="tcl">TCL</option>n>
+                            <option value="tcl">TCL</option>
                             <option value="vbnet">VB.NET</option>
                             <option value="vb">VisualBasic</option>
                             <option value="whitespace">WhiteSpace</option>
@@ -214,11 +214,11 @@ if (!empty($_GET["id"])) {
                         </td></tr>
 
                         <tr><td align="right">Paste Name / Title:</td><td>
-                          <input type="text" name="paste_title" id="paste_title">
+                          <input type="text" name="paste_title" id="paste_title" />
                         </td></tr>
 
                         <tr><td></td><td>
-                          <input type="submit" name="paste_submit" id="paste_submit" value="Submit">
+                          <input type="submit" name="paste_submit" id="paste_submit" value="Submit" />
                         </td></tr>
 
                       </table>

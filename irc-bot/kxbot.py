@@ -10,11 +10,9 @@ class IRC(object):
         self.network = network
         self.port = port
 
-        self.nick = None
         self.room = None
 
-    def setNick(self, nick):
-        self.nick = nick
+        self.saved_tells = []
 
     def setRoom(self, room):
         if (type(room) != str or len(room) <= 1 or room[0] != '#'):
@@ -23,20 +21,42 @@ class IRC(object):
 
         self.room = room
 
+    def saveTellMessage(self, author, data):
+        parse_data = "PRIVMSG %s :kxbot: tell " % (self.room)
+
+        if (parse_data in data):
+          msg_data  = data.split(parse_data, 1)[1]
+
+          if (" " in msg_data):
+            msg_split = msg_data.split(" ",1)
+
+            msg_dict = {
+              'author':  author,
+              'user':    msg_split[0],
+              'message': msg_split[1]
+            }
+
+            self.saved_tells.append(msg_dict)
+
+            return msg_split[0]
+
+          else:
+            return None
+
+        else:
+          return None
+
     def getUserFromMessage(self, message):
         user = None
 
-        if ("@" in message):
-          message = message.split("@", 1)[0]
+        if (message[0] == ":"):
+          message = message.replace(":", "", 1)
           if ("!~" in message):
-            user = message.split("!~", 1)[1]
+            user = message.split("!~", 1)[0]
 
         return user
 
-    def sendHello(self, irc, user=None, data=None):
-        if (user == None):
-          user = self.getUserFromMessage(data)
-
+    def sendHello(self, irc, user):
         hello_messages = [
           "hello",
           "hello there",
@@ -58,10 +78,6 @@ class IRC(object):
           irc.send('PRIVMSG %s :%s\r\n' % (self.room, message))
 
     def exec_(self):
-        if (self.nick == None):
-          print "Nick not defined yet"
-          return 1
-
         if (self.room == None):
           print "Room not defined yet"
           return 1
@@ -71,12 +87,14 @@ class IRC(object):
 
         print irc.recv(4096)
 
-        irc.send('NICK %s\r\n' % (self.nick))
-        irc.send('USER %s %s %s :%s\r\n' % (self.nick, self.nick, self.nick, self.nick))
+        irc.send('NICK kxbot\r\n')
+        irc.send('USER kxbot kxbot kxbot :KXStudio Bot\r\n')
         irc.send('JOIN %s\r\n' % (self.room))
 
         while True:
-          data = irc.recv(4096)
+          data     = irc.recv(4096)
+          data_low = str(data).lower()
+          user     = self.getUserFromMessage(data)
 
           # PING PONG
 
@@ -87,48 +105,62 @@ class IRC(object):
           # Conversations with kxbot (direct)
 
           if data.find('kxbot: ') != -1:
-            user = self.getUserFromMessage(data)
-
             if (user != None):
-
-              if 'kxbot: hello' in data:
+              if 'kxbot: hello' in data_low:
                 self.sendHello(irc, user)
-              elif 'kxbot: hey' in data:
+              elif 'kxbot: hey' in data_low:
                 self.sendHello(irc, user)
-              elif 'kxbot: hi' in data:
+              elif 'kxbot: hi' in data_low:
                 self.sendHello(irc, user)
-              elif 'kxbot: howdy' in data:
+              elif 'kxbot: howdy' in data_low:
                 self.sendHello(irc, user)
-              elif 'kxbot: whats up' in data:
+              elif 'kxbot: howsit' in data_low:
                 self.sendHello(irc, user)
-              elif 'kxbot: what\'s up' in data:
+              elif 'kxbot: howyou' in data_low:
+                self.sendHello(irc, user)
+              elif 'kxbot: whats up' in data_low:
+                self.sendHello(irc, user)
+              elif 'kxbot: what\'s up' in data_low:
                 self.sendHello(irc, user)
 
               elif 'kxbot: tell ' in data:
-                irc.send('PRIVMSG %s :%s: TODO\r\n' % (self.room, user))
+                msg_user = self.saveTellMessage(user, data)
+                if (msg_user == None):
+                  irc.send('PRIVMSG %s :%s: Usage: kxbot: tell <nick> <message>\r\n' % (self.room, user))
+                else:
+                  irc.send('PRIVMSG %s :%s: I\'ll pass that on when %s is around\r\n' % (self.room, user, msg_user))
+
 
           # Hello messages
 
-          elif 'hello kxbot' in data:
-            self.sendHello(irc, data=data)
-          elif 'hello there kxbot' in data:
-            self.sendHello(irc, data=data)
-          elif 'hey kxbot' in data:
-            self.sendHello(irc, data=data)
-          elif 'hey there kxbot' in data:
-            self.sendHello(irc, data=data)
-          elif 'hi kxbot' in data:
-            self.sendHello(irc, data=data)
-          elif 'hi there kxbot' in data:
-            self.sendHello(irc, data=data)
-          elif 'howdy kxbot' in data:
-            self.sendHello(irc, data=data)
-          elif 'whats up kxbot' in data:
+          elif 'hello kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'hello there kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'hey kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'hey there kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'hi kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'hi there kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'howdy kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'howsit kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'howyou kxbot' in data_low:
+            self.sendHello(irc, user)
+          elif 'howdy do' in data_low:
+            self.sendHello(irc, user)
+          elif 'whats up kxbot' in data_low:
             irc.send('PRIVMSG %s :nothing really...\r\n' % (self.room))
-          elif 'what\'s up kxbot' in data:
+          elif 'what\'s up kxbot' in data_low:
             irc.send('PRIVMSG %s :nothing...\r\n' % (self.room))
 
+
           # Commands
+
           elif data.find('!p kxstudio git clone') != -1:
             irc.send('PRIVMSG %s :git clone git://kxstudio.git.sourceforge.net/gitroot/kxstudio/kxstudio\r\n' % (self.room))
 
@@ -163,8 +195,21 @@ class IRC(object):
             irc.send('PRIVMSG %s :Ok, cya!\r\n' % (self.room))
             irc.send('QUIT\r\n')
 
+
+          # Check for 'tell' messages
+
+          h = 0
+          for i in range(len(self.saved_tells)):
+            msg_dict = self.saved_tells[i-h]
+
+            if (msg_dict['user'] == user):
+              irc.send('PRIVMSG %s :%s: %s told %s\r\n' % (self.room, user, msg_dict['author'], msg_dict['message']))
+              self.saved_tells.pop(i)
+              h += 1
+
+
           if (data):
-            print data
+            print user, "->", data
 
         return 0
 
@@ -175,8 +220,7 @@ if __name__ == '__main__':
     my_irc = IRC('barjavel.freenode.net', 6667)
 
     # Set basic data
-    my_irc.setNick("kxbot")
-    my_irc.setRoom("#kxstudio")
+    my_irc.setRoom("#opensourcemusicians")
 
     # App-Loop
     sys.exit(my_irc.exec_())

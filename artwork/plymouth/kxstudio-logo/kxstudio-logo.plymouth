@@ -5,4 +5,4 @@ ModuleName=script
 
 [script]
 ImageDir=/lib/plymouth/themes/kxstudio-logo
-ScriptFile=/lib/plymouth/themes/kxstudio-logo/kxstudio.script
+ScriptFile=/lib/plymouth/themes/kxstudio-logo/kxstudio-logo.script
