@@ -1,12 +1,13 @@
 [Desktop Entry]
-Name=KXStudio
 Type=X-GNOME-Metatheme
-Comment=
+Name=KXStudio
+Comment=KXStudio Gnome Theme
+Encoding=UTF-8
 
 [X-GNOME-Metatheme]
 GtkTheme=QtCurve
 MetacityTheme=KXStudio
 IconTheme=Oxygen Mono Dark
 CursorTheme=oxy-black
-CursorSize=18
+ButtonLayout=close,minimize,maximize:
 NotificationTheme=ubuntu
