@@ -110,22 +110,22 @@
     </gradient>
     
     <!-- Titlebar outline -->
-    <rectangle color="shade/#111111/1.2" filled="false" x="0" y="0" width="width - 1" height="top_height - 1"/>
+    <rectangle color="shade/#222222/1.2" filled="false" x="0" y="0" width="width - 1" height="top_height - 1"/>
 
     <!-- Topmost lines -->
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="width" y1="0" y2="0"/>
-    <line color="shade/#111111/1.1" x1="0" x2="width" y1="1" y2="1"/>
+    <line color="shade/#070707/1.2" x1="0" x2="width" y1="0" y2="0"/>
+    <line color="shade/#222222/1.1" x1="0" x2="width" y1="1" y2="1"/>
     
     <!-- Darkening of the left arch -->
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="4" y1="1" y2="1"/>
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="2" y1="2" y2="2"/>
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="1" y1="3" y2="3"/>
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="1" y1="4" y2="4"/>
-    
-    <line color="shade/#0A0A0A/1.2" x1="width-5" x2="width" y1="1" y2="1"/>
-    <line color="shade/#0A0A0A/1.2" x1="width-3" x2="width" y1="2" y2="2"/>
-    <line color="shade/#0A0A0A/1.2" x1="width-2" x2="width" y1="3" y2="3"/>
-    <line color="shade/#0A0A0A/1.2" x1="width-2" x2="width" y1="4" y2="4"/>
+    <line color="shade/#1D1D1D/1.2" x1="0" x2="4" y1="1" y2="1"/>
+    <line color="shade/#181818/1.2" x1="0" x2="2" y1="2" y2="2"/>
+    <line color="shade/#1D1D1D/1.2" x1="0" x2="1" y1="3" y2="3"/>
+    <line color="shade/#181818/1.2" x1="0" x2="1" y1="4" y2="4"/>
+
+    <line color="shade/#1D1D1D/1.2" x1="width-5" x2="width" y1="1" y2="1"/>
+    <line color="shade/#181818/1.2" x1="width-3" x2="width" y1="2" y2="2"/>
+    <line color="shade/#1D1D1D/1.2" x1="width-2" x2="width" y1="3" y2="3"/>
+    <line color="shade/#181818/1.2" x1="width-2" x2="width" y1="4" y2="4"/>
 
     <line color="shade/#111111/0.9" x1="1" y1="top_height - 1" x2="width - 2" y2="top_height - 1"/>
 </draw_ops>
@@ -139,22 +139,22 @@
     </gradient>
 
     <!-- Titlebar outline -->
-    <rectangle color="shade/#111111/1.2" filled="false" x="0" y="0" width="width - 1" height="top_height - 1"/>
+    <rectangle color="shade/#222222/1.2" filled="false" x="0" y="0" width="width - 1" height="top_height - 1"/>
 
     <!-- Topmost lines -->
-    <line color="shade/#0A0A0A/1.16" x1="0" x2="width" y1="0" y2="0"/>
-    <line color="shade/#111111/1.14" x1="0" x2="width" y1="1" y2="1"/>
-    
+    <line color="shade/#070707/1.16" x1="0" x2="width" y1="0" y2="0"/>
+    <line color="shade/#222222/1.14" x1="0" x2="width" y1="1" y2="1"/>
+
     <!-- Darkening of the left arch -->
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="4" y1="1" y2="1"/>
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="2" y1="2" y2="2"/>
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="1" y1="3" y2="3"/>
-    <line color="shade/#0A0A0A/1.2" x1="0" x2="1" y1="4" y2="4"/>
-    
-    <line color="shade/#0A0A0A/1.2" x1="width-5" x2="width" y1="1" y2="1"/>
-    <line color="shade/#0A0A0A/1.2" x1="width-3" x2="width" y1="2" y2="2"/>
-    <line color="shade/#0A0A0A/1.2" x1="width-2" x2="width" y1="3" y2="3"/>
-    <line color="shade/#0A0A0A/1.2" x1="width-2" x2="width" y1="4" y2="4"/>
+    <line color="shade/#1D1D1D/1.2" x1="0" x2="4" y1="1" y2="1"/>
+    <line color="shade/#181818/1.2" x1="0" x2="2" y1="2" y2="2"/>
+    <line color="shade/#1D1D1D/1.2" x1="0" x2="1" y1="3" y2="3"/>
+    <line color="shade/#181818/1.2" x1="0" x2="1" y1="4" y2="4"/>
+
+    <line color="shade/#1D1D1D/1.2" x1="width-5" x2="width" y1="1" y2="1"/>
+    <line color="shade/#181818/1.2" x1="width-3" x2="width" y1="2" y2="2"/>
+    <line color="shade/#1D1D1D/1.2" x1="width-2" x2="width" y1="3" y2="3"/>
+    <line color="shade/#181818/1.2" x1="width-2" x2="width" y1="4" y2="4"/>
   
     <line color="shade/#111111/0.9" x1="1" y1="top_height - 1" x2="width - 2" y2="top_height - 1"/>
 </draw_ops>
@@ -172,9 +172,9 @@
     </gradient>
     
     <!-- Topmost dark line -->
-    <line color="shade/#0A0A0A/1.1" x1="0" x2="width" y1="0" y2="0"/>
+    <line color="shade/#070707/1.1" x1="0" x2="width" y1="0" y2="0"/>
     
-    <line color="shade/#111111/0.94" x1="1" y1="top_height - 1" x2="width - 2" y2="top_height - 1"/>
+    <line color="shade/#222222/0.94" x1="1" y1="top_height - 1" x2="width - 2" y2="top_height - 1"/>
 </draw_ops>
 
 <draw_ops name="draw_title_maximized_unfocused">
@@ -186,9 +186,9 @@
     </gradient>
     
     <!-- Topmost dark line -->
-    <line color="shade/#0A0A0A/1.1" x1="0" x2="width" y1="0" y2="0"/>
+    <line color="shade/#070707/1.1" x1="0" x2="width" y1="0" y2="0"/>
     
-    <line color="shade/#111111/0.94" x1="1" y1="top_height - 1" x2="width - 2" y2="top_height - 1"/>
+    <line color="shade/#222222/0.94" x1="1" y1="top_height - 1" x2="width - 2" y2="top_height - 1"/>
 </draw_ops>
 
 <draw_ops name="draw_title_maximized_inactive">
@@ -198,16 +198,16 @@
 <!-- Window Frames -->
 
 <draw_ops name="draw_frame">
-    <rectangle color="shade/#141414/0.7" x="0" y="0" width="width" height="height" filled="true"/>
+    <rectangle color="shade/#222222/0.7" x="0" y="0" width="width" height="height" filled="true"/>
     <gradient type="vertical" x="0" y="0" width="width" height="60">
-        <color value="shade/#141414/1.2" />
-        <color value="shade/#141414/0.7" />
+        <color value="shade/#222222/1.2" />
+        <color value="shade/#222222/0.7" />
     </gradient>
 </draw_ops>
 
 <!-- bottom border -->
 <draw_ops name="bottom_edge">
-	<line color="shade/#121212/0.7" x1="0" x2="width" y1="height-1" y2="height-1"/>
+	<line color="shade/#222222/0.7" x1="0" x2="width" y1="height-1" y2="height-1"/>
 </draw_ops>
 
 <draw_ops name="border">
