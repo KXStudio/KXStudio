@@ -1,0 +1,43 @@
+#############################################################
+# In order to use this artwork, install the files like this:
+
+# Make required directories
+mkdir -p /lib/plymouth/themes/
+mkdir -p /usr/share/gnome-background-properties/
+mkdir -p /usr/share/icons/
+mkdir -p /usr/share/kde4/apps/color-schemes/
+mkdir -p /usr/share/kde4/apps/kdm/
+mkdir -p /usr/share/kde4/apps/ksplash/
+mkdir -p /usr/share/kde4/apps/QtCurve/
+mkdir -p /usr/share/themes/
+mkdir -p /usr/share/xfce4/backdrops/
+mkdir -p /usr/share/wallpapers/
+
+# Generic themes (Metacity and WFWM4)
+cp -r themes/* /usr/share/themes/
+
+# QtCurve style
+cp *.qtcurve /usr/share/kde4/apps/QtCurve/
+
+# KDE Colors
+cp color-schemes/* /usr/share/kde4/apps/color-schemes/
+
+# Icons
+cp -r -P icons/* /usr/share/icons/
+
+# KDM Theme
+cp -r -P kdm/* /usr/share/kde4/apps/kdm/
+
+# KSplash
+cp -r -P ksplash/* /usr/share/kde4/apps/ksplash/
+
+# Plymouth
+cp -r plymouth/* /lib/plymouth/themes/
+
+# Wallpapers (KDE, Gnome and XFCE compatible)
+cp -r wallpapers/KXStudio-* /usr/share/wallpapers/
+cp wallpapers/kxstudio-wallpapers.xml /usr/share/gnome-background-properties/
+cp wallpapers/KXStudio-Black/contents/images/1600x1200.jpg /usr/share/xfce4/backdrops/
+cp wallpapers/KXStudio-Heartbeat/contents/images/1920x1200.png /usr/share/xfce4/backdrops/
+cp wallpapers/KXStudio-KDE3/contents/images/1920x1440.jpg /usr/share/xfce4/backdrops/
+cp wallpapers/KXStudio-Stripes/contents/images/1920x1200.jpg /usr/share/xfce4/backdrops/
