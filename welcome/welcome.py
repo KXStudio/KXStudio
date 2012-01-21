@@ -2,16 +2,31 @@
 # -*- coding: utf-8 -*-
 
 # Imports (Global)
-from PyQt4.QtCore import QSettings, QThread, QVariant, SIGNAL
-from PyQt4.QtGui import QApplication, QPixmap, QWizard
+from PyQt4.QtCore import QSettings, QThread, SIGNAL
+from PyQt4.QtGui import QApplication, QIcon, QPixmap, QWizard
 from time import sleep
 import os, sys
 
 # Imports (Custom)
 import ui_welcome
 
+# ----------------------------------------------
+
 HOME = os.getenv("HOME")
-PWD = sys.path[0]
+PWD  = sys.path[0]
+
+CONFIG_DIR = "/usr/share/kxstudio/config"
+
+ID_GROUP_SETTINGS = 0
+ID_GROUP_THEME    = 1
+ID_GROUP_WINE     = 2
+ID_GROUP_FINAL    = 3
+
+ID_PIXMAP_QUEQUE  = 0
+ID_PIXMAP_PROCESS = 1
+ID_PIXMAP_DONE    = 2
+
+# ----------------------------------------------
 
 CONFIG_ALL = (
   "asoundrc",
@@ -25,7 +40,6 @@ CONFIG_ALL = (
   "ccutie/Cinecutie_rc",
   "composite/composite.conf",
   "hydrogen/hydrogen.conf",
-  "jost/default.conf",
   "mplayer/config",
   "non-daw/options",
   "non-mixer/options",
@@ -52,17 +66,10 @@ CONFIG_ALL = (
   "config/rosegardenmusic/Rosegarden.conf",
   "config/vlc/vlcrc",
 
-  "jucetice/BitMangler.conf",
-  "jucetice/EQinox.conf",
-  "jucetice/Highlife.conf",
-  "jucetice/Nekobee.conf",
-  "jucetice/Peggy2000.conf",
-
   "Loomer/Aspect.xml",
   "Loomer/Manifold.xml",
   "Loomer/Resound.xml",
   "Loomer/Sequent.xml",
-  "Loomer/Shift.xml",
   "Loomer/Shift2.xml",
   "Loomer/String.xml",
 
@@ -111,35 +118,34 @@ CONFIG_THEME = (
   "kde/share/config/plasmarc",
 )
 
+# ----------------------------------------------
+
 def create_folder_for_file(sfile):
   if ("/" in sfile):
     spath = sfile.rsplit("/",1)[0]
-    folder = os.path.join(HOME, "."+spath)
+    folder = os.path.join(HOME, ".%s" % (spath))
     if not os.path.exists(folder):
       os.system("mkdir -p %s" % (folder))
-
-def do_remove_old_stuff():
-  os.system("rm -f '%s/.kde/env/kxstudio-session-start.sh'" % (HOME))
 
 def do_copy_all():
   for sfile in CONFIG_ALL:
     create_folder_for_file(sfile)
-    os.system("cp '/usr/share/kxstudio/config/%s' '%s/.%s'" % (sfile, HOME, sfile))
+    os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
 def do_copy_basic():
   for sfile in CONFIG_SMALL:
     create_folder_for_file(sfile)
-    os.system("cp '/usr/share/kxstudio/config/%s' '%s/.%s'" % (sfile, HOME, sfile))
+    os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
   for sfile in CONFIG_ALL:
     create_folder_for_file(sfile)
     if (not os.path.exists(os.path.join(HOME, sfile))):
-      os.system("cp '/usr/share/kxstudio/config/%s' '%s/.%s'" % (sfile, HOME, sfile))
+      os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
 def do_copy_theme():
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
-    os.system("cp '/usr/share/kxstudio/config/%s' '%s/.%s'" % (sfile, HOME, sfile))
+    os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
@@ -162,7 +168,7 @@ def do_wine_stuff():
       os.system("regsvr32 wineasio.dll")
 
     if (os.path.exists("/usr/bin/winetricks")):
-      os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp sound=jack")
+      os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp")
 
 def do_final_stuff():
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink "pulsesink device=\"jack_out\""')
@@ -174,10 +180,17 @@ def do_final_stuff():
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink_description "Jack"')
 
+# ----------------------------------------------
+
 # Separate Thread for Copying Stuff
 class CopyStuffThread(QThread):
     def __init__(self, parent=None):
         super(CopyStuffThread, self).__init__(parent)
+
+        self._copy = False
+        self._copy_all = False
+        self._copy_basic = False
+        self._copy_theme = False
 
     def setData(self, _copy, _copy_all, _copy_basic, _copy_theme):
         self._copy = _copy
@@ -186,38 +199,35 @@ class CopyStuffThread(QThread):
         self._copy_theme = _copy_theme
 
     def run(self):
-        xself = self.parent()
-
         # Settings
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 0, 1)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_SETTINGS, ID_PIXMAP_PROCESS)
         if (self._copy):
           sleep(1)
-          do_remove_old_stuff()
           if (self._copy_all):
             do_copy_all()
           elif (self._copy_basic):
             do_copy_basic()
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 0, 2)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_SETTINGS, ID_PIXMAP_DONE)
 
         # Theme
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 1, 1)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_PROCESS)
         if (self._copy_theme):
           sleep(1)
           do_copy_theme()
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 1, 2)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_DONE)
 
         # Wine
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 2, 1)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_WINE, ID_PIXMAP_PROCESS)
         if (self._copy):
           do_wine_stuff()
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 2, 2)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_WINE, ID_PIXMAP_DONE)
 
         # Final
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 3, 1)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_FINAL, ID_PIXMAP_PROCESS)
         if (self._copy):
           sleep(1)
           do_final_stuff()
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), 3, 2)
+        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_FINAL, ID_PIXMAP_DONE)
 
 # Main Window
 class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
@@ -240,14 +250,16 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         self.l_ico_final.setPixmap(self.pixmap_queque)
         self.progressBar.setValue(0)
 
+        self.setWindowIcon(QIcon.fromTheme("start-here-kxstudio", QIcon(self.pixmap_kxstudio)))
+
         self.copyStuffThread = CopyStuffThread(self)
 
         self.connect(self, SIGNAL("finished(int)"), self.saveSettings)
-        self.connect(self, SIGNAL("currentIdChanged(int)"), self.changedPage)
+        self.connect(self, SIGNAL("currentIdChanged(int)"), self.pageChanged)
         self.connect(self.copyStuffThread, SIGNAL("setLabelPixmap(int, int)"), self.setLabelPixmap)
         self.connect(self.copyStuffThread, SIGNAL("finished()"), self.copyStuffFinished)
 
-    def changedPage(self, page):
+    def pageChanged(self, page):
         # Initial page
         if (self.previous_page == -1 and page == 0):
           pass
@@ -268,25 +280,29 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
         self.previous_page = page
 
-    def setLabelPixmap(self, label_id, pixmap_id):
-        if (label_id == 0):
+    def setLabelPixmap(self, group_id, pixmap_id):
+        label = None
+
+        if (group_id == ID_GROUP_SETTINGS):
           label = self.l_ico_settings
           self.progressBar.setValue(0)
-        elif (label_id == 1):
+        elif (group_id == ID_GROUP_THEME):
           label = self.l_ico_theme
           self.progressBar.setValue(25)
-        elif (label_id == 2):
+        elif (group_id == ID_GROUP_WINE):
           label = self.l_ico_wine
           self.progressBar.setValue(50)
-        elif (label_id == 3):
+        elif (group_id == ID_GROUP_FINAL):
           label = self.l_ico_final
           self.progressBar.setValue(75)
+        else:
+          return
 
-        if (pixmap_id == 0):
+        if (pixmap_id == ID_PIXMAP_QUEQUE):
           label.setPixmap(self.pixmap_queque)
-        elif (pixmap_id == 1):
+        elif (pixmap_id == ID_PIXMAP_PROCESS):
           label.setPixmap(self.pixmap_process)
-        elif (pixmap_id == 2):
+        elif (pixmap_id == ID_PIXMAP_DONE):
           label.setPixmap(self.pixmap_done)
 
     def copyStuffFinished(self):
@@ -295,7 +311,7 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         self.button(QWizard.CancelButton).setEnabled(True)
 
     def saveSettings(self):
-        settings.setValue("Geometry", QVariant(self.saveGeometry()))
+        settings.setValue("Geometry", self.saveGeometry())
         settings.setValue("FirstRun", False)
 
     def loadSettings(self):
@@ -312,14 +328,12 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setApplicationName("Welcome")
     app.setOrganizationName("KXStudio")
-    #app.setWindowIcon(QIcon(":/48x48/welcome.png"))
 
     settings = QSettings("KXStudio", "Welcome")
 
     run = True
-    if (app.arguments().count() > 1):
-      if (app.arguments()[1] == "--first-run"):
-        run = settings.value("FirstRun", True).toBool()
+    if ("--first-run" in app.arguments()):
+      run = settings.value("FirstRun", True).toBool()
 
     # Show GUI
     if (run):
