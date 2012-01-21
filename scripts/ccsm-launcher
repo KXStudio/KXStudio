@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -f /usr/bin/ccsm ]; then
+  exec /usr/bin/ccsm
+elif [ -f /usr/bin/simple-ccsm ]; then
+  exec /usr/bin/simple-ccsm
+fi
