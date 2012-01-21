@@ -1,9 +1,0 @@
-#!/bin/bash
-
-export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/local/games:/usr/sbin:/usr/bin:/usr/games:/sbin:/bin
-export KDEDIRS=/usr
-export KDEHOME=$HOME/.kde
-export XDG_DATA_DIRS=/usr/share
-export MANPATH=/usr/local/share/man:/usr/share/man
-
-exec "$@"

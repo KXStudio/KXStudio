@@ -82,11 +82,13 @@
       <Filename>gtick.desktop</Filename>
       <Filename>gtk-recordmydesktop.desktop</Filename>
       <Filename>guitarix.desktop</Filename>
-      <Filename>hexter.desktop</Filename>
-      <Filename>highlife.desktop</Filename>
-      <Filename>hydrogen.desktop</Filename>
+      <Filename>gxtuner.desktop</Filename>
       <Filename>hdspconf.desktop</Filename>
       <Filename>hdspmixer.desktop</Filename>
+      <Filename>hexter.desktop</Filename>
+      <Filename>highlife.desktop</Filename>
+      <Filename>horgand.desktop</Filename>
+      <Filename>hydrogen.desktop</Filename>
       <Filename>ingen.desktop</Filename>
       <Filename>ingen-svn.desktop</Filename>
       <Filename>j2sc.desktop</Filename>
@@ -133,6 +135,7 @@
       <Filename>mplayer.desktop</Filename>
       <Filename>mscore.desktop</Filename>
       <Filename>muse.desktop</Filename>
+      <Filename>nanonoise.desktop</Filename>
       <Filename>nekobee.desktop</Filename>
       <Filename>nekobee-juced.desktop</Filename>
       <Filename>nerolinux.desktop</Filename>
@@ -140,6 +143,7 @@
       <Filename>non-daw.desktop</Filename>
       <Filename>non-mixer.desktop</Filename>
       <Filename>non-sequencer.desktop</Filename>
+      <Filename>oom.desktop</Filename>
       <Filename>openmovieeditor.desktop</Filename>
       <Filename>openshot.desktop</Filename>
       <Filename>padevchooser.desktop</Filename>
@@ -194,6 +198,7 @@
       <Filename>vlc-git.desktop</Filename>
       <Filename>vlmc.desktop</Filename>
       <Filename>vmpk.desktop</Filename>
+      <Filename>vmpk-jack.desktop</Filename>
       <Filename>wired.desktop</Filename>
       <Filename>xjadeo.desktop</Filename>
       <Filename>yoshimi.desktop</Filename>
@@ -231,7 +236,7 @@
       <Filename>kde4-recorditnow.desktop</Filename>
       <Filename>kde4-sparklemedia.desktop</Filename>
     </Exclude>
-    <AppDir>/usr/local/share/applications</AppDir>
+    <!-- <AppDir>/usr/local/share/applications</AppDir> -->
 
   </Menu>
 

@@ -87,11 +87,13 @@
       <Filename>gtick.desktop</Filename>
       <Filename>gtk-recordmydesktop.desktop</Filename>
       <Filename>guitarix.desktop</Filename>
-      <Filename>hexter.desktop</Filename>
-      <Filename>highlife.desktop</Filename>
-      <Filename>hydrogen.desktop</Filename>
+      <Filename>gxtuner.desktop</Filename>
       <Filename>hdspconf.desktop</Filename>
       <Filename>hdspmixer.desktop</Filename>
+      <Filename>hexter.desktop</Filename>
+      <Filename>highlife.desktop</Filename>
+      <Filename>horgand.desktop</Filename>
+      <Filename>hydrogen.desktop</Filename>
       <Filename>ingen.desktop</Filename>
       <Filename>ingen-svn.desktop</Filename>
       <Filename>j2sc.desktop</Filename>
@@ -138,6 +140,7 @@
       <Filename>mplayer.desktop</Filename>
       <Filename>mscore.desktop</Filename>
       <Filename>muse.desktop</Filename>
+      <Filename>nanonoise.desktop</Filename>
       <Filename>nekobee.desktop</Filename>
       <Filename>nekobee-juced.desktop</Filename>
       <Filename>nerolinux.desktop</Filename>
@@ -145,6 +148,7 @@
       <Filename>non-daw.desktop</Filename>
       <Filename>non-mixer.desktop</Filename>
       <Filename>non-sequencer.desktop</Filename>
+      <Filename>oom.desktop</Filename>
       <Filename>openmovieeditor.desktop</Filename>
       <Filename>openshot.desktop</Filename>
       <Filename>padevchooser.desktop</Filename>
@@ -199,6 +203,7 @@
       <Filename>vlc-git.desktop</Filename>
       <Filename>vlmc.desktop</Filename>
       <Filename>vmpk.desktop</Filename>
+      <Filename>vmpk-jack.desktop</Filename>
       <Filename>wired.desktop</Filename>
       <Filename>xjadeo.desktop</Filename>
       <Filename>yoshimi.desktop</Filename>
@@ -317,6 +322,7 @@
         <Filename>non-daw.desktop</Filename>
         <Filename>non-mixer.desktop</Filename>
         <Filename>non-sequencer.desktop</Filename>
+        <Filename>oom.desktop</Filename>
         <Filename>puredata.desktop</Filename>
         <Filename>qtractor.desktop</Filename>
         <Filename>reaper.desktop</Filename>
@@ -366,6 +372,7 @@
         <Filename>gladish.desktop</Filename>
         <Filename>gnome-sound-recorder.desktop</Filename>
         <Filename>gnormalize.desktop</Filename>
+        <Filename>gxtuner.desktop</Filename>
         <Filename>jack-capture.desktop</Filename>
         <Filename>jack-capture-gui.desktop</Filename>
         <Filename>jack-capture-gui2.desktop</Filename>
@@ -380,6 +387,7 @@
         <Filename>timemachine.desktop</Filename>
         <Filename>vkeybd.desktop</Filename>
         <Filename>vmpk.desktop</Filename>
+        <Filename>vmpk-jack.desktop</Filename>
 
         <Filename>kde4-kmetronome.desktop</Filename>
         <Filename>kde4-kwave.desktop</Filename>
@@ -429,6 +437,7 @@
         <Filename>jack-netmanager-gtk.desktop</Filename>
         <Filename>jack2-simple-config.desktop</Filename>
         <Filename>ladiconf.desktop</Filename>
+        <Filename>nanonoise.desktop</Filename>
         <Filename>padevchooser.desktop</Filename>
         <Filename>paman.desktop</Filename>
         <Filename>paprefs.desktop</Filename>
