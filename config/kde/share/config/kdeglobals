@@ -34,7 +34,7 @@ ForegroundVisited=230,100,230
 
 [Colors:Selection]
 BackgroundAlternate=104,104,104
-BackgroundNormal=40,40,40
+BackgroundNormal=60,60,60
 DecorationFocus=48,48,48
 DecorationHover=80,80,80
 ForegroundActive=255,255,255
@@ -128,7 +128,6 @@ Size=32
 
 [General]
 ColorScheme=KXStudio
-XftHintStyle=hintmedium
 alternateBackground=14,14,14
 background=17,17,17
 buttonBackground=28,28,28
@@ -139,7 +138,7 @@ font=DejaVu Sans,8,-1,5,50,0,0,0,0,0
 foreground=240,240,240
 linkColor=100,100,230
 menuFont=DejaVu Sans,8,-1,5,50,0,0,0,0,0
-selectBackground=40,40,40
+selectBackground=60,60,60
 selectForeground=255,255,255
 shadeSortColumn=true
 smallestReadableFont=DejaVu Sans,8,-1,5,50,0,0,0,0,0
@@ -167,7 +166,7 @@ WheelScrollLines=3
 contrast=5
 
 [KDE-Global GUI Settings]
-GraphicEffectsLevel=1
+GraphicEffectsLevel=0
 
 [KFileDialog Settings]
 Automatically select filename extension=true
@@ -180,7 +179,7 @@ Previews=false
 Separate Directories=false
 Show Bookmarks=false
 Show Full Path=false
-Show Preview=true
+Show Preview=false
 Show Speedbar=true
 Show hidden files=false
 Sort by=Name
@@ -277,11 +276,9 @@ Size=22
 
 [WM]
 activeBackground=17,17,17
-activeBlend=233,232,231
-activeFont=DejaVu Sans,8,-1,5,50,0,0,0,0,0
+activeBlend=204,204,204
+activeFont=DejaVu Sans,8,-1,5,75,0,0,0,0,0
 activeForeground=255,255,255
-activeTitleBtnBg=0,0,0
 inactiveBackground=17,17,17
-inactiveBlend=224,223,222
+inactiveBlend=204,204,204
 inactiveForeground=75,75,75
-inactiveTitleBtnBg=0,0,0

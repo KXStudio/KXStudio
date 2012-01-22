@@ -1,16 +1,62 @@
-[General Options]
-ShowTrayIcon=true
+[Appearance]
+ChannelSplitterSizes=1230,122
+IrcColorCode1=91,91,91
+IrcColorCode11=97,255,255
+IrcColorCode12=96,96,255
+IrcColorCode2=60,60,128
+IrcColorCode3=67,128,67
+IrcColorCode4=255,108,108
+IrcColorCode5=165,73,73
+IrcColorCode6=128,57,128
+NickColor0=233,89,164
+NickColor2=179,70,66
+NickColor8=255,255,255
+TopicSplitterSizes=24,590
 
-[Server 0]
-Password=
-Port=8001
-SSLEnabled=false
-Server=irc.freenode.net
+[Colors]
+CurrentPalette=Forty Colors
+
+[Flags]
+InputFieldsBackgroundColor=true
+
+[General Options]
+AutomaticRememberLine=true
+ShowTrayIcon=true
+TrayNotify=true
+TrayNotifyOnlyOwnNick=true
+
+[Highlight List]
+HighlightNickColor=255,90,90
+
+[Message Text Colors]
+ActionMessage=75,75,255
+AlternateBackground=17,17,17
+ChannelMessage=255,255,255
+CommandMessage=150,62,150
+Hyperlink=68,68,255
+QueryMessage=255,255,255
+ServerMessage=145,108,33
+TextViewBackground=0,0,0
+
+[Tab Notifications]
+TabNotificationsHighlightsColor=255,88,88
+TabNotificationsMsgsColor=54,128,54
+TabNotificationsNickColor=255,96,96
+TabNotificationsPrivateColor=128,47,47
+TabNotificationsSystemColor=195,195,93
 
 [Channel 0]
+EnableNotifications=true
 Name=#kxstudio
 Password=
 
+[Server 0]
+Password=
+Port=6667
+SSLEnabled=false
+Server=irc.freenode.com
+
 [ServerGroup 0]
-ServerList=Server 0
 AutoJoinChannels=Channel 0
+Name=KXStudio
+ServerList=Server 0

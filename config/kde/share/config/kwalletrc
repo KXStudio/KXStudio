@@ -1,13 +1,4 @@
-[Auto Allow]
-kdewallet=kwalletmanager
-
-[Auto Deny]
-kdewallet=
-
 [Wallet]
-Close When Idle=false
-Close on Screensaver=false
-Default Wallet=kdewallet
 Enabled=false
 First Use=false
 Idle Timeout=10

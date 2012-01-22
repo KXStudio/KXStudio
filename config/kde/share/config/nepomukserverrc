@@ -1,7 +1,7 @@
 [Basic Settings]
 Start Nepomuk=false
 
-[Service-nepomukmigration1]
+[Service-nepomukfileindexer]
 autostart=false
 
 [Service-nepomukstrigiservice]
