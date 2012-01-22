@@ -49,8 +49,6 @@ CONFIG_ALL = (
   "phasex/phasex.cfg",
   "pulse/client.conf",
   "pulse/daemon.conf",
-  "renoise/V2.6.1/Config.xml",
-  "renoise/V2.7.0/Config.xml",
   "renoise/V2.7.1/Config.xml",
   "traverso/Traverso-DAW/Traverso.ini",
 
@@ -74,21 +72,21 @@ CONFIG_ALL = (
   "Loomer/String.xml",
 
   "kde/env/qt-graphicssystem.sh",
-  "kde/share/apps/dolphin/dolphinui.rc",
-  "kde/share/config/dolphinrc",
-  "kde/share/config/glmatrixrc",
-  "kde/share/config/kcmfonts",
+  #"kde/share/apps/dolphin/dolphinui.rc",
+  #"kde/share/config/dolphinrc",
+  "kde/share/config/kdedrc",
   "kde/share/config/kickoffrc",
   "kde/share/config/klipperrc",
-  #"kde/share/config/konversationrc",
-  "kde/share/config/kscreensaverrc",
+  "kde/share/config/knotifyrc",
   "kde/share/config/ksmserverrc",
   "kde/share/config/kwalletrc",
   "kde/share/config/nepomukserverrc",
+  "kde/share/config/taskmanagerrulesrc",
+  "kde/share/config/yakuakerc",
 )
 
 CONFIG_SMALL = (
-  "asoundrc",
+  #"asoundrc",
   "bash_aliases",
 )
 
@@ -107,15 +105,25 @@ CONFIG_THEME = (
 
   "kde/env/gtk2-engines-qtcurve.rc.sh",
   "kde/share/config/colibrirc",
+  "kde/share/config/glmatrixrc",
   "kde/share/config/gtkrc",
   "kde/share/config/gtkrc-2.0",
+  "kde/share/config/kateschemarc",
+  "kde/share/config/katesyntaxhighlightingrc",
   "kde/share/config/kcmdisplayrc",
+  "kde/share/config/kcmfonts",
   "kde/share/config/kcminputrc",
   "kde/share/config/kdeglobals",
+  "kde/share/config/kscreensaverrc",
   "kde/share/config/ksplashrc",
   "kde/share/config/kwinrc",
+  "kde/share/config/kwinqtcurverc",
   "kde/share/config/oxygenrc",
   "kde/share/config/plasmarc",
+)
+
+CONFIG_THEME_ALL = (
+  "kde/share/config/konversationrc",
 )
 
 # ----------------------------------------------
@@ -142,10 +150,15 @@ def do_copy_basic():
     if (not os.path.exists(os.path.join(HOME, sfile))):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
-def do_copy_theme():
+def do_copy_theme(copy_all=False):
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
+
+  for sfile in CONFIG_THEME_ALL:
+    create_folder_for_file(sfile)
+    if (copy_all or not os.path.exists(os.path.join(HOME, sfile))):
+      os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
@@ -156,8 +169,8 @@ def do_copy_theme():
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/font_name "DejaVu Sans 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans 8"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono 8"')
-  #os.system('gconftool-2 -t bool -s /desktop/gnome/interface/buttons_have_icons true')
-  #os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
+  os.system('gconftool-2 -t bool -s /desktop/gnome/interface/buttons_have_icons true')
+  os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
 
 def do_wine_stuff():
   if (os.path.exists("/usr/bin/wineboot")):
@@ -171,10 +184,10 @@ def do_wine_stuff():
       os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp")
 
 def do_final_stuff():
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink "pulsesink device=\"jack_out\""')
+  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink "pulsesink device=\'jack_out\'"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosrc "pulsesrc"')
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink "pulsesink device=\"jack_out\""')
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink "pulsesink device=\"jack_out\""')
+  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink "pulsesink device=\'jack_out\'"')
+  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink "pulsesink device=\'jack_out\'"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosrc_description "Pulse Audio"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink_description "Jack"')
