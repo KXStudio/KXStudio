@@ -15,5 +15,5 @@ This module was specially made for users that install a lot of apps, so the mult
 To install just do the usual '[sudo] make install'.
 
 If your distro does not follow '/etc/X11/Xsession.d/' rules, insert this new line into your ~/.bashrc or ~/.profile:
-export XDG_CONFIG_DIRS=/usr/share/kxstudio/menu/:/etc/xdg/
+export XDG_CONFIG_DIRS=/usr/share/kxstudio/menu:/etc/xdg
 

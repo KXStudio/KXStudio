@@ -9,4 +9,7 @@ mkdir -p $HOME/Screencasts/
 xterm -display :0.0 -e jack_capture -b 24 $HOME/Screencasts/screencast_audio_$DATE-$TIME.wav &
 ffmpeg -an -f x11grab -r 30 -s 1280x720 -i :2 -vcodec libx264 -vpre lossless_ultrafast -threads 2 $HOME/Screencasts/screencast_video_$DATE-$TIME.mkv
 
+# ffmpeg -an -f x11grab -r 30 -padleft 1366 -s 1920x1080 -i :0 -vcodec libx264 -threads 2 $HOME/Screencasts/screencast_video_$DATE-$TIME.mkv
+# -vpre lossless_ultrafast
+
 killall jack_capture

@@ -23,24 +23,24 @@ export DISPLAY=:0
 plasma-desktop
 }
 
-case $1 in
-  gnome|-gnome|--gnome)
-init_screen
-start_screen_gnome
-  ;;
-
-  kde4|-kde4|--kde4)
+# case $1 in
+#   gnome|-gnome|--gnome)
+# init_screen
+# start_screen_gnome
+#   ;;
+# 
+#   kde4|-kde4|--kde4)
 init_screen
 start_screen_kde4
-  ;;
-
-  *)
-echo "usage: xrec_1 <DE>
-
-DE can be:
-    -gnome      Gnome session
-    -kde4       KDE4 session
-"
-  ;;
-
-esac
+#   ;;
+# 
+#   *)
+# echo "usage: xrec_1 <DE>
+# 
+# DE can be:
+#     -gnome      Gnome session
+#     -kde4       KDE4 session
+# "
+#   ;;
+# 
+# esac
