@@ -1,8 +1,0 @@
-[Favorites]
-FavoriteURLs=/usr/share/applications/audacious.desktop,/usr/share/applications/firefox.desktop,/usr/share/applications/klaudia.desktop
-
-[KRunner]
-loadAll=false
-
-[KRunner][PlasmaRunnerManager]
-pluginWhiteList=places,shell,services,bookmarks,recentdocuments,locations
