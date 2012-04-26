@@ -1,0 +1,21 @@
+[General Options]
+AutomaticRememberLine=true
+ShowTrayIcon=true
+TrayNotify=true
+TrayNotifyOnlyOwnNick=true
+
+[Channel 0]
+EnableNotifications=true
+Name=#kxstudio
+Password=
+
+[Server 0]
+Password=
+Port=6667
+SSLEnabled=false
+Server=irc.freenode.com
+
+[ServerGroup 0]
+AutoJoinChannels=Channel 0
+Name=KXStudio
+ServerList=Server 0

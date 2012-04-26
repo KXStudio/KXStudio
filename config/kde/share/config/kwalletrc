@@ -1,0 +1,9 @@
+[Wallet]
+Enabled=false
+First Use=false
+Idle Timeout=10
+Launch Manager=false
+Leave Manager Open=false
+Leave Open=true
+Prompt on Open=true
+Use One Wallet=true

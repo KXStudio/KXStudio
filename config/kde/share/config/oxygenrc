@@ -1,0 +1,13 @@
+[Style]
+AnimationsEnabled=false
+MenuHighlightMode=MM_STRONG
+MnemonicsMode=MN_AUTO
+ProgressBarAnimated=false
+ScrollBarAddLineButtons=0
+ScrollBarSubLineButtons=0
+ScrollBarWidth=13
+WindowDragMode=WD_MINIMAL
+
+[Windeco]
+AnimationsEnabled=false
+UseNarrowButtonSpacing=true

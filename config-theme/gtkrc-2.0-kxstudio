@@ -1,0 +1,12 @@
+# Use QtCurve theme for KXStudio
+
+include "/usr/share/themes/QtCurve/gtk-2.0/gtkrc"
+
+style "user-font"
+{
+	font_name="DejaVu Sans"
+}
+widget_class "*" style "user-font"
+
+gtk-theme-name="QtCurve"
+gtk-font-name="DejaVu Sans 8"

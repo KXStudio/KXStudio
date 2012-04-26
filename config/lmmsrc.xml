@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!DOCTYPE lmms-config-file>
+<lmms version="0.4.13">
+  <app nomsgaftersetup="0" displaydbv="0" nommpz="0" configured="1"/>
+  <audiojack channels="2" clientname="lmms"/>
+  <mixer framesperaudiobuffer="1024" hqaudio="1" audiodev="JACK (JACK Audio Connection Kit)" mididev="ALSA-Sequencer (Advanced Linux Sound Architecture)"/>
+</lmms>
