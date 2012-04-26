@@ -1,0 +1,6 @@
+[%General]
+Driver=QMYSQL
+
+[QMYSQL]
+Name=akonadi
+StartServer=false

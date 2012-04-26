@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Service
+Icon=preferences-activities
+X-KDE-ServiceTypes=
+X-DBUS-StartupType=Unique
+X-KDE-StartupNotify=false
+Exec=kactivitymanagerd
+Name=Activity Manager
+Comment=The activity management backend
+Hidden=true

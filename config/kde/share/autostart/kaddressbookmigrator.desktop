@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=kaddressbookmigrator
+Exec=kaddressbookmigrator --disable-autostart
+Type=Application
+Comment=Tool to migrate the old kresource based address book to Akonadi.
+Terminal=false
+NoDisplay=true
+X-KDE-autostart-condition=kaddressbookmigratorrc:Startup:EnableAutostart:true
+OnlyShowIn=KDE;
+Hidden=true

@@ -3,7 +3,7 @@
 all: ui_welcome.py
 
 ui_welcome.py:
-	pyuic4 -o ui_welcome.py welcome.ui
+	pyuic4 -w -o ui_welcome.py welcome.ui
 
 clean:
 	rm -f ui_welcome.py

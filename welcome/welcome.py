@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Imports (Global)
@@ -15,7 +15,8 @@ import ui_welcome
 HOME = os.getenv("HOME")
 PWD  = sys.path[0]
 
-CONFIG_DIR = "/usr/share/kxstudio/config"
+CONFIG_DIR       = "/usr/share/kxstudio/config"
+CONFIG_THEME_DIR = "/usr/share/kxstudio/config-theme"
 
 ID_GROUP_SETTINGS = 0
 ID_GROUP_THEME    = 1
@@ -28,79 +29,95 @@ ID_PIXMAP_DONE    = 2
 
 # ----------------------------------------------
 
+CONFIG_SMALL = (
+  "bash_aliases",
+  "pulse/client.conf",
+  "pulse/daemon.conf",
+)
+
 CONFIG_ALL = (
   "asoundrc",
   "bash_aliases",
   "jackdrc",
   "lmmsrc.xml",
 
-  "ardour2/ardour.rc",
+  "akonadi/akonadiserverrc",
   "audacity-data/audacity.cfg",
   "bcast/Cinelerra_rc",
   "ccutie/Cinecutie_rc",
-  "composite/composite.conf",
   "hydrogen/hydrogen.conf",
-  "mplayer/config",
-  "non-daw/options",
-  "non-mixer/options",
-  "OOMidi/OOMidi.cfg",
-  "openoffice.org/3/user/registry/data/org/openoffice/Office/ExtendedColorScheme.xcu",
-  "openoffice.org/3/user/registry/data/org/openoffice/Office/UI.xcu",
-  "phasex/phasex.cfg",
-  "pulse/client.conf",
-  "pulse/daemon.conf",
-  "renoise/V2.7.1/Config.xml",
-  "traverso/Traverso-DAW/Traverso.ini",
-
-  "config/ardour3/ardour.rc",
-  "config/audacious/config",
-  "config/Clementine/Clementine.conf",
-  "config/jack/conf.xml",
-  "config/kde.org/libphonon.conf",
-  "config/Modartt/Pianoteq36.prefs",
-  "config/Modartt/Pianoteq36 PLAY.prefs",
-  "config/rncbc.org/QjackCtl.conf",
-  "config/rncbc.org/Qsynth.conf",
-  "config/rosegardenmusic/Rosegarden.conf",
-  "config/vlc/vlcrc",
-
   "Loomer/Aspect.xml",
   "Loomer/Manifold.xml",
   "Loomer/Resound.xml",
   "Loomer/Sequent.xml",
   "Loomer/Shift2.xml",
   "Loomer/String.xml",
+  "mplayer/config",
+  "pulse/client.conf",
+  "pulse/daemon.conf",
+  "renoise/V2.8.0/Config.xml",
+  "traverso/Traverso-DAW/Traverso.ini",
+
+  "config/audacious/config",
+  "config/Clementine/Clementine.conf",
+  "config/jack/conf.xml",
+  "config/linuxsampler.org/Qsampler.conf",
+  "config/Modartt/Pianoteq36 PLAY.prefs",
+  "config/Modartt/Pianoteq40.prefs",
+  "config/rncbc.org/QjackCtl.conf",
+  "config/rncbc.org/Qsynth.conf",
+  "config/rosegardenmusic/Rosegarden.conf",
+  "config/smplayer/smplayer.ini",
+  "config/vlc/vlcrc",
 
   "kde/env/qt-graphicssystem.sh",
-  #"kde/share/apps/dolphin/dolphinui.rc",
-  #"kde/share/config/dolphinrc",
+  "kde/share/apps/dolphin/dolphinui.rc",
+  "kde/share/autostart/akonaditray.desktop",
+  "kde/share/autostart/kactivitymanagerd.desktop",
+  "kde/share/autostart/kaddressbookmigrator.desktop",
+  "kde/share/autostart/nepomukserver.desktop",
+  "kde/share/config/dolphinrc",
   "kde/share/config/kdedrc",
+  "kde/share/config/kdeglobals",
   "kde/share/config/kickoffrc",
   "kde/share/config/klipperrc",
   "kde/share/config/knotifyrc",
+  "kde/share/config/konversationrc",
+  "kde/share/config/krunnerrc",
   "kde/share/config/ksmserverrc",
   "kde/share/config/kwalletrc",
+  "kde/share/config/kwinrc",
   "kde/share/config/nepomukserverrc",
+  "kde/share/config/oxygenrc",
   "kde/share/config/taskmanagerrulesrc",
-  "kde/share/config/yakuakerc",
-)
-
-CONFIG_SMALL = (
-  #"asoundrc",
-  "bash_aliases",
+  "kde/share/config/yakuakerc"
 )
 
 CONFIG_THEME = (
   "fonts.conf",
-  "gtkrc-2.0-kde4",
+  "gtkrc-2.0-kxstudio",
   "kderc",
 
+  "ardour2/ardour.rc",
+  "composite/composite.conf",
+  "hydrogen/hydrogen.conf",
+  "mozilla/firefox/default/chrome/userContent.css",
+  "non-daw/options",
+  "non-mixer/options",
+  "phasex/phasex.cfg",
   "qt/qtrc",
+  "traverso/Traverso-DAW/Traverso.ini",
 
+  "config/ardour3/ardour.rc",
+  "config/gtk-3.0/settings.ini",
   "config/kde.org/systemsettings.conf",
+  "config/Nokia/QtCreator.ini"
   "config/qtcurve/gtk-icons",
   "config/qtcurve/stylerc",
   "config/qtcurve/windowBorderSizes",
+  "config/rncbc.org/QjackCtl.conf",
+  "config/rncbc.org/Qsynth.conf",
+  "config/rosegardenmusic/Rosegarden.conf",
   "config/Trolltech.conf",
 
   "kde/env/gtk2-engines-qtcurve.rc.sh",
@@ -153,12 +170,15 @@ def do_copy_basic():
 def do_copy_theme(copy_all=False):
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
-    os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
+    os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
 
   for sfile in CONFIG_THEME_ALL:
     create_folder_for_file(sfile)
     if (copy_all or not os.path.exists(os.path.join(HOME, sfile))):
-      os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
+      os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
+
+  # FIXME
+  os.system("cp '%s/mozilla/firefox/default/chrome/userContent.css' '%s/mozilla/firefox/*.default/chrome/'" % (CONFIG_THEME_DIR, HOME))
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
@@ -177,7 +197,7 @@ def do_wine_stuff():
     os.system("wineboot")
     #os.system("sed -i 's/\[drivers32\]/\[drivers32\]\nMSACM.vorbis=vorbis.acm/' ~/.wine/drive_c/windows/system.ini")
 
-    if (os.path.exists("/usr/lib/wine/wineasio.dll.so") or os.path.exists("/usr/lib32/wine/wineasio.dll.so")):
+    if (os.path.exists("/usr/lib/i386-linux-gnu/wine/wineasio.dll.so") or os.path.exists("/usr/lib/x86_64-linux-gnu/wine/wineasio.dll.so")):
       os.system("regsvr32 wineasio.dll")
 
     if (os.path.exists("/usr/bin/winetricks")):
@@ -328,7 +348,7 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         settings.setValue("FirstRun", False)
 
     def loadSettings(self):
-        self.restoreGeometry(settings.value("Geometry").toByteArray())
+        self.restoreGeometry(settings.value("Geometry", ""))
 
     def closeEvent(self, event):
         self.saveSettings()
