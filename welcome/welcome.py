@@ -178,7 +178,7 @@ def do_copy_theme(copy_all=False):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
 
   # FIXME
-  os.system("cp '%s/.mozilla/firefox/default/chrome/userContent.css' '%s/.mozilla/firefox/*.default/chrome/'" % (CONFIG_THEME_DIR, HOME))
+  os.system("cp '%s/mozilla/firefox/default/chrome/userContent.css' '%s/.mozilla/firefox/*.default/chrome/'" % (CONFIG_THEME_DIR, HOME))
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
