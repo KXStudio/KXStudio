@@ -122,6 +122,7 @@ CONFIG_THEME = (
   "config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml",
   "config/Trolltech.conf",
 
+  "kde/env/colibri.sh",
   "kde/env/gtk2-engines-qtcurve.rc.sh",
   "kde/share/config/colibrirc",
   "kde/share/config/glmatrixrc",
