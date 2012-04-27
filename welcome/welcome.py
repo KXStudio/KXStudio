@@ -292,6 +292,10 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         self.connect(self.copyStuffThread, SIGNAL("setLabelPixmap(int, int)"), self.setLabelPixmap)
         self.connect(self.copyStuffThread, SIGNAL("finished()"), self.copyStuffFinished)
 
+        if (not os.path.exists("/usr/share/themes/KXStudio/index.theme")):
+          self.group_theme.setChecked(False)
+          self.group_theme.setEnabled(False)
+
     def pageChanged(self, page):
         # Initial page
         if (self.previous_page == -1 and page == 0):
