@@ -118,6 +118,8 @@ CONFIG_THEME = (
   "config/rncbc.org/QjackCtl.conf",
   "config/rncbc.org/Qsynth.conf",
   "config/rosegardenmusic/Rosegarden.conf",
+  "config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml",
+  "config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml",
   "config/Trolltech.conf",
 
   "kde/env/gtk2-engines-qtcurve.rc.sh",
