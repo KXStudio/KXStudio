@@ -22,9 +22,7 @@
       <Filename>ams.desktop</Filename>
       <Filename>amsynth.desktop</Filename>
       <Filename>ardour.desktop</Filename>
-      <Filename>ardour30.desktop</Filename>
-      <Filename>ardourvst.desktop</Filename>
-      <Filename>ardour-gtk.desktop</Filename>
+      <Filename>ardour3.desktop</Filename>
       <Filename>arpage.desktop</Filename>
       <Filename>audacity.desktop</Filename>
       <Filename>audacious.desktop</Filename>
@@ -116,6 +114,7 @@
       <Filename>kino.desktop</Filename>
       <Filename>Kino.desktop</Filename>
       <Filename>klaudia.desktop</Filename>
+      <Filename>kluppe.desktop</Filename>
       <Filename>lacie-labeler.desktop</Filename>
       <Filename>ladiconf.desktop</Filename>
       <Filename>laditray.desktop</Filename>
@@ -148,6 +147,7 @@
       <Filename>non-daw.desktop</Filename>
       <Filename>non-mixer.desktop</Filename>
       <Filename>non-sequencer.desktop</Filename>
+      <Filename>non-session-manager.desktop</Filename>
       <Filename>oom.desktop</Filename>
       <Filename>openmovieeditor.desktop</Filename>
       <Filename>openshot.desktop</Filename>
@@ -185,8 +185,10 @@
       <Filename>rosegarden-kde3.desktop</Filename>
       <Filename>seq24.desktop</Filename>
       <Filename>simplelabeler.desktop</Filename>
+      <Filename>sineshaper.desktop</Filename>
       <Filename>smplayer.desktop</Filename>
       <Filename>smplayer_enqueue.desktop</Filename>
+      <Filename>smtube.desktop</Filename>
       <Filename>songbird.desktop</Filename>
       <Filename>sonic-visualiser.desktop</Filename>
       <Filename>sooperlooper.desktop</Filename>
@@ -205,6 +207,7 @@
       <Filename>vmpk.desktop</Filename>
       <Filename>vmpk-jack.desktop</Filename>
       <Filename>wired.desktop</Filename>
+      <Filename>xfce4-mixer.desktop</Filename>
       <Filename>xjadeo.desktop</Filename>
       <Filename>yoshimi.desktop</Filename>
       <Filename>zonage.desktop</Filename>
@@ -293,9 +296,7 @@
       <Directory>kxstudio-audio-production.directory</Directory>
       <Include>
         <Filename>ardour.desktop</Filename>
-        <Filename>ardour30.desktop</Filename>
-        <Filename>ardourvst.desktop</Filename>
-        <Filename>ardour-gtk.desktop</Filename>
+        <Filename>ardour3.desktop</Filename>
         <Filename>audacity.desktop</Filename>
         <Filename>beast.desktop</Filename>
         <Filename>composite.desktop</Filename>
@@ -310,6 +311,7 @@
         <Filename>jackeq.desktop</Filename>
         <Filename>jack_mixer.desktop</Filename>
         <Filename>jokosher.desktop</Filename>
+        <Filename>kluppe.desktop</Filename>
         <Filename>lmms.desktop</Filename>
         <Filename>lmms-git.desktop</Filename>
         <Filename>machina.desktop</Filename>
@@ -342,19 +344,20 @@
         <Filename>wine-Programs-energyXT 2.5.2-energyXT 2.5.2.desktop</Filename>
         <Filename>wine-Programs-energyXT 2.5.3-energyXT 2.5.3.desktop</Filename>
         <Filename>wine-Programs-energyXT 2.5.4-energyXT 2.5.4.desktop</Filename>
+        <Filename>wine-Programs-energyXT 2.6.0-energyXT 2.6.0.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 5-FL Studio 5.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 6-FL Studio 6.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 7-FL Studio 7.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 8-FL Studio 8.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 9-FL Studio 9.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 10-FL Studio 10.desktop</Filename>
-        <Filename>wine-Programs-REAPER-REAPER.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.1.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.5.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.5.1-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.6.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.6.1-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.7.0-Renoise.desktop</Filename>
+        <Filename>wine-Programs-Renoise 2.8.0-Renoise.desktop</Filename>
       </Include>
     </Menu>
 
@@ -381,6 +384,7 @@
         <Filename>laditray.desktop</Filename>
         <Filename>lash-panel.desktop</Filename>
         <Filename>lpatchage.desktop</Filename>
+        <Filename>non-session-manager.desktop</Filename>
         <Filename>patchage.desktop</Filename>
         <Filename>patchage-svn.desktop</Filename>
         <Filename>playitslowly.desktop</Filename>
@@ -451,6 +455,7 @@
         <Filename>qxgedit.desktop</Filename>
         <Filename>rmedigicontrol.desktop</Filename>
         <Filename>ubuntustudio-controls.desktop</Filename>
+        <Filename>xfce4-mixer.desktop</Filename>
 
         <Filename>kde-kmix.desktop</Filename>
 
@@ -479,6 +484,7 @@
         <Filename>rhythmbox.desktop</Filename>
         <Filename>smplayer.desktop</Filename>
         <Filename>smplayer_enqueue.desktop</Filename>
+        <Filename>smtube.desktop</Filename>
         <Filename>songbird.desktop</Filename>
         <Filename>stretchplayer.desktop</Filename>
         <Filename>totem.desktop</Filename>

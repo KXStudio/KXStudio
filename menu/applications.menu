@@ -17,9 +17,7 @@
       <Filename>ams.desktop</Filename>
       <Filename>amsynth.desktop</Filename>
       <Filename>ardour.desktop</Filename>
-      <Filename>ardour30.desktop</Filename>
-      <Filename>ardourvst.desktop</Filename>
-      <Filename>ardour-gtk.desktop</Filename>
+      <Filename>ardour3.desktop</Filename>
       <Filename>arpage.desktop</Filename>
       <Filename>audacity.desktop</Filename>
       <Filename>audacious.desktop</Filename>
@@ -111,6 +109,7 @@
       <Filename>kino.desktop</Filename>
       <Filename>Kino.desktop</Filename>
       <Filename>klaudia.desktop</Filename>
+      <Filename>kluppe.desktop</Filename>
       <Filename>lacie-labeler.desktop</Filename>
       <Filename>ladiconf.desktop</Filename>
       <Filename>laditray.desktop</Filename>
@@ -143,6 +142,7 @@
       <Filename>non-daw.desktop</Filename>
       <Filename>non-mixer.desktop</Filename>
       <Filename>non-sequencer.desktop</Filename>
+      <Filename>non-session-manager.desktop</Filename>
       <Filename>oom.desktop</Filename>
       <Filename>openmovieeditor.desktop</Filename>
       <Filename>openshot.desktop</Filename>
@@ -180,8 +180,10 @@
       <Filename>rosegarden-kde3.desktop</Filename>
       <Filename>seq24.desktop</Filename>
       <Filename>simplelabeler.desktop</Filename>
+      <Filename>sineshaper.desktop</Filename>
       <Filename>smplayer.desktop</Filename>
       <Filename>smplayer_enqueue.desktop</Filename>
+      <Filename>smtube.desktop</Filename>
       <Filename>songbird.desktop</Filename>
       <Filename>sonic-visualiser.desktop</Filename>
       <Filename>sooperlooper.desktop</Filename>
@@ -200,6 +202,7 @@
       <Filename>vmpk.desktop</Filename>
       <Filename>vmpk-jack.desktop</Filename>
       <Filename>wired.desktop</Filename>
+      <Filename>xfce4-mixer.desktop</Filename>
       <Filename>xjadeo.desktop</Filename>
       <Filename>yoshimi.desktop</Filename>
       <Filename>zonage.desktop</Filename>
