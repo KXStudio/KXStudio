@@ -133,6 +133,7 @@
       <Filename>monobristol.desktop</Filename>
       <Filename>mplayer.desktop</Filename>
       <Filename>mscore.desktop</Filename>
+      <Filename>mudita24.desktop</Filename>
       <Filename>muse.desktop</Filename>
       <Filename>nanonoise.desktop</Filename>
       <Filename>nekobee.desktop</Filename>
@@ -188,8 +189,10 @@
       <Filename>sonic-visualiser.desktop</Filename>
       <Filename>sooperlooper.desktop</Filename>
       <Filename>soundcrab.desktop</Filename>
+      <Filename>specimen.desktop</Filename>
       <Filename>stopmotion.desktop</Filename>
       <Filename>stretchplayer.desktop</Filename>
+      <Filename>subtitleeditor.desktop</Filename>
       <Filename>timemachine.desktop</Filename>
       <Filename>totem.desktop</Filename>
       <Filename>traverso.desktop</Filename>
@@ -197,14 +200,15 @@
       <Filename>vocproc.desktop</Filename>
       <Filename>vkeybd.desktop</Filename>
       <Filename>vlc.desktop</Filename>
-      <Filename>vlc-git.desktop</Filename>
       <Filename>vlmc.desktop</Filename>
       <Filename>vmpk.desktop</Filename>
       <Filename>vmpk-jack.desktop</Filename>
       <Filename>wired.desktop</Filename>
       <Filename>xfce4-mixer.desktop</Filename>
+      <Filename>xine.desktop</Filename>
       <Filename>xjadeo.desktop</Filename>
       <Filename>yoshimi.desktop</Filename>
+      <Filename>zita-at1.desktop</Filename>
       <Filename>zonage.desktop</Filename>
       <Filename>zynaddsubfx.desktop</Filename>
       <Filename>zynjacku.desktop</Filename>

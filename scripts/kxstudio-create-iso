@@ -38,6 +38,7 @@ sudo debootstrap --arch=$3 $2 ~/livecd/custom
     ;;
 
     custom)
+sudo mount --bind /dev ~/livecd/custom/dev
 sudo cp /etc/resolv.conf /etc/hosts ~/livecd/custom/etc/
 echo "run this now:
 
@@ -53,62 +54,9 @@ SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
 # Update Sources
 apt-get update
 apt-get install python-software-properties wget
-#add-apt-repository <some-ppa>
-apt-get update
-
-# Update System
-apt-get update
-apt-get dist-upgrade
-
-# Base Install
-apt-get install ubuntu-standard laptop-detect os-prober
-apt-get install linux-generic
-
-# Install your desired meta-packages now
-# Use 'kxstudio-create-iso custom_kxstudio' for the KXStudio ones
-
-# ----- PAUSE HERE ------ #
-# Before installing ubiquity in the live session, you'll need to run this outside:
-$ sudo mkdir -p ~/livecd/cd/casper/
-$ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
-$ sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
-$ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
-## ----- END PAUSE ----- ##
-
-# Now install the liveDVD specific packages
-#apt-get install ubiquity-frontend-gtk casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
-apt-get install ubiquity-frontend-kde casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
-
-# Other hacks, optional: (NOT WORKING! Don't use!)
-adduser ubuntu
-# ^ give it some random password, will be blanked afterwards
-addgroup ubuntu admin
-addgroup ubuntu audio
-addgroup ubuntu video
-#addgroup ubuntu sixad
-su ubuntu
-wineboot
-regsvr32 wineasio.dll
-exit
-
-# No passwd hack:
-nano /etc/shadow
-sed '/ubuntu:/d' -i /etc/shadow
-echo 'ubuntu:U6aMy0wojraho:15055:0:99999:7:::' >> /etc/shadow
-"
-sudo chroot ~/livecd/custom
-echo "done"
-exit
-    ;;
-
-    custom_kxstudio)
-echo "
-# Add KXStudio Repositories
-apt-get update
-apt-get install python-software-properties wget
 add-apt-repository ppa:kxstudio-team/kxstudio
 apt-get update
-apt-get install kxstudio-repos -y
+apt-get install kxstudio-repos
 
 # Update System
 apt-get update
@@ -117,7 +65,10 @@ apt-get dist-upgrade
 # Base Install
 apt-get install ubuntu-standard laptop-detect os-prober
 apt-get install kxstudio-kernel-generic
-apt-get install kxstudio-meta-conflict kxstudio-desktop-base
+
+# Install meta-packages
+apt-get install kxstudio-desktop-base
+apt-get install kxstudio-desktop
 
 # KXStudio Install
 apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-desktop kxstudio-desktop-kde4|gnome|unity
@@ -155,7 +106,38 @@ apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-meta-all
 # Cleanup
 apt-get remove kxstudio-meta-conflict
 apt-get autoremove
+# ----- PAUSE HERE ------ #
+# Before installing ubiquity in the live session, you'll need to run this outside:
+$ sudo mkdir -p ~/livecd/cd/casper/
+$ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
+$ sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
+$ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
+## ----- END PAUSE ----- ##
+
+# Now install the liveDVD specific packages
+#apt-get install ubiquity-frontend-gtk casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
+apt-get install ubiquity-frontend-kde casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
+
+# Other hacks, optional: (NOT WORKING! Don't use!)
+adduser ubuntu
+# ^ give it some random password, will be blanked afterwards
+addgroup ubuntu admin
+addgroup ubuntu audio
+addgroup ubuntu video
+#addgroup ubuntu sixad
+su ubuntu
+wineboot
+regsvr32 wineasio.dll
+exit
+
+# No passwd hack:
+nano /etc/shadow
+sed '/ubuntu:/d' -i /etc/shadow
+echo 'ubuntu:U6aMy0wojraho:15055:0:99999:7:::' >> /etc/shadow
 "
+sudo chroot ~/livecd/custom
+echo "done"
+exit
     ;;
 
     custom_end)
