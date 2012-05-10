@@ -373,7 +373,7 @@ if __name__ == '__main__':
 
     run = True
     if ("--first-run" in app.arguments()):
-      run = settings.value("FirstRun", True).toBool()
+      run = settings.value("FirstRun", True, type=bool)
 
     # Show GUI
     if (run):

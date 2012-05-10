@@ -69,43 +69,16 @@ apt-get install kxstudio-kernel-generic
 # Install meta-packages
 apt-get install kxstudio-desktop-base
 apt-get install kxstudio-desktop
-
-# KXStudio Install
-apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-desktop kxstudio-desktop-kde4|gnome|unity
-
-# Extra Install (needed)
-apt-get install --no-install-recommends ubufox gstreamer0.10-x nvidia-common fglrx-modaliases bcmwl-modaliases dvd+rw-tools kxstudio-artwork-plymouth libvisual-0.4-plugins system-config-printer-udev
-apt-get install --no-install-recommends gstreamer0.10-ffmpeg mencoder dvgrab frei0r-plugins dvdauthor
-
-# Extra Install (KDE)
-apt-get install --no-install-recommends kfind kinfocenter kopete-message-indicator kscreensaver-xsavers kubuntu-notification-helper
-apt-get install --no-install-recommends kmozillahelper okular-extra-backends plasma-widgets-addons plasma-widget-folderview yakuake
-apt-get install --no-install-recommends pinentry-qt4 kde-config-qt-graphicssystem kde-service-menu-audiokonverter kde-service-menu-fuseiso kde-service-menu-kim4 kde-service-menu-extract-and-compress
-apt-get install --no-install-recommends ffmpegthumbs colibri recorditnow kdenlive digikam recorditnow
-apt-get install --no-install-recommends kipi-plugins swh-plugins marble-plugins
+apt-get install kxstudio-meta-all
+apt-get install kxstudio-meta-restricted-extras
+apt-get install kxstudio-meta-non-free
 
 # Good Extras
-apt-get install libsdl1.2debian-pulseaudio pulse-jack pavucontrol
-apt-get install --no-install-recommends jack-rack ghostess zynjacku jost jost-vst juced-plugins
-
-# Restricted Extras
-apt-get install kxstudio-meta-conflict k|x|ubuntu-restricted-extras
-apt-get install kxstudio-meta-conflict kxstudio-meta-restricted-extras
-apt-get install kxstudio-meta-conflict reaper renoise linuxdsp-plugins pianoteq
-apt-get install kxstudio-meta-conflict renoise-32bit
-apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-meta-non-free
-
-# Meta-Packages
-apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-meta-audio
-apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-meta-audio-plugins
-apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-meta-graphics
-apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-meta-video
-apt-get install --no-install-recommends klaudia lmms-vst jack-capture meterbridge qsynth vorbis-tools hydrogen-drumkits
-apt-get install --no-install-recommends kxstudio-meta-conflict kxstudio-meta-all
+apt-get install pulse-jack pavucontrol
 
 # Cleanup
-apt-get remove kxstudio-meta-conflict
 apt-get autoremove
+
 # ----- PAUSE HERE ------ #
 # Before installing ubiquity in the live session, you'll need to run this outside:
 $ sudo mkdir -p ~/livecd/cd/casper/
@@ -115,8 +88,8 @@ $ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version
 ## ----- END PAUSE ----- ##
 
 # Now install the liveDVD specific packages
-#apt-get install ubiquity-frontend-gtk casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
-apt-get install ubiquity-frontend-kde casper lupin-casper discover1 jfsutils ntfsprogs xfsprogs
+#apt-get install ubiquity-frontend-gtk casper lupin-casper discover jfsutils ntfsprogs xfsprogs
+apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
 
 # Other hacks, optional: (NOT WORKING! Don't use!)
 adduser ubuntu
@@ -174,8 +147,8 @@ exit
     mkboot)
 cd ~/livecd/
 sudo rm -f cd/casper/vmlinuz cd/casper/initrd.lz cd/casper/initrd_tmp.gz
-sudo cp custom/boot/vmlinuz-2.6.* cd/casper/vmlinuz
-sudo cp custom/boot/initrd.img-2.6.* cd/casper/initrd_tmp.gz
+sudo cp custom/boot/vmlinuz-3.2.0-24-generic cd/casper/vmlinuz
+sudo cp custom/boot/initrd.img-3.2.0-24-generic cd/casper/initrd_tmp.gz
 
 cd ~/livecd/cd/casper
 sudo rm -rf ext
@@ -215,7 +188,7 @@ sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i ~/livecd/cd/README.diskdefines
 sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/README.diskdefines
 sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/text.cfg
 sudo mkdir -p ~/livecd/cd/.disk/
-sudo su root -c 'echo "KXStudio 10.04.3 "Lucid Lynx" (Live 32bit)" > ./.disk/info'
+sudo su root -c 'echo "KXStudio 12.04 "Badass Beast" (Live 32bit)" > ./.disk/info'
 sudo su root -c 'echo "http://kxstudio.sourceforge.net/" > ./.disk/release_notes_url'
 echo "Please edit these files manually:
 ~/livecd/cd/.disk/info
