@@ -12,8 +12,6 @@
      </Exclude>
 
      <Layout>
-        <Separator/>
-        <Separator/>
         <Filename>exo-web-browser.desktop</Filename>
         <Filename>exo-file-manager.desktop</Filename>
         <Separator/>
@@ -35,13 +33,14 @@
         <Name>Settings</Name>
         <Directory>xfce-settings.directory</Directory>
         <Include>
-          <Filename>xfce-settings-manager.desktop</Filename>
+            <Filename>xfce-settings-manager.desktop</Filename>
         </Include>
 
         <Exclude>
-          <Category>X-XfceSettingsDialog</Category>
-          <Category>System</Category>
-          <Filename>panel-preferences.desktop</Filename>
+            <Category>XFCE</Category>
+            <Category>X-XfceSettingsDialog</Category>
+            <Category>System</Category>
+            <Filename>panel-preferences.desktop</Filename>
         </Exclude>
 
         <Layout>
