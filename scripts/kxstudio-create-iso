@@ -6,6 +6,11 @@ if (which 7z > /dev/null); then true; else
   exit
 fi
 
+if (which debootstrap > /dev/null); then true; else
+  echo "debootstrap not found, please install it"
+  exit
+fi
+
 if (which cpio > /dev/null); then true; else
   echo "cpio not found, please install it"
   exit
@@ -16,18 +21,13 @@ if (which lzma > /dev/null); then true; else
   exit
 fi
 
-if (which debootstrap > /dev/null); then true; else
-  echo "debootstrap not found, please install it"
+if (which mkisofs > /dev/null); then true; else
+  echo "mkisofs not found, please install it"
   exit
 fi
 
 if (which mksquashfs > /dev/null); then true; else
   echo "mksquashfs not found, please install it"
-  exit
-fi
-
-if (which mkisofs > /dev/null); then true; else
-  echo "mkisofs not found, please install it"
   exit
 fi
 
@@ -51,7 +51,7 @@ export LANG=C
 echo "
 SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
 
-# Update Sources
+# Update Sources (copy sources.list if needed)
 apt-get update
 apt-get install python-software-properties wget
 add-apt-repository ppa:kxstudio-team/kxstudio
@@ -67,11 +67,7 @@ apt-get install ubuntu-standard laptop-detect os-prober
 apt-get install kxstudio-kernel-generic
 
 # Install meta-packages
-apt-get install kxstudio-desktop-base
-apt-get install kxstudio-desktop
-apt-get install kxstudio-meta-all
-apt-get install kxstudio-meta-restricted-extras
-apt-get install kxstudio-meta-non-free
+apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
 
 # Good Extras
 apt-get install pulse-jack pavucontrol
@@ -79,7 +75,7 @@ apt-get install pulse-jack pavucontrol
 # Cleanup
 apt-get autoremove
 
-# ----- PAUSE HERE ------ #
+## ---- PAUSE HERE ----- ##
 # Before installing ubiquity in the live session, you'll need to run this outside:
 $ sudo mkdir -p ~/livecd/cd/casper/
 $ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
@@ -88,29 +84,10 @@ $ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version
 ## ----- END PAUSE ----- ##
 
 # Now install the liveDVD specific packages
-#apt-get install ubiquity-frontend-gtk casper lupin-casper discover jfsutils ntfsprogs xfsprogs
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
-
-# Other hacks, optional: (NOT WORKING! Don't use!)
-adduser ubuntu
-# ^ give it some random password, will be blanked afterwards
-addgroup ubuntu admin
-addgroup ubuntu audio
-addgroup ubuntu video
-#addgroup ubuntu sixad
-su ubuntu
-wineboot
-regsvr32 wineasio.dll
-exit
-
-# No passwd hack:
-nano /etc/shadow
-sed '/ubuntu:/d' -i /etc/shadow
-echo 'ubuntu:U6aMy0wojraho:15055:0:99999:7:::' >> /etc/shadow
 "
 sudo chroot ~/livecd/custom
 echo "done"
-exit
     ;;
 
     custom_end)
@@ -230,14 +207,14 @@ echo "done"
     *)
 echo "usage: $0 <cmd>
 
- 1 - squash <version> <arch> [version=lucid/maverick/natty] [arch=i386/amd64]
+ 1 - squash <version> <arch> [version=precise] [arch=i386/amd64]
  2 - custom
  3 - custom_end
  4 - mksquash
  5 - mkboot
- 6 - mkart <arch> <distro-name> [arch=i386/amd64] [distro=KXStudio/Ubuntu/* (no spaces!)]
+ 6 - mkart <arch> <distro-name> [arch=i386/amd64] [distro=KXStudio (no spaces!)]
  7 - md5sum
- 8 - iso <label> [label=KXStudio_Live/* (no spaces!)]
+ 8 - iso <label> [label=KXStudio_12.04_32bit (no spaces!)]
 
  x - clean
 "

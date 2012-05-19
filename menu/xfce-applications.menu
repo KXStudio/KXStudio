@@ -1,1 +1,56 @@
-applications.menu
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+
+  <Name>Applications</Name>
+
+  <MergeFile type="parent">/usr/share/kxstudio/menu/menus/applications.menu</MergeFile>
+
+     <Exclude>
+        <Filename>exo-mail-reader.desktop</Filename>
+     </Exclude>
+
+     <Layout>
+        <Separator/>
+        <Separator/>
+        <Filename>exo-web-browser.desktop</Filename>
+        <Filename>exo-file-manager.desktop</Filename>
+        <Separator/>
+        <Merge type="all"/>
+        <Separator/>
+        <Menuname>Settings</Menuname>
+        <Menuname>System</Menuname>
+        <Separator/>
+        <Filename>exo-terminal-emulator.desktop</Filename>
+        <Filename>xfrun4.desktop</Filename>
+        <Filename>xfce4-run.desktop</Filename>
+        <Separator/>
+        <Filename>xfhelp4.desktop</Filename>
+        <Filename>xfce4-about.desktop</Filename>
+        <Filename>xfce4-session-logout.desktop</Filename>
+    </Layout>
+
+     <Menu>
+        <Name>Settings</Name>
+        <Directory>xfce-settings.directory</Directory>
+        <Include>
+          <Filename>xfce-settings-manager.desktop</Filename>
+        </Include>
+
+        <Exclude>
+          <Category>X-XfceSettingsDialog</Category>
+          <Category>System</Category>
+          <Filename>panel-preferences.desktop</Filename>
+        </Exclude>
+
+        <Layout>
+            <Filename>xfce-settings-manager.desktop</Filename>
+            <Separator/>
+            <Merge type="all"/>
+        </Layout>
+     </Menu>
+
+  <DefaultMergeDirs/>
+
+</Menu>
