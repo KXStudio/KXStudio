@@ -69,6 +69,7 @@ CONFIG_ALL = (
   "config/rosegardenmusic/Rosegarden.conf",
   "config/smplayer/smplayer.ini",
   "config/vlc/vlcrc",
+  "config/xfce4/xinitrc",
 
   "kde/env/qt-graphicssystem.sh",
   "kde/share/apps/dolphin/dolphinui.rc",
@@ -118,6 +119,7 @@ CONFIG_THEME = (
   "config/rncbc.org/QjackCtl.conf",
   "config/rncbc.org/Qsynth.conf",
   "config/rosegardenmusic/Rosegarden.conf",
+  "config/xfce4/xinitrc",
   "config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml",
   "config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml",
   "config/Trolltech.conf",
