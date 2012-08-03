@@ -1,46 +1,56 @@
 #!/bin/bash
 
+# all dependencies:
+# $ sudo apt-get install xserver-xephyr libav-tools jack-capture xterm
+
 init_screen () {
 # Set up nested X server
 Xephyr -keybd ephyr,,,xkbmodel=evdev -br -reset -screen 1280x720x24 -dpi 96 :2 &
 sleep 3
 }
 
-start_screen_gnome () {
+start_screen_gnome2 () {
+# start Gnome
 gnome-panel &
 nautilus
+# wait for ctrl+c here
 }
 
 start_screen_kde4 () {
+# set environment
 export DISPLAY=:2.0
 export KWIN_COMPOSE=N
 
-killall plasma-desktop
+# kill current desktop, only 1 instance allowed
+killall plasma-desktop plasma-desktop.kde4
+
+# start KDE
 plasma-desktop
 kwin
 
+# wait for ctrl+c here, restore desktop
 export DISPLAY=:0
 plasma-desktop
 }
 
-# case $1 in
-#   gnome|-gnome|--gnome)
-# init_screen
-# start_screen_gnome
-#   ;;
-# 
-#   kde4|-kde4|--kde4)
+case $1 in
+  gnome2|-gnome2|--gnome2)
+init_screen
+start_screen_gnome
+  ;;
+
+  kde4|-kde4|--kde4)
 init_screen
 start_screen_kde4
-#   ;;
-# 
-#   *)
-# echo "usage: xrec_1 <DE>
-# 
-# DE can be:
-#     -gnome      Gnome session
-#     -kde4       KDE4 session
-# "
-#   ;;
-# 
-# esac
+  ;;
+
+  *)
+echo "usage: xrec_1 <DE>
+
+DE can be:
+    -gnome2     Gnome2 session
+    -kde4       KDE4 session
+"
+  ;;
+
+esac
