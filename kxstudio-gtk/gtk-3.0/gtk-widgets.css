@@ -1,0 +1,249 @@
+/* KXStudio-Gtk3 color scheme */
+* {
+    engine:solidity;
+    background-color:@window_background;
+    border-color:@window_border;
+    border-radius:3px;
+    color:@window_text;
+    -solidity-style:0;
+    -solidity-gradient-top-color:@window_background;
+    -solidity-gradient-bottom-color:@window_background;
+    -solidity-reflection-top-color:@window_background;
+    -solidity-reflection-bottom-color:@window_background;
+    -solidity-highlight-color:@window_background;
+    -solidity-shadow-color:@window_background;
+}
+*:active {
+    color:@active_text;
+}
+*:insensitive {
+    color:@inactive_text;
+}
+
+.button {
+    background-color:@button_background;
+    border-color:@button_border;
+    color:@button_text;
+    -solidity-gradient-top-color:@button_background;
+    -solidity-gradient-bottom-color:@button_background;
+    -solidity-reflection-top-color:@button_background;
+    -solidity-reflection-bottom-color:@button_background;
+    -solidity-highlight-color:@button_background;
+    -solidity-shadow-color:@button_background;
+}
+.button:hover {
+    border-color:@button_hover_border;
+    -solidity-highlight-color:@button_hover_border;
+}
+.button:active {
+    background-color:@button_active_background;
+    border-color:@button_active_border;
+    color:@button_active_text;
+    -solidity-gradient-top-color:@button_active_background;
+    -solidity-gradient-bottom-color:@button_active_background;
+    -solidity-reflection-top-color:@button_active_background;
+    -solidity-reflection-bottom-color:@button_active_background;
+    -solidity-highlight-color:@button_active_background;
+    -solidity-shadow-color:@button_active_background;
+}
+.button:insensitive {
+    background-color:@button_inactive_background;
+    border-color:@button_inactive_border;
+    color:@button_inactive_text;
+    -solidity-gradient-top-color:@button_inactive_background;
+    -solidity-gradient-bottom-color:@button_inactive_background;
+    -solidity-reflection-top-color:@button_inactive_background;
+    -solidity-reflection-bottom-color:@button_inactive_background;
+    -solidity-highlight-color:@button_inactive_background;
+    -solidity-shadow-color:@button_inactive_background;
+}
+
+.check, .menuitem.check,
+.radio, .menuitem.radio {
+    border-color:@check_border;
+}
+.check:hover, .menuitem.check:hover,
+.radio:hover, .menuitem.radio:hover {
+    border-color:@check_border_hover;
+}
+.check:active, .menuitem.check:active,
+.radio:active, .menuitem.radio:active {
+    border-color:@check_border_active;
+}
+.check:active:hover, .menuitem.check:active:hover,
+.radio:active:hover, .menuitem.radio:active:hover {
+    border-color:@check_border_active_hover;
+}
+
+.menu {
+    background-color:@menu_background;
+    border-color:@menu_border;
+}
+
+.menubar {
+    border-color:@menubar_border;
+    -solidity-radius:5;
+}
+
+.menuitem {
+    padding:2px;
+    -GtkMenuItem-arrow-scaling: 0.5;
+}
+.menuitem:hover {
+    background-color:@menu_hover_background;
+    border-color:@menu_hover_border;
+    -solidity-gradient-top-color:@menu_hover_background;
+    -solidity-gradient-bottom-color:@menu_hover_background;
+    -solidity-reflection-top-color:@menu_hover_background;
+    -solidity-reflection-bottom-color:@menu_hover_background;
+    -solidity-highlight-color:@menu_hover_background;
+    -solidity-shadow-color:@menu_hover_background;
+}
+/* override menuitem:hover */
+.menubar:hover {
+    border-color:@menubar_border;
+}
+
+.notebook tab {
+    background-color:@button_background;
+    border-color:@window_background;
+    padding:4px;
+    -solidity-style:3;
+    -solidity-radius:5;
+    -solidity-gradient-top-color:@button_background;
+    -solidity-gradient-bottom-color:@button_background;
+    -solidity-reflection-top-color:@button_background;
+    -solidity-reflection-bottom-color:@button_background;
+    -solidity-highlight-color:@window_border;
+    -solidity-shadow-color:@button_background;
+}
+.notebook tab:active {
+    background-color:@window_background;
+    border-color:@button_background;
+    -solidity-gradient-top-color:@window_background;
+    -solidity-gradient-bottom-color:@window_background;
+    -solidity-reflection-top-color:@window_background;
+    -solidity-reflection-bottom-color:@window_background;
+    -solidity-highlight-color:@window_background;
+    -solidity-shadow-color:@window_background;
+}
+
+/*.progressbar {
+    background-color:@scrollbar_background;
+    -solidity-gradient-top-color:@scrollbar_background;
+    -solidity-gradient-bottom-color:@scrollbar_background;
+    -solidity-reflection-top-color:@scrollbar_background;
+    -solidity-reflection-bottom-color:@scrollbar_background;
+    -solidity-highlight-color:@scrollbar_background;
+    -solidity-shadow-color:@scrollbar_background;
+}*/
+/* FIXME */
+.progressbar {
+    background-color:@scrollbar_slider_background;
+    border-color:@scrollbar_slider_border;
+    -solidity-gradient-top-color:@scrollbar_slider_background;
+    -solidity-gradient-bottom-color:@scrollbar_slider_background;
+    -solidity-reflection-top-color:@scrollbar_slider_background;
+    -solidity-reflection-bottom-color:@scrollbar_slider_background;
+    -solidity-highlight-color:@scrollbar_slider_background;
+    -solidity-shadow-color:@scrollbar_slider_background;
+}
+
+.rubberband {
+  /* TODO */
+}
+
+.separator {
+    color:@window_border;
+    -solidity-style:0;
+}
+
+.scrollbar {
+    background-color:@scrollbar_background;
+    -solidity-radius:5;
+    -solidity-gradient-top-color:@scrollbar_background;
+    -solidity-gradient-bottom-color:@scrollbar_background;
+    -solidity-reflection-top-color:@scrollbar_background;
+    -solidity-reflection-bottom-color:@scrollbar_background;
+    -solidity-highlight-color:@scrollbar_background;
+    -solidity-shadow-color:@scrollbar_background;
+    -GtkScrollbar-has-backward-stepper:true;
+    -GtkScrollbar-has-forward-stepper:true;
+    -GtkRange-slider-width:12px;
+    -GtkRange-trough-border:0;
+}
+.scrollbar.button {
+    color:@scrollbar_button_background;
+}
+.scrollbar.button:hover {
+    color:@scrollbar_button_hover_background;
+}
+.scrollbar.button:insensitive {
+    color:@scrollbar_button_inactive_background;
+}
+.scrollbar.slider {
+    background-color:@scrollbar_slider_background;
+    border-color:@scrollbar_slider_border;
+    -solidity-gradient-top-color:@scrollbar_slider_background;
+    -solidity-gradient-bottom-color:@scrollbar_slider_background;
+    -solidity-reflection-top-color:@scrollbar_slider_background;
+    -solidity-reflection-bottom-color:@scrollbar_slider_background;
+    -solidity-highlight-color:@scrollbar_slider_background;
+    -solidity-shadow-color:@scrollbar_slider_background;
+}
+.scrollbar.slider:hover {
+    border-color:@scrollbar_slider_hover_border;
+}
+.scrollbar.slider:insensitive {
+    background-color:@scrollbar_slider_inactive_background;
+    border-color:@scrollbar_slider_inactive_border;
+    -solidity-gradient-top-color:@scrollbar_slider_inactive_background;
+    -solidity-gradient-bottom-color:@scrollbar_slider_inactive_background;
+    -solidity-reflection-top-color:@scrollbar_slider_inactive_background;
+    -solidity-reflection-bottom-color:@scrollbar_slider_inactive_background;
+    -solidity-highlight-color:@scrollbar_slider_inactive_background;
+    -solidity-shadow-color:@scrollbar_slider_inactive_background;
+}
+.scrollbar.trough {
+    background-color:@window_background;
+    border-color:@window_background;
+    -solidity-gradient-top-color:@window_background;
+    -solidity-gradient-bottom-color:@window_background;
+    -solidity-reflection-top-color:@window_background;
+    -solidity-reflection-bottom-color:@window_background;
+    -solidity-highlight-color:@window_background;
+    -solidity-shadow-color:@window_background;
+}
+
+.toolbar {
+    padding:2px;
+}
+.toolbar .button {
+    padding:4px;
+}
+
+.view, .entry {
+    background-color:@view_background;
+    color:@view_text;
+    padding:3px;
+    -solidity-gradient-top-color:@view_background;
+    -solidity-gradient-bottom-color:@view_background;
+    -solidity-reflection-top-color:@view_background;
+    -solidity-reflection-bottom-color:@view_background;
+    -solidity-highlight-color:@view_background;
+    -solidity-shadow-color:@view_background;
+}
+.view:hover, .entry:hover {
+    background-color:@view_hover_background;
+}
+.view:selected, .entry:selected {
+    background-color:@view_selected_background;
+}
+.view:hover:selected, .entry:hover:selected {
+    background-color:@view_selected_hover_background;
+}
+
+/* override .view, .entry color */
+.separator {
+    color:@window_border;
+}
