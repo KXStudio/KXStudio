@@ -10,3 +10,4 @@ MetacityTheme=KXStudio
 IconTheme=Oxygen Mono Dark
 CursorTheme=oxy-zion
 ButtonLayout=close,minimize,maximize:
+NotificationTheme=ubuntu
