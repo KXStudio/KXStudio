@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export PATH=/opt/mingw64/bin:$PATH
+export AR=x86_64-w64-mingw32-ar
+export CC=x86_64-w64-mingw32-gcc
+export CXX=x86_64-w64-mingw32-g++
+export MOC=x86_64-w64-mingw32-moc
+export RCC=x86_64-w64-mingw32-rcc
+export UIC=x86_64-w64-mingw32-uic
+export STRIP=x86_64-w64-mingw32-strip
+export WINDRES=x86_64-w64-mingw32-windres
+
+export PKGCONFIG=x86_64-w64-mingw32-pkg-config
+export PKG_CONFIG_PATH=/opt/mingw64/lib/pkgconfig
+
+exec "$@"
