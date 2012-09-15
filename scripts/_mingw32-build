@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=/opt/mingw32/bin:$PATH
+export PATH=/opt/mingw32/bin:/opt/mingw32/i686-w64-mingw32/bin:$PATH
 export AR=i686-w64-mingw32-ar
 export CC=i686-w64-mingw32-gcc
 export CXX=i686-w64-mingw32-g++
