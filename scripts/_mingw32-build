@@ -13,4 +13,6 @@ export WINDRES=i686-w64-mingw32-windres
 export PKGCONFIG=i686-w64-mingw32-pkg-config
 export PKG_CONFIG_PATH=/opt/mingw32/lib/pkgconfig
 
+export CFLAGS="-I/opt/mingw32/include"
+
 exec "$@"
