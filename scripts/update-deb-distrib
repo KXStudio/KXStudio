@@ -4,3 +4,8 @@
 VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("precise","quantal")' | awk 'sub("\\\)","\n")' | head -n 1`
 dch --force-distribution -D quantal -v $VERSION "Quantal build"
 debuild -S -sa
+
+# Raring
+VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("quantal","raring")' | awk 'sub("\\\)","\n")' | head -n 1`
+dch --force-distribution -D raring -v $VERSION "Raring build"
+debuild -S -sa

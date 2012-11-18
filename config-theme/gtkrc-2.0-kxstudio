@@ -9,7 +9,7 @@ style "user-font"
 widget_class "*" style "user-font"
 
 gtk-font-name="DejaVu Sans 8"
-gtk-theme-name="QtCurve"
+gtk-theme-name="KXStudio"
 
 gtk-icon-theme-name="Oxygen Mono Dark"
 gtk-fallback-icon-theme="ubuntu-mono-dark"
