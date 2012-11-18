@@ -10,10 +10,15 @@ sleep 3
 }
 
 start_screen_gnome2 () {
+# set environment
+export DISPLAY=:2.0
+
 # start Gnome
 gnome-panel &
 nautilus
+
 # wait for ctrl+c here
+export DISPLAY=:0
 }
 
 start_screen_kde4 () {
@@ -33,6 +38,23 @@ export DISPLAY=:0
 plasma-desktop
 }
 
+start_screen_xfce4 () {
+# set environment
+export DISPLAY=:2.0
+
+# kill current panel, only 1 instance allowed
+killall xfce4-panel
+
+# start XFCE
+xfce4-panel &
+xfdesktop &
+xfwm4
+
+# wait for ctrl+c here, restore desktop
+export DISPLAY=:0
+xfce4-panel &
+}
+
 case $1 in
   gnome2|-gnome2|--gnome2)
 init_screen
@@ -44,12 +66,18 @@ init_screen
 start_screen_kde4
   ;;
 
+  xfce4|-xfce4|--xfce4)
+init_screen
+start_screen_xfce4
+  ;;
+
   *)
 echo "usage: xrec_1 <DE>
 
 DE can be:
     -gnome2     Gnome2 session
     -kde4       KDE4 session
+    -xfce4      XFCE4 session
 "
   ;;
 
