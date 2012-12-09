@@ -3,11 +3,13 @@
  <engine>
   <option name="driver">alsa</option>
   <option name="realtime">true</option>
+  <option name="realtime-priority">85</option>
  </engine>
  <drivers>
   <driver name="alsa">
    <option name="rate">44100</option>
    <option name="nperiods">2</option>
+   <option name="hw-alias">true</option>
   </driver>
  </drivers>
 </jack>
