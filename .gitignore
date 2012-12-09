@@ -1,4 +1,4 @@
 *~
 *.directory
+welcome/__pycache__/
 welcome/ui_*
-
