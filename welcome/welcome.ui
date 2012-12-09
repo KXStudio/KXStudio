@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>608</width>
+    <width>630</width>
     <height>502</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>&lt;p&gt;KXStudio is a set of tools useful for multimedia production.
+         <string>&lt;p&gt;KXStudio is a collection of tools targeted at audio and video production.
 &lt;/p&gt;&lt;p&gt;This is a small application designed to help users with the update proccess.&lt;br&gt;If you come from a fresh install, it's recommended to force reset of all settings.
 &lt;/p&gt;</string>
         </property>
@@ -153,7 +153,8 @@
           <widget class="QLabel" name="label_3">
            <property name="text">
             <string>This will reset/update your settings only for some basic applications, and 
-copy other definitions if they don't exist yet.</string>
+copy other definitions if they don't exist yet.
+(Some settings will be overwritten if 'Update theme' is checked).</string>
            </property>
           </widget>
          </item>
@@ -266,8 +267,8 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
        <item row="0" column="1">
         <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>Update your theme to the one default in KXStudio.
-The theme is very dark and flat, using QtCurve, and the Oxygen icon theme.</string>
+          <string>Update your theme to the KXStudio default.
+The theme is very dark and flat, using QtCurve and the Oxygen icon theme.</string>
          </property>
         </widget>
        </item>
@@ -484,7 +485,7 @@ The theme is very dark and flat, using QtCurve, and the Oxygen icon theme.</stri
        <widget class="QLabel" name="label_8">
         <property name="text">
          <string>Your settings are now applied.&lt;br&gt;Please re-login as soon as possible to make sure your desktop is updated.&lt;br&gt;
-&lt;i&gt;(You can re-run this utility by using 'KXStudio Welcome' in the system menu)&lt;/i&gt;</string>
+You can re-run this utility anytime again by using 'KXStudio Welcome' in the system menu.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

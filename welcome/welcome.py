@@ -4,6 +4,7 @@
 # Imports (Global)
 from PyQt4.QtCore import QSettings, QThread, SIGNAL
 from PyQt4.QtGui import QApplication, QIcon, QMessageBox, QPixmap, QWizard
+from subprocess import getoutput
 from time import sleep
 import os, sys
 
@@ -11,9 +12,6 @@ import os, sys
 import ui_welcome
 
 # ----------------------------------------------
-
-global fontSize
-fontSize = 8
 
 HOME = os.getenv("HOME")
 PWD  = sys.path[0]
@@ -176,9 +174,7 @@ def do_copy_basic():
     if (not os.path.exists(os.path.join(HOME, sfile))):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
-def do_copy_theme(copy_all=False):
-  global fontSize
-
+def do_copy_theme(fontSize, copy_all=False):
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
@@ -190,8 +186,12 @@ def do_copy_theme(copy_all=False):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
       os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
 
-  # FIXME
-  os.system('cp "%s/mozilla/firefox/default/chrome/userContent.css" "%s/.mozilla/firefox/*.default/chrome/"' % (CONFIG_THEME_DIR, HOME))
+  # TESTING
+  foxFolders = getoutput("find %s/.mozilla/firefox/*.default/chrome/ -type d" % HOME).strip().split("\n")
+  foxFolders.sort()
+  if (len(foxFolders) >= 1 and os.path.exists(foxFolders[0])):
+    foxFolder = foxFolders[0]
+    os.system('cp "%s/mozilla/firefox/default/chrome/userContent.css" "%s"' % (CONFIG_THEME_DIR, foxFolder))
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
@@ -242,12 +242,14 @@ class CopyStuffThread(QThread):
         self._copy_all = False
         self._copy_basic = False
         self._copy_theme = False
+        self._font_size  = 8
 
-    def setData(self, _copy, _copy_all, _copy_basic, _copy_theme):
+    def setData(self, _font_size, _copy, _copy_all, _copy_basic, _copy_theme):
         self._copy = _copy
         self._copy_all = _copy_all
         self._copy_basic = _copy_basic
         self._copy_theme = _copy_theme
+        self._font_size  = _font_size
 
     def run(self):
         # Settings
@@ -264,7 +266,7 @@ class CopyStuffThread(QThread):
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_PROCESS)
         if (self._copy_theme):
           sleep(1)
-          do_copy_theme()
+          do_copy_theme(self._font_size)
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_DONE)
 
         # Wine
@@ -328,13 +330,11 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
         # Process Stuff
         elif (self.previous_page == 0 and page == 1):
-          global fontSize
-          fontSize = self.sb_fontSize.value()
           self.button(QWizard.BackButton).setEnabled(False)
           self.button(QWizard.NextButton).setEnabled(False)
           self.button(QWizard.CancelButton).setEnabled(False)
           self.progressBar.setValue(0)
-          self.copyStuffThread.setData(self.group_settings.isChecked(), self.rb_all.isChecked(), self.rb_basic.isChecked(), self.group_theme.isChecked())
+          self.copyStuffThread.setData(self.sb_fontSize.value(), self.group_settings.isChecked(), self.rb_all.isChecked(), self.rb_basic.isChecked(), self.group_theme.isChecked())
           self.copyStuffThread.start()
 
         # Final page
