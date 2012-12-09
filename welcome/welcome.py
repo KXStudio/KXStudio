@@ -3,7 +3,7 @@
 
 # Imports (Global)
 from PyQt4.QtCore import QSettings, QThread, SIGNAL
-from PyQt4.QtGui import QApplication, QIcon, QPixmap, QWizard
+from PyQt4.QtGui import QApplication, QIcon, QMessageBox, QPixmap, QWizard
 from time import sleep
 import os, sys
 
@@ -305,12 +305,19 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
         self.connect(self, SIGNAL("finished(int)"), self.saveSettings)
         self.connect(self, SIGNAL("currentIdChanged(int)"), self.pageChanged)
+        self.connect(self.b_screenshot, SIGNAL("clicked()"), self.showScreenshot)
         self.connect(self.copyStuffThread, SIGNAL("setLabelPixmap(int, int)"), self.setLabelPixmap)
         self.connect(self.copyStuffThread, SIGNAL("finished()"), self.copyStuffFinished)
 
         if (not os.path.exists("/usr/share/themes/KXStudio/index.theme")):
           self.group_theme.setChecked(False)
           self.group_theme.setEnabled(False)
+
+    def showScreenshot(self):
+        box = QMessageBox(self)
+        box.setIconPixmap(QPixmap(os.path.join(PWD, "icons", "screenshot.png")))
+        box.setWindowTitle(self.tr("Welcome to KXStudio - Screenshot"))
+        box.exec_()
 
     def pageChanged(self, page):
         # Initial page
@@ -319,6 +326,8 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
         # Process Stuff
         elif (self.previous_page == 0 and page == 1):
+          global fontSize
+          fontSize = self.sb_fontSize.value()
           self.button(QWizard.BackButton).setEnabled(False)
           self.button(QWizard.NextButton).setEnabled(False)
           self.button(QWizard.CancelButton).setEnabled(False)
