@@ -182,14 +182,16 @@ def do_copy_theme(copy_all=False):
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
+    os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
 
   for sfile in CONFIG_THEME_ALL:
     create_folder_for_file(sfile)
     if (copy_all or not os.path.exists(os.path.join(HOME, sfile))):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
+      os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
 
   # FIXME
-  os.system("cp '%s/mozilla/firefox/default/chrome/userContent.css' '%s/.mozilla/firefox/*.default/chrome/'" % (CONFIG_THEME_DIR, HOME))
+  os.system('cp "%s/mozilla/firefox/default/chrome/userContent.css" "%s/.mozilla/firefox/*.default/chrome/"' % (CONFIG_THEME_DIR, HOME))
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
