@@ -198,15 +198,20 @@ def do_copy_theme(copy_all=False):
   os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
 
 def do_wine_stuff():
-  if (os.path.exists("/usr/bin/wineboot")):
-    os.system("wineboot")
-    #os.system("sed -i 's/\[drivers32\]/\[drivers32\]\nMSACM.vorbis=vorbis.acm/' ~/.wine/drive_c/windows/system.ini")
+  if not os.path.exists("/usr/bin/wineboot"):
+    return
 
-    if (os.path.exists("/usr/lib/i386-linux-gnu/wine/wineasio.dll.so") or os.path.exists("/usr/lib/x86_64-linux-gnu/wine/wineasio.dll.so")):
-      os.system("regsvr32 wineasio.dll")
+  os.system("wineboot")
+  #os.system("sed -i 's/\[drivers32\]/\[drivers32\]\nMSACM.vorbis=vorbis.acm/' ~/.wine/drive_c/windows/system.ini")
 
-    if (os.path.exists("/usr/bin/winetricks")):
-      os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp")
+  if (os.path.exists("/usr/lib/i386-linux-gnu/wine/wineasio.dll.so")):
+    os.system("regsvr32 wineasio.dll")
+
+  if (os.path.exists("/usr/lib/x86_64-linux-gnu/wine/wineasio.dll.so")):
+    os.system("wine64 regsvr32 wineasio.dll")
+
+  if (os.path.exists("/usr/bin/winetricks")):
+    os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp")
 
 def do_final_stuff():
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink "pulsesink device=\'jack_out\'"')
