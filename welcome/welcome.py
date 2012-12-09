@@ -12,6 +12,9 @@ import ui_welcome
 
 # ----------------------------------------------
 
+global fontSize
+fontSize = 8
+
 HOME = os.getenv("HOME")
 PWD  = sys.path[0]
 
@@ -174,6 +177,8 @@ def do_copy_basic():
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
 def do_copy_theme(copy_all=False):
+  global fontSize
+
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
@@ -188,13 +193,13 @@ def do_copy_theme(copy_all=False):
 
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
-  os.system('gconftool-2 -t str -s /apps/metacity/general/titlebar_font "DejaVu Sans Bold 8"')
-  os.system('gconftool-2 -t str -s /apps/nautilus/preferences/desktop_font "DejaVu Sans 8"')
+  os.system('gconftool-2 -t str -s /apps/metacity/general/titlebar_font "DejaVu Sans Bold %i"' % fontSize)
+  os.system('gconftool-2 -t str -s /apps/nautilus/preferences/desktop_font "DejaVu Sans %i"' % fontSize)
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/gtk_theme "QtCurve"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/icon_theme "Oxygen Mono Dark"')
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/font_name "DejaVu Sans 8"')
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans 8"')
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono 8"')
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/font_name "DejaVu Sans %i"' % fontSize)
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans %i"' % fontSize)
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono %i"' % fontSize)
   os.system('gconftool-2 -t bool -s /desktop/gnome/interface/buttons_have_icons true')
   os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
 
