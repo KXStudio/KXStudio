@@ -81,6 +81,7 @@ CONFIG_ALL = (
   "kde/share/config/kdedrc",
   "kde/share/config/kdeglobals",
   "kde/share/config/kickoffrc",
+  "kde/share/config/klaunchrc",
   "kde/share/config/klipperrc",
   "kde/share/config/knotifyrc",
   "kde/share/config/konversationrc",
