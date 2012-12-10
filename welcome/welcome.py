@@ -60,6 +60,7 @@ CONFIG_ALL = (
   "traverso/Traverso-DAW/Traverso.ini",
 
   "config/audacious/config",
+  "config/Cadence/GlobalSettings.conf",
   "config/Clementine/Clementine.conf",
   "config/jack/conf.xml",
   "config/linuxsampler.org/Qsampler.conf",
