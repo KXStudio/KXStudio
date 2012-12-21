@@ -33,7 +33,7 @@ ID_PIXMAP_DONE    = 2
 CONFIG_SMALL = (
   "bash_aliases",
   "pulse/client.conf",
-  "pulse/daemon.conf",
+  "pulse/daemon.conf"
 )
 
 CONFIG_ALL = (
@@ -94,7 +94,10 @@ CONFIG_ALL = (
   "kde/share/config/nepomukserverrc",
   "kde/share/config/oxygenrc",
   "kde/share/config/taskmanagerrulesrc",
-  "kde/share/config/yakuakerc"
+  "kde/share/config/yakuakerc",
+
+  "local/share/defaults.list",
+  "local/share/mimeapps.list"
 )
 
 CONFIG_THEME = (
@@ -102,7 +105,6 @@ CONFIG_THEME = (
   "gtkrc-2.0-kxstudio",
   "kderc",
 
-  "ardour2/ardour.rc",
   "composite/composite.conf",
   "hydrogen/hydrogen.conf",
   "mozilla/firefox/default/chrome/userContent.css",
@@ -112,7 +114,6 @@ CONFIG_THEME = (
   "qt/qtrc",
   "traverso/Traverso-DAW/Traverso.ini",
 
-  "config/ardour3/ardour.rc",
   "config/gtk-3.0/settings.ini",
   "config/kde.org/systemsettings.conf",
   "config/Nokia/QtCreator.ini",
@@ -144,11 +145,13 @@ CONFIG_THEME = (
   "kde/share/config/kwinrc",
   "kde/share/config/kwinqtcurverc",
   "kde/share/config/oxygenrc",
-  "kde/share/config/plasmarc",
+  "kde/share/config/plasmarc"
 )
 
 CONFIG_THEME_ALL = (
-  "kde/share/config/konversationrc",
+  "ardour2/ardour.rc",
+  "config/ardour3/ardour.rc",
+  "kde/share/config/konversationrc"
 )
 
 # ----------------------------------------------
