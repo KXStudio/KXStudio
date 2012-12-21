@@ -185,6 +185,7 @@
       <Filename>rosegarden.desktop</Filename>
       <Filename>rosegarden-kde3.desktop</Filename>
       <Filename>seq24.desktop</Filename>
+      <Filename>setbfree.desktop</Filename>
       <Filename>simplelabeler.desktop</Filename>
       <Filename>sineshaper.desktop</Filename>
       <Filename>smplayer.desktop</Filename>
@@ -208,6 +209,7 @@
       <Filename>vlmc.desktop</Filename>
       <Filename>vmpk.desktop</Filename>
       <Filename>vmpk-jack.desktop</Filename>
+      <Filename>volti.desktop</Filename>
       <Filename>wired.desktop</Filename>
       <Filename>xfce4-mixer.desktop</Filename>
       <Filename>xine.desktop</Filename>
@@ -287,6 +289,7 @@
         <Filename>monobristol.desktop</Filename>
         <Filename>phasex.desktop</Filename>
         <Filename>rakarrack.desktop</Filename>
+        <Filename>setbfree.desktop</Filename>
         <Filename>vocproc.desktop</Filename>
         <Filename>yoshimi.desktop</Filename>
         <Filename>zita-at1.desktop</Filename>
@@ -462,6 +465,7 @@
         <Filename>qxgedit.desktop</Filename>
         <Filename>rmedigicontrol.desktop</Filename>
         <Filename>ubuntustudio-controls.desktop</Filename>
+        <Filename>volti.desktop</Filename>
         <Filename>xfce4-mixer.desktop</Filename>
 
         <Filename>kde-kmix.desktop</Filename>
