@@ -94,10 +94,7 @@ CONFIG_ALL = (
   "kde/share/config/nepomukserverrc",
   "kde/share/config/oxygenrc",
   "kde/share/config/taskmanagerrulesrc",
-  "kde/share/config/yakuakerc",
-
-  "local/share/defaults.list",
-  "local/share/mimeapps.list"
+  "kde/share/config/yakuakerc"
 )
 
 CONFIG_THEME = (
@@ -151,7 +148,9 @@ CONFIG_THEME = (
 CONFIG_THEME_ALL = (
   "ardour2/ardour.rc",
   "config/ardour3/ardour.rc",
-  "kde/share/config/konversationrc"
+  "kde/share/config/konversationrc",
+  "local/share/defaults.list",
+  "local/share/mimeapps.list"
 )
 
 # ----------------------------------------------
@@ -405,7 +404,8 @@ if __name__ == '__main__':
     # Live-DVD usage
     if ("--live-dvd" in sys.argv):
       do_copy_all()
-      do_copy_theme()
+      do_copy_theme(8, True)
+      #do_wine_stuff()
       do_final_stuff()
       do_live_stuff()
       sys.exit(0)
