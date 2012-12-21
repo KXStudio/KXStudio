@@ -54,9 +54,13 @@ SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
 # Update Sources (copy sources.list if needed)
 apt-get update
 apt-get install python-software-properties wget
-add-apt-repository ppa:kxstudio-team/kxstudio
+add-apt-repository -y ppa:kxstudio-team/kxstudio
+add-apt-repository -y ppa:blue-shell/firefox-kde
 apt-get update
 apt-get install kxstudio-repos
+apt-get install kxstudio-repos-kde49
+
+# Check /etc/apt/sources.list
 
 # Update System
 apt-get update
@@ -64,27 +68,66 @@ apt-get dist-upgrade
 
 # Base Install
 apt-get install ubuntu-standard laptop-detect os-prober
-apt-get install kxstudio-kernel-generic
+apt-get install kxstudio-kernel-lowlatency
 
-# Install meta-packages
+# Clean previous
+apt-get clean
+
+# Install meta-packages (Download)
+apt-get install -d kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
+
+# Install meta-packages (Install)
 apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
 
+# Remove pulseaudio
+apt-get remove pulseaudio
+
+# reinstall/configure renoise
+dpkg-reconfigure renoise
+
+# Clean previous
+apt-get clean
+
 # Good Extras
-apt-get install pulse-jack pavucontrol
+# apt-get install pulseaudio-module-jack pavucontrol
+apt-get install hydrogen-drumkits kxstudio-docs
+apt-get install firefox firefox-kde-support
 
 # Cleanup
 apt-get autoremove
+apt-get clean
+
+# Root theme
+sudo mkdir -p /root/.config/
+sudo mkdir -p /root/.config/qtcurve/
+sudo mkdir -p /root/.kde/
+sudo mkdir -p /root/.kde/share/
+sudo mkdir -p /root/.kde/share/config/
+sudo cp ~/.gtkrc-2.0-kxstudio /root/.gtkrc-2.0
+sudo cp ~/.config/qtcurve/* /root/.config/qtcurve
+sudo cp ~/.kde/share/config/gtkrc* /root/.kde/share/config/
+sudo cp ~/.kde/share/config/kcmdisplayrc /root/.kde/share/config/
+sudo cp ~/.kde/share/config/kdeglobals /root/.kde/share/config/
 
 ## ---- PAUSE HERE ----- ##
 # Before installing ubiquity in the live session, you'll need to run this outside:
 $ sudo mkdir -p ~/livecd/cd/casper/
 $ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
 $ sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
-$ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
-## ----- END PAUSE ----- ##
+$ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop"
+
+sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
+
+echo "## ----- END PAUSE ----- ##
 
 # Now install the liveDVD specific packages
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
+
+# apt-get remove apt-clone archdetect-deb btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack
+# apt-get remove ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2
+# apt-get remove libdmraid1.0.0.rc16 libecryptfs0 libiw30 libnss3-1d libreadline5 localechooser-data lupin-casper ntfsprogs
+# apt-get remove python-pyicu rdate realpath reiserfsprogs ubiquity ubiquity-casper ubiquity-frontend-kde ubiquity-ubuntu-artwork
+# apt-get remove user-setup xfsprogs
 "
 sudo chroot ~/livecd/custom
 echo "done"
@@ -124,8 +167,8 @@ exit
     mkboot)
 cd ~/livecd/
 sudo rm -f cd/casper/vmlinuz cd/casper/initrd.lz cd/casper/initrd_tmp.gz
-sudo cp custom/boot/vmlinuz-3.2.0-24-generic cd/casper/vmlinuz
-sudo cp custom/boot/initrd.img-3.2.0-24-generic cd/casper/initrd_tmp.gz
+sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz
+sudo cp custom/boot/initrd.img-* cd/casper/initrd_tmp.gz
 
 cd ~/livecd/cd/casper
 sudo rm -rf ext
@@ -165,7 +208,7 @@ sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i ~/livecd/cd/README.diskdefines
 sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/README.diskdefines
 sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/text.cfg
 sudo mkdir -p ~/livecd/cd/.disk/
-sudo su root -c 'echo "KXStudio 12.04 "Badass Beast" (Live 32bit)" > ./.disk/info'
+sudo su root -c 'echo "KXStudio 12.04.1 (Live 32bit)" > ./.disk/info'
 sudo su root -c 'echo "http://kxstudio.sourceforge.net/" > ./.disk/release_notes_url'
 echo "Please edit these files manually:
 ~/livecd/cd/.disk/info

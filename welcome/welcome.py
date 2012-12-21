@@ -232,6 +232,16 @@ def do_final_stuff():
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink_description "Jack"')
 
+def do_live_stuff():
+  desktopDir   = os.path.join(HOME, "Desktop")
+  ubiquityFile = "/usr/share/applications/kde4/ubiquity-kdeui.desktop"
+
+  if (not os.path.exists(desktopDir)):
+    os.mkdir(desktopDir)
+
+  if (os.path.exists(ubiquityFile)):
+    os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
+
 # ----------------------------------------------
 
 # Separate Thread for Copying Stuff
@@ -388,6 +398,14 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
 #--------------- main ------------------
 if __name__ == '__main__':
+
+    # Live-DVD usage
+    if ("--live-dvd" in sys.argv):
+      do_copy_all()
+      do_copy_theme()
+      do_final_stuff()
+      do_live_stuff()
+      sys.exit(0)
 
     # App initialization
     app = QApplication(sys.argv)
