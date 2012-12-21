@@ -63,6 +63,7 @@ CONFIG_ALL = (
   "config/Cadence/GlobalSettings.conf",
   "config/Clementine/Clementine.conf",
   "config/jack/conf.xml",
+  "config/KXStudio/Welcome.conf",
   "config/linuxsampler.org/Qsampler.conf",
   "config/Modartt/Pianoteq36 PLAY.prefs",
   "config/Modartt/Pianoteq40.prefs",
