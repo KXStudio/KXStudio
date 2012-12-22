@@ -151,8 +151,8 @@ CONFIG_THEME_ALL = (
   "config/ardour3/ardour.rc",
   "config/libreoffice/3/user/registrymodifications.xcu",
   "kde/share/config/konversationrc",
-  "local/share/defaults.list",
-  "local/share/mimeapps.list"
+  "local/share/applications/defaults.list",
+  "local/share/applications/mimeapps.list"
 )
 
 # ----------------------------------------------
