@@ -238,10 +238,14 @@ def do_final_stuff():
 
 def do_live_stuff():
   desktopDir   = os.path.join(HOME, "Desktop")
+  kxstudioDocs = "/usr/share/kxstudio/docs"
   ubiquityFile = "/usr/share/applications/kde4/ubiquity-kdeui.desktop"
 
   if (not os.path.exists(desktopDir)):
     os.mkdir(desktopDir)
+
+  if (os.path.exists(kxstudioDocs)):
+    os.system("ln -s '%s' '%s'" % (kxstudioDocs, os.path.join(desktopDir, "Docs")))
 
   if (os.path.exists(ubiquityFile)):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
