@@ -16,6 +16,7 @@
       <Filename>aeolus.desktop</Filename>
       <Filename>ams.desktop</Filename>
       <Filename>amsynth.desktop</Filename>
+      <Filename>Aria.desktop</Filename>
       <Filename>ardour.desktop</Filename>
       <Filename>ardour3.desktop</Filename>
       <Filename>arpage.desktop</Filename>
@@ -115,6 +116,7 @@
       <Filename>laditray.desktop</Filename>
       <Filename>lash-panel.desktop</Filename>
       <Filename>lash-synth.desktop</Filename>
+      <Filename>libreoffice-startcenter.desktop</Filename>
       <Filename>lingot.desktop</Filename>
       <Filename>LiVES.desktop</Filename>
       <Filename>ll-scope.desktop</Filename>
@@ -194,6 +196,7 @@
       <Filename>stopmotion.desktop</Filename>
       <Filename>stretchplayer.desktop</Filename>
       <Filename>subtitleeditor.desktop</Filename>
+      <Filename>synthclone.desktop</Filename>
       <Filename>timemachine.desktop</Filename>
       <Filename>totem.desktop</Filename>
       <Filename>traverso.desktop</Filename>
@@ -225,6 +228,7 @@
       <Filename>kde-openoctave.desktop</Filename>
       <Filename>kde-pana.desktop</Filename>
 
+      <Filename>kde4-akonaditray.desktop</Filename>
       <Filename>kde4-amarok.desktop</Filename>
       <Filename>kde4-bangarang.desktop</Filename>
       <Filename>kde4-dragonplayer.desktop</Filename>
@@ -242,6 +246,8 @@
       <Filename>kde4-kmplayer.desktop</Filename>
       <Filename>kde4-kscd.desktop</Filename>
       <Filename>kde4-kwave.desktop</Filename>
+      <Filename>kde4-nepomukbackup.desktop</Filename>
+      <Filename>kde4-nepomukcontroller.desktop</Filename>
       <Filename>kde4-recorditnow.desktop</Filename>
       <Filename>kde4-sparklemedia.desktop</Filename>
     </Exclude>
