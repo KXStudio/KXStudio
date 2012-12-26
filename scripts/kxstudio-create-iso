@@ -123,11 +123,12 @@ echo "## ----- END PAUSE ----- ##
 # Now install the liveDVD specific packages
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
 
-# apt-get remove apt-clone archdetect-deb btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack
-# apt-get remove ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2
-# apt-get remove libdmraid1.0.0.rc16 libecryptfs0 libiw30 libnss3-1d libreadline5 localechooser-data lupin-casper ntfsprogs
-# apt-get remove python-pyicu rdate realpath reiserfsprogs ubiquity ubiquity-casper ubiquity-frontend-kde ubiquity-ubuntu-artwork
-# apt-get remove user-setup xfsprogs
+apt-get update; apt-get dist-upgrade
+
+apt-get purge archdetect-deb apt-clone btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack \
+ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2 \
+libdmraid1.0.0.rc16 libecryptfs0 libiw30 libnss3-1d libreadline5 localechooser-data lupin-casper ntfsprogs \
+python-pyicu rdate realpath reiserfsprogs ubiquity ubiquity-casper ubiquity-frontend-kde ubiquity-ubuntu-artwork user-setup xfsprogs
 "
 sudo chroot ~/livecd/custom
 echo "done"

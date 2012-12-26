@@ -20,6 +20,7 @@ for i in $ALL; do
         VERSION="$DEBIAN""$DATE""-0~precise1"
         dch --force-distribution -D precise -v "$VERSION" "New Git (scripted)"
         debuild -S -sa
+        update-deb-distrib
     else
         echo "New Git NOT available..."
     fi
@@ -48,6 +49,7 @@ for i in $ALL; do
         VERSION="$DEBIAN""$NEXT_SVN""-0~precise1"
         dch --force-distribution -D precise -v "$VERSION" "New SVN (scripted)"
         debuild -S -sa
+        update-deb-distrib
     else
         echo "New SVN NOT available..."
     fi
