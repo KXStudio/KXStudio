@@ -82,8 +82,8 @@ apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted
 # Install extras
 apt-get install sni-qt
 
-# Remove pulseaudio
-apt-get purge pulseaudio
+# Remove unwanted (TODO, purge pulse libs)
+apt-get purge pulseaudio xterm
 
 # reinstall/configure renoise
 dpkg-reconfigure renoise

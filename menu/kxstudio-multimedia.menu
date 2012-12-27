@@ -233,7 +233,6 @@
       <Filename>kde-openoctave.desktop</Filename>
       <Filename>kde-pana.desktop</Filename>
 
-      <Filename>kde4-akonaditray.desktop</Filename>
       <Filename>kde4-amarok.desktop</Filename>
       <Filename>kde4-bangarang.desktop</Filename>
       <Filename>kde4-dragonplayer.desktop</Filename>
@@ -251,8 +250,6 @@
       <Filename>kde4-kmplayer.desktop</Filename>
       <Filename>kde4-kscd.desktop</Filename>
       <Filename>kde4-kwave.desktop</Filename>
-      <Filename>kde4-nepomukbackup.desktop</Filename>
-      <Filename>kde4-nepomukcontroller.desktop</Filename>
       <Filename>kde4-recorditnow.desktop</Filename>
       <Filename>kde4-sparklemedia.desktop</Filename>
     </Exclude>
@@ -582,7 +579,11 @@
   <Menu>
     <Name>System</Name>
     <Exclude>
+      <Filename>debian-xterm.desktop</Filename>
+      <Filename>debian-uxterm.desktop</Filename>
       <Filename>ubuntustudio-controls.desktop</Filename>
+      <Filename>kde4-nepomukbackup.desktop</Filename>
+      <Filename>kde4-nepomukcontroller.desktop</Filename>
     </Exclude>
   </Menu>
 
@@ -591,6 +592,10 @@
     <Include>
       <Filename>wine-Programs-7-Zip-7-Zip File Manager.desktop</Filename>
     </Include>
+    <Exclude>
+      <Filename>kde4-akonaditray.desktop</Filename>
+      <Filename>kde4-nepomukbackup.desktop</Filename>
+    </Exclude>
   </Menu>
 
 </Menu>

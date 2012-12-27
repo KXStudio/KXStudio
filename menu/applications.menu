@@ -255,4 +255,23 @@
 
   </Menu>
 
+  <Menu>
+    <Name>System</Name>
+    <Exclude>
+      <Filename>debian-xterm.desktop</Filename>
+      <Filename>debian-uxterm.desktop</Filename>
+      <Filename>ubuntustudio-controls.desktop</Filename>
+      <Filename>kde4-nepomukbackup.desktop</Filename>
+      <Filename>kde4-nepomukcontroller.desktop</Filename>
+    </Exclude>
+  </Menu>
+
+  <Menu>
+    <Name>Utilities</Name>
+    <Exclude>
+      <Filename>kde4-akonaditray.desktop</Filename>
+      <Filename>kde4-nepomukbackup.desktop</Filename>
+    </Exclude>
+  </Menu>
+
 </Menu>
