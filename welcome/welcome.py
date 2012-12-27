@@ -74,6 +74,7 @@ CONFIG_ALL = (
   "config/vlc/vlcrc",
   "config/xfce4/xinitrc",
 
+  "kde/env/gtk2-engines-qtcurve.rc.sh",
   "kde/env/qt-graphicssystem.sh",
   "kde/share/apps/dolphin/dolphinui.rc",
   "kde/share/autostart/akonaditray.desktop",

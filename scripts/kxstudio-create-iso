@@ -79,8 +79,11 @@ apt-get install -d kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restric
 # Install meta-packages (Install)
 apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
 
+# Install extras
+apt-get install sni-qt
+
 # Remove pulseaudio
-apt-get remove pulseaudio
+apt-get purge pulseaudio
 
 # reinstall/configure renoise
 dpkg-reconfigure renoise
@@ -96,18 +99,6 @@ apt-get install firefox firefox-kde-support
 # Cleanup
 apt-get autoremove
 apt-get clean
-
-# Root theme
-sudo mkdir -p /root/.config/
-sudo mkdir -p /root/.config/qtcurve/
-sudo mkdir -p /root/.kde/
-sudo mkdir -p /root/.kde/share/
-sudo mkdir -p /root/.kde/share/config/
-sudo cp ~/.gtkrc-2.0-kxstudio /root/.gtkrc-2.0
-sudo cp ~/.config/qtcurve/* /root/.config/qtcurve
-sudo cp ~/.kde/share/config/gtkrc* /root/.kde/share/config/
-sudo cp ~/.kde/share/config/kcmdisplayrc /root/.kde/share/config/
-sudo cp ~/.kde/share/config/kdeglobals /root/.kde/share/config/
 
 ## ---- PAUSE HERE ----- ##
 # Before installing ubiquity in the live session, you'll need to run this outside:

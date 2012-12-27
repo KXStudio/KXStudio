@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sudo mkdir -p /root/.config/
+sudo mkdir -p /root/.config/qtcurve/
+sudo mkdir -p /root/.kde/
+sudo mkdir -p /root/.kde/share/
+sudo mkdir -p /root/.kde/share/config/
+sudo cp ~/.gtkrc-2.0-kxstudio /root/.gtkrc-2.0
+sudo cp ~/.config/qtcurve/* /root/.config/qtcurve
+sudo cp ~/.kde/share/config/gtkrc* /root/.kde/share/config/
+sudo cp ~/.kde/share/config/kcmdisplayrc /root/.kde/share/config/
+sudo cp ~/.kde/share/config/kdeglobals /root/.kde/share/config/
+
+if [ -f ~/.gtkrc-2.0-kde4 ]; then
+  sudo cp ~/.gtkrc-2.0-kde4 /root/.gtkrc-2.0
+fi
