@@ -46,6 +46,8 @@ CONFIG_ALL = (
   "audacity-data/audacity.cfg",
   "bcast/Cinelerra_rc",
   "ccutie/Cinecutie_rc",
+  "gstreamer-0.10/registry.i686.bin",
+  "gstreamer-0.10/registry.x86_64.bin",
   "hydrogen/hydrogen.conf",
   "Loomer/Aspect.xml",
   "Loomer/Manifold.xml",
@@ -56,7 +58,7 @@ CONFIG_ALL = (
   "mplayer/config",
   "pulse/client.conf",
   "pulse/daemon.conf",
-  "renoise/V2.8.0/Config.xml",
+  "renoise/V2.8.1/Config.xml",
   "traverso/Traverso-DAW/Traverso.ini",
 
   "config/audacious/config",

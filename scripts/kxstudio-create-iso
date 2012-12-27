@@ -63,8 +63,7 @@ apt-get install kxstudio-repos-kde49
 # Check /etc/apt/sources.list
 
 # Update System
-apt-get update
-apt-get dist-upgrade
+apt-get update; apt-get dist-upgrade
 
 # Base Install
 apt-get install ubuntu-standard laptop-detect os-prober
@@ -81,20 +80,23 @@ apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted
 
 # Install extras
 apt-get install sni-qt
+apt-get install kxstudio-docs
+apt-get install firefox firefox-kde-support
 
-# Remove unwanted (TODO, purge pulse libs)
-apt-get purge pulseaudio xterm
+# Remove deprecated/dummy
+apt-get purge amsynth-dssi
+apt-get purge calf-plugins-git
+apt-get purge composite composite-data
+
+# Remove unwanted
+apt-get purge pulseaudio vlc-plugin-pulse gstreamer0.10-pulseaudio xterm
+apt-get purge loomer-plugins loomer-plugins-vst
 
 # reinstall/configure renoise
 dpkg-reconfigure renoise
 
 # Clean previous
 apt-get clean
-
-# Good Extras
-# apt-get install pulseaudio-module-jack pavucontrol
-apt-get install hydrogen-drumkits kxstudio-docs
-apt-get install firefox firefox-kde-support
 
 # Cleanup
 apt-get autoremove
@@ -113,8 +115,6 @@ echo "## ----- END PAUSE ----- ##
 
 # Now install the liveDVD specific packages
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
-
-apt-get update; apt-get dist-upgrade
 
 apt-get purge archdetect-deb apt-clone btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack \
 ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2 \
