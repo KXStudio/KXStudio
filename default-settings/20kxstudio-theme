@@ -1,0 +1,5 @@
+# Load KXStudio gtk theme config if it exists
+
+if [ -f $HOME/.kde/env/gtk2-engines-qtcurve.rc.sh ]; then
+  . $HOME/.kde/env/gtk2-engines-qtcurve.rc.sh
+fi
