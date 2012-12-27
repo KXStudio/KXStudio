@@ -7,6 +7,7 @@ sudo mkdir -p /root/.kde/share/
 sudo mkdir -p /root/.kde/share/config/
 sudo cp ~/.gtkrc-2.0-kxstudio /root/.gtkrc-2.0
 sudo cp ~/.config/qtcurve/* /root/.config/qtcurve
+sudo cp ~/.config/Trolltech.conf /root/.config/
 sudo cp ~/.kde/share/config/gtkrc* /root/.kde/share/config/
 sudo cp ~/.kde/share/config/kcmdisplayrc /root/.kde/share/config/
 sudo cp ~/.kde/share/config/kdeglobals /root/.kde/share/config/
