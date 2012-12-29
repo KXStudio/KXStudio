@@ -109,9 +109,12 @@ $ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
 $ sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
 $ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop"
 
-sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
+# sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
 
 echo "## ----- END PAUSE ----- ##
+
+# Now use locate
+locatedb
 
 # Now install the liveDVD specific packages
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
