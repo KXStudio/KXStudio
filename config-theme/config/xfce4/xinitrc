@@ -1,4 +1,12 @@
-export GTK2_RC_FILES=$HOME/.gtkrc-2.0-kxstudio
+# xinitrc
+
+if [ -f $HOME/.gtkrc-2.0-kde4 ]; then
+  export GTK2_RC_FILES=$HOME/.gtkrc-2.0-kde4
+elif [ -f $HOME/.gtkrc-2.0-kxstudio ]; then
+  export GTK2_RC_FILES=$HOME/.gtkrc-2.0-kxstudio
+fi
+
 export QT_PLUGIN_PATH=$HOME/.kde/lib/kde4/plugins/:/usr/lib/kde4/plugins/
 export QT_GRAPHICSSYSTEM=raster
+
 . /etc/xdg/xfce4/xinitrc
