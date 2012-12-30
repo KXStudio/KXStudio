@@ -51,7 +51,7 @@ export LANG=C
 echo "
 SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
 
-# Update Sources (copy sources.list if needed)
+# Update Sources
 apt-get update
 apt-get install python-software-properties wget
 add-apt-repository -y ppa:kxstudio-team/kxstudio
@@ -59,8 +59,23 @@ add-apt-repository -y ppa:blue-shell/firefox-kde
 apt-get update
 apt-get install kxstudio-repos
 apt-get install kxstudio-repos-kde49
+apt-get clean
 
 # Check /etc/apt/sources.list
+echo 'deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu precise-security main restricted universe multiverse
+# deb-src http://security.ubuntu.com/ubuntu precise-security main restricted universe multiverse
+
+deb http://archive.canonical.com/ubuntu precise partner
+# deb-src http://archive.canonical.com/ubuntu precise partner' > /etc/apt/sources.list
 
 # Update System
 apt-get update; apt-get dist-upgrade
@@ -72,13 +87,15 @@ apt-get install kxstudio-kernel-lowlatency
 # Clean previous
 apt-get clean
 
-# Install meta-packages (Download)
+# Install packages (Download)
 apt-get install -d kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
 
-# Install meta-packages (Install)
+# Install packages (Install)
 apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
 
 # Install extras
+apt-get install carla-bridge-linux32:i386 carla-bridge-win32:i386
+apt-get install carla-bridge-linux646 carla-bridge-win64
 apt-get install sni-qt
 apt-get install kxstudio-docs
 apt-get install firefox firefox-kde-support

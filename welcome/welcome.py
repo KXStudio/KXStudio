@@ -56,6 +56,7 @@ CONFIG_ALL = (
   "Loomer/Shift2.xml",
   "Loomer/String.xml",
   "mplayer/config",
+  "phasex/phasex.cfg",
   "pulse/client.conf",
   "pulse/daemon.conf",
   "renoise/V2.8.1/Config.xml",
