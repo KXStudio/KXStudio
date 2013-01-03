@@ -35,6 +35,7 @@ case $1 in
 
     squash)
 sudo debootstrap --arch=$3 $2 ~/livecd/custom
+exit
     ;;
 
     custom)
@@ -95,18 +96,26 @@ apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted
 
 # Install extras
 apt-get install carla-bridge-linux32:i386 carla-bridge-win32:i386
-apt-get install carla-bridge-linux646 carla-bridge-win64
+apt-get install carla-bridge-linux64 carla-bridge-win64
+apt-get install festige
 apt-get install sni-qt
 apt-get install kxstudio-docs
 apt-get install firefox firefox-kde-support
+
+# 64bit fix
+apt-get install reaper:i386
+apt-get install simplelabeler:i386
+apt-get install lacie-labeler:i386
+apt-get install sni-qt:i386
 
 # Remove deprecated/dummy
 apt-get purge amsynth-dssi
 apt-get purge calf-plugins-git
 apt-get purge composite composite-data
+apt-get purge hydrogen-drumkits
 
 # Remove unwanted
-apt-get purge pulseaudio vlc-plugin-pulse gstreamer0.10-pulseaudio xterm
+apt-get purge pulseaudio vlc-plugin-pulse gstreamer0.10-pulseaudio xterm rtkit pulseaudio-utils libpulsedsp
 apt-get purge loomer-plugins loomer-plugins-vst
 
 # reinstall/configure renoise
@@ -131,18 +140,20 @@ $ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version
 echo "## ----- END PAUSE ----- ##
 
 # Now use locate
-locatedb
+/usr/bin/updatedb.mlocate
 
 # Now install the liveDVD specific packages
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
 
 apt-get purge archdetect-deb apt-clone btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack \
 ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2 \
-libdmraid1.0.0.rc16 libecryptfs0 libiw30 libnss3-1d libreadline5 localechooser-data lupin-casper ntfsprogs \
-python-pyicu rdate realpath reiserfsprogs ubiquity ubiquity-casper ubiquity-frontend-kde ubiquity-ubuntu-artwork user-setup xfsprogs
+libdmraid1.0.0.rc16 libecryptfs0 libiw30 libreadline5 localechooser-data lupin-casper ntfsprogs \
+python-pyicu rdate realpath reiserfsprogs ubiquity ubiquity-casper ubiquity-frontend-kde ubiquity-ubuntu-artwork \
+user-setup xfsprogs sbsigntool
 "
 sudo chroot ~/livecd/custom
 echo "done"
+exit
     ;;
 
     custom_end)
@@ -161,6 +172,7 @@ umount /proc/ # to force: 'umount -lf /proc'
 umount /sys/
 exit
 "
+exit
   ;;
 
     mksquash)
@@ -192,6 +204,7 @@ cd ..
 sudo rm -rf ext initrd_tmp.gz
 
 echo "done"
+exit
     ;;
 
     mkart)
@@ -213,6 +226,7 @@ echo "usage: $0 mkart $ISO_ARCH <distro>"
 exit
 fi
 
+sudo mkdir -p ~/livecd/cd
 cd ~/livecd/cd
 sudo 7z x -y ../iso-stuff.7z
 
@@ -221,13 +235,14 @@ sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/README.diskdefines
 sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/text.cfg
 sudo mkdir -p ~/livecd/cd/.disk/
 sudo su root -c 'echo "KXStudio 12.04.1 (Live 32bit)" > ./.disk/info'
-sudo su root -c 'echo "http://kxstudio.sourceforge.net/" > ./.disk/release_notes_url'
+sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio12041:ReleaseNotes" > ./.disk/release_notes_url'
 echo "Please edit these files manually:
 ~/livecd/cd/.disk/info
 ~/livecd/cd/.disk/release_notes_url
 ~/livecd/cd/README.diskdefines
 ~/livecd/cd/preseed/live.seed
 "
+exit
     ;;
 
     md5sum)
@@ -235,6 +250,7 @@ cd ~/livecd/cd
 sudo rm -f ./md5sum.txt
 sudo su root -c "find . -type f -print0 | xargs -0 md5sum > md5sum.txt"
 echo "done"
+exit
     ;;
 
     iso)
@@ -249,6 +265,7 @@ isolinux=`find . -name isolinux.bin | head -n 1 | awk 'sub("./","")'`
 bootcat=`find . -name boot.cat | head -n 1 | awk 'sub("./","")'`
 sudo mkisofs -r -V "$ARG2" -b $isolinux -c $bootcat -cache-inodes -J -l -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -o ~/$ARG2.iso .
 echo "done"
+exit
     ;;
 
     clean)
@@ -257,6 +274,7 @@ sudo umount ~/livecd/squashfs/
 sudo rm -rf /tmp/livecd/
 sudo rm -rf ~/livecd/
 echo "done"
+exit
     ;;
 
     *)
@@ -273,5 +291,6 @@ echo "usage: $0 <cmd>
 
  x - clean
 "
+exit
     ;;
 esac
