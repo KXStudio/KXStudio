@@ -24,6 +24,8 @@
       <Filename>audacious.desktop</Filename>
       <Filename>audacious2.desktop</Filename>
       <Filename>audacious2-gtkui.desktop</Filename>
+      <Filename>avidemux-gtk.desktop</Filename>
+      <Filename>avidemux-qt.desktop</Filename>
       <Filename>azr3-jack.desktop</Filename>
       <Filename>banshee.desktop</Filename>
       <Filename>banshee-1.desktop</Filename>
@@ -36,7 +38,6 @@
       <Filename>calf.desktop</Filename>
       <Filename>carla.desktop</Filename>
       <Filename>carla-control.desktop</Filename>
-      <Filename>carla-wine.desktop</Filename>
       <Filename>catia.desktop</Filename>
       <Filename>claudia.desktop</Filename>
       <Filename>cinelerra.desktop</Filename>
@@ -102,6 +103,8 @@
       <Filename>jack-rack.desktop</Filename>
       <Filename>jack2-simple-config.desktop</Filename>
       <Filename>jamin.desktop</Filename>
+      <Filename>japa-alsa.desktop</Filename>
+      <Filename>japa-jack.desktop</Filename>
       <Filename>Jc_Gui.desktop</Filename>
       <Filename>jkmeter.desktop</Filename>
       <Filename>jokosher.desktop</Filename>
@@ -164,8 +167,10 @@
       <Filename>psynth3d.desktop</Filename>
       <Filename>puredata.desktop</Filename>
       <Filename>qamix.desktop</Filename>
+      <Filename>qarecord.desktop</Filename>
       <Filename>qdvdauthor.desktop</Filename>
       <Filename>qjackctl.desktop</Filename>
+      <Filename>qmidiarp.desktop</Filename>
       <Filename>qmidictl.desktop</Filename>
       <Filename>qmidinet.desktop</Filename>
       <Filename>qmmp.desktop</Filename>
@@ -209,12 +214,14 @@
       <Filename>vmpk.desktop</Filename>
       <Filename>vmpk-jack.desktop</Filename>
       <Filename>volti.desktop</Filename>
+      <Filename>winff.desktop</Filename>
       <Filename>wired.desktop</Filename>
       <Filename>xfce4-mixer.desktop</Filename>
       <Filename>xine.desktop</Filename>
       <Filename>xjadeo.desktop</Filename>
       <Filename>yoshimi.desktop</Filename>
       <Filename>zita-at1.desktop</Filename>
+      <Filename>zita-rev1.desktop</Filename>
       <Filename>zonage.desktop</Filename>
       <Filename>zynaddsubfx.desktop</Filename>
       <Filename>zynjacku.desktop</Filename>
