@@ -5,13 +5,31 @@ sudo mkdir -p /root/.config/qtcurve/
 sudo mkdir -p /root/.kde/
 sudo mkdir -p /root/.kde/share/
 sudo mkdir -p /root/.kde/share/config/
-sudo cp ~/.gtkrc-2.0-kxstudio /root/.gtkrc-2.0
-sudo cp ~/.config/qtcurve/* /root/.config/qtcurve
-sudo cp ~/.config/Trolltech.conf /root/.config/
-sudo cp ~/.kde/share/config/gtkrc* /root/.kde/share/config/
-sudo cp ~/.kde/share/config/kcmdisplayrc /root/.kde/share/config/
-sudo cp ~/.kde/share/config/kdeglobals /root/.kde/share/config/
+
+if [ -f ~/.gtkrc-2.0-kxstudio ]; then
+  sudo cp ~/.gtkrc-2.0-kxstudio /root/.gtkrc-2.0
+fi
 
 if [ -f ~/.gtkrc-2.0-kde4 ]; then
   sudo cp ~/.gtkrc-2.0-kde4 /root/.gtkrc-2.0
+fi
+
+if [ -d ~/.config/qtcurve ]; then
+  sudo cp ~/.config/qtcurve/* /root/.config/qtcurve
+fi
+
+if [ -f ~/.config/Trolltech.conf ]; then
+  sudo cp ~/.config/Trolltech.conf /root/.config/
+fi
+
+if [ -f ~/.kde/share/config/gtkrc ]; then
+  sudo cp ~/.kde/share/config/gtkrc* /root/.kde/share/config/
+fi
+
+if [ -f ~/.kde/share/config/kcmdisplayrc ]; then
+  sudo cp ~/.kde/share/config/kcmdisplayrc /root/.kde/share/config/
+fi
+
+if [ -f ~/.kde/share/config/kdeglobals ]; then
+  sudo cp ~/.kde/share/config/kdeglobals /root/.kde/share/config/
 fi
