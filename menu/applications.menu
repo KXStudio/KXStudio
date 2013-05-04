@@ -46,6 +46,7 @@
       <Filename>composite.desktop</Filename>
       <Filename>denemo.desktop</Filename>
       <Filename>devede.desktop</Filename>
+      <Filename>din.desktop</Filename>
       <Filename>drumstick-drumgrid.desktop</Filename>
       <Filename>drumstick-guiplayer.desktop</Filename>
       <Filename>drumstick-vpiano.desktop</Filename>
@@ -131,6 +132,7 @@
       <Filename>machina-svn.desktop</Filename>
       <Filename>meterbridge.desktop</Filename>
       <Filename>mhwaveedit.desktop</Filename>
+      <Filename>midisnoop.desktop</Filename>
       <Filename>milkytracker.desktop</Filename>
       <Filename>minicomputer.desktop</Filename>
       <Filename>minitube.desktop</Filename>
@@ -149,6 +151,7 @@
       <Filename>non-mixer.desktop</Filename>
       <Filename>non-sequencer.desktop</Filename>
       <Filename>non-session-manager.desktop</Filename>
+      <Filename>non-timeline.desktop</Filename>
       <Filename>oom.desktop</Filename>
       <Filename>openmovieeditor.desktop</Filename>
       <Filename>openshot.desktop</Filename>
@@ -157,6 +160,7 @@
       <Filename>paprefs.desktop</Filename>
       <Filename>patchage.desktop</Filename>
       <Filename>patchage-svn.desktop</Filename>
+      <Filename>paulstretch.desktop</Filename>
       <Filename>pavucontrol.desktop</Filename>
       <Filename>pavumeter.desktop</Filename>
       <Filename>pavumeter-record.desktop</Filename>
@@ -202,6 +206,7 @@
       <Filename>stopmotion.desktop</Filename>
       <Filename>stretchplayer.desktop</Filename>
       <Filename>subtitleeditor.desktop</Filename>
+      <Filename>sunvox.desktop</Filename>
       <Filename>synthclone.desktop</Filename>
       <Filename>timemachine.desktop</Filename>
       <Filename>totem.desktop</Filename>

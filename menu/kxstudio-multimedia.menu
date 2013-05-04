@@ -51,6 +51,7 @@
       <Filename>composite.desktop</Filename>
       <Filename>denemo.desktop</Filename>
       <Filename>devede.desktop</Filename>
+      <Filename>din.desktop</Filename>
       <Filename>drumstick-drumgrid.desktop</Filename>
       <Filename>drumstick-guiplayer.desktop</Filename>
       <Filename>drumstick-vpiano.desktop</Filename>
@@ -136,6 +137,7 @@
       <Filename>machina-svn.desktop</Filename>
       <Filename>meterbridge.desktop</Filename>
       <Filename>mhwaveedit.desktop</Filename>
+      <Filename>midisnoop.desktop</Filename>
       <Filename>milkytracker.desktop</Filename>
       <Filename>minicomputer.desktop</Filename>
       <Filename>minitube.desktop</Filename>
@@ -154,6 +156,7 @@
       <Filename>non-mixer.desktop</Filename>
       <Filename>non-sequencer.desktop</Filename>
       <Filename>non-session-manager.desktop</Filename>
+      <Filename>non-timeline.desktop</Filename>
       <Filename>oom.desktop</Filename>
       <Filename>openmovieeditor.desktop</Filename>
       <Filename>openshot.desktop</Filename>
@@ -162,6 +165,7 @@
       <Filename>paprefs.desktop</Filename>
       <Filename>patchage.desktop</Filename>
       <Filename>patchage-svn.desktop</Filename>
+      <Filename>paulstretch.desktop</Filename>
       <Filename>pavucontrol.desktop</Filename>
       <Filename>pavumeter.desktop</Filename>
       <Filename>pavumeter-record.desktop</Filename>
@@ -207,6 +211,7 @@
       <Filename>stopmotion.desktop</Filename>
       <Filename>stretchplayer.desktop</Filename>
       <Filename>subtitleeditor.desktop</Filename>
+      <Filename>sunvox.desktop</Filename>
       <Filename>synthclone.desktop</Filename>>
       <Filename>timemachine.desktop</Filename>
       <Filename>totem.desktop</Filename>
@@ -317,6 +322,7 @@
         <Filename>beast.desktop</Filename>
         <Filename>composite.desktop</Filename>
         <Filename>denemo.desktop</Filename>
+        <Filename>din.desktop</Filename>
         <Filename>energyxt2.desktop</Filename>
         <Filename>freebirth.desktop</Filename>
         <Filename>freqtweak.desktop</Filename>
@@ -340,6 +346,7 @@
         <Filename>non-daw.desktop</Filename>
         <Filename>non-mixer.desktop</Filename>
         <Filename>non-sequencer.desktop</Filename>
+        <Filename>non-timeline.desktop</Filename>
         <Filename>oom.desktop</Filename>
         <Filename>petri-foo.desktop</Filename>
         <Filename>puredata.desktop</Filename>
@@ -354,6 +361,7 @@
         <Filename>sonic-visualiser.desktop</Filename>
         <Filename>sooperlooper.desktop</Filename>
         <Filename>specimen.desktop</Filename>
+        <Filename>sunvox.desktop</Filename>
         <Filename>synthclone.desktop</Filename>
         <Filename>traverso.desktop</Filename>
         <Filename>wired.desktop</Filename>
@@ -365,12 +373,14 @@
         <Filename>wine-Programs-energyXT 2.5.3-energyXT 2.5.3.desktop</Filename>
         <Filename>wine-Programs-energyXT 2.5.4-energyXT 2.5.4.desktop</Filename>
         <Filename>wine-Programs-energyXT 2.6.0-energyXT 2.6.0.desktop</Filename>
+        <Filename>wine-Programs-energyXT 2.7.0-energyXT 2.7.0.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 5-FL Studio 5.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 6-FL Studio 6.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 7-FL Studio 7.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 8-FL Studio 8.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 9-FL Studio 9.desktop</Filename>
         <Filename>wine-Programs-Image-Line-FL Studio 10-FL Studio 10.desktop</Filename>
+        <Filename>wine-Programs-Image-Line-FL Studio 11-FL Studio 11.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.1.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.5.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.5.1-Renoise.desktop</Filename>
@@ -378,6 +388,7 @@
         <Filename>wine-Programs-Renoise 2.6.1-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.7.0-Renoise.desktop</Filename>
         <Filename>wine-Programs-Renoise 2.8.0-Renoise.desktop</Filename>
+        <Filename>wine-Programs-Renoise 2.8.1-Renoise.desktop</Filename>
       </Include>
     </Menu>
 
@@ -408,9 +419,11 @@
         <Filename>lash-panel.desktop</Filename>
         <Filename>lpatchage.desktop</Filename>
         <Filename>meterbridge.desktop</Filename>
+        <Filename>midisnoop.desktop</Filename>
         <Filename>non-session-manager.desktop</Filename>
         <Filename>patchage.desktop</Filename>
         <Filename>patchage-svn.desktop</Filename>
+        <Filename>paulstretch.desktop</Filename>
         <Filename>playitslowly.desktop</Filename>
         <Filename>qmidiarp.desktop</Filename>
         <Filename>timemachine.desktop</Filename>
