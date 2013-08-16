@@ -511,11 +511,24 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
       <item>
        <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>Your settings are now applied.&lt;br&gt;Please re-login as soon as possible to make sure your desktop is updated.&lt;br&gt;
-You can re-run this utility anytime again by using 'KXStudio Welcome' in the system menu.</string>
+         <string>Your settings are now applied.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Please re-login as soon as possible to make sure your desktop is updated.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_11">
+        <property name="text">
+         <string>You can re-run this utility anytime again by using 'KXStudio Welcome' in the system menu.</string>
         </property>
        </widget>
       </item>
@@ -538,13 +551,8 @@ You can re-run this utility anytime again by using 'KXStudio Welcome' in the sys
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Thanks for using KXStudio,&lt;br&gt;
-Visit &lt;a href=&quot;http://kxstudio.sourceforge.net&quot;&gt;http://kxstudio.sourceforge.net&lt;/a&gt; for tips, documentation and other cool stuff.&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-We hope you enjoy it,&lt;br&gt;
-&lt;br&gt;
-&lt;i&gt;The KXStudio Team&lt;/i&gt;</string>
+         <string>Thanks for using KXStudio,&lt;br&gt;&lt;br&gt;
+Visit &lt;a href=&quot;http://kxstudio.sourceforge.net&quot;&gt;http://kxstudio.sourceforge.net&lt;/a&gt; for news, documentation and other cool stuff.</string>
         </property>
         <property name="openExternalLinks">
          <bool>true</bool>
@@ -553,6 +561,31 @@ We hope you enjoy it,&lt;br&gt;
       </item>
       <item>
        <spacer name="verticalSpacer_7">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>We hope you enjoy it,&lt;br&gt;
+&lt;br&gt;
+&lt;i&gt;The KXStudio Team&lt;/i&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_8">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>

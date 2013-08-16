@@ -306,7 +306,7 @@ class CopyStuffThread(QThread):
 
 # Main Window
 class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
-    def __init__(self, parent=None):
+    def __init__(self, firstRun, parent=None):
         super(WelcomeW, self).__init__(parent)
         self.setupUi(self)
 
@@ -342,6 +342,9 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         if not (isDesktopSupported and os.path.exists("/usr/share/themes/KXStudio/index.theme")):
           self.group_theme.setChecked(False)
           self.group_theme.setEnabled(False)
+
+        if firstRun:
+          self.label_7.setVisible(False)
 
     def showScreenshot(self):
         styleIndex = self.cb_style.currentIndex()
@@ -432,20 +435,20 @@ if __name__ == '__main__':
     settings = QSettings("KXStudio", "Welcome")
 
     run = True
+    firstRun = False
     fullscreen = False
 
     if "--first-run" in app.arguments():
-      run = settings.value("FirstRun", True, type=bool)
+      firstRun = settings.value("FirstRun", True, type=bool)
+      run = firstRun
     if "--fullscreen" in app.arguments():
       fullscreen = True
 
     # Show GUI
     if run:
-      gui = WelcomeW()
+      gui = WelcomeW(firstRun)
       gui.show()
-      ret = app.exec_()
-    else:
-      ret = 0
+      app.exec_()
 
-    # Exit properly
-    sys.exit(ret)
+    # Always exit cleanly
+    sys.exit(0)
