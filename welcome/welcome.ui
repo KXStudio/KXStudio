@@ -292,7 +292,7 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
          <item>
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Style:</string>
+            <string>Style: (TODO)</string>
            </property>
           </widget>
          </item>

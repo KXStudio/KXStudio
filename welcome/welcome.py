@@ -335,16 +335,16 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         self.connect(self.copyStuffThread, SIGNAL("setLabelPixmap(int, int)"), self.setLabelPixmap)
         self.connect(self.copyStuffThread, SIGNAL("finished()"), self.copyStuffFinished)
 
-        isKDE  = (os.getenv("KDE_FULL_SESSION") == "true" or os.getenv("DESKTOP_SESSION") == "kde-plasma")
-        isXFCE = (os.getenv("DESKTOP_SESSION") in ("xfce", "xfce4"))
-        isDesktopSupported = bool(isKDE or isXFCE)
-
-        if not (isDesktopSupported and os.path.exists("/usr/share/themes/KXStudio/index.theme")):
+        if not os.path.exists("/usr/share/themes/KXStudio/index.theme"):
           self.group_theme.setChecked(False)
           self.group_theme.setEnabled(False)
 
         if firstRun:
           self.label_7.setVisible(False)
+
+        # TODO
+        self.label_5.setEnabled(False)
+        self.cb_style.setEnabled(False)
 
     def showScreenshot(self):
         styleIndex = self.cb_style.currentIndex()
