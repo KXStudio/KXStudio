@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# ----------------------------------------------
 # Imports (Global)
+
 from PyQt4.QtCore import QSettings, QThread, SIGNAL
 from PyQt4.QtGui import QApplication, QIcon, QMessageBox, QPixmap, QWizard
 from subprocess import getoutput
 from time import sleep
 import os, sys
 
+# ----------------------------------------------
 # Imports (Custom)
+
 import ui_welcome
 
 # ----------------------------------------------
@@ -24,7 +28,7 @@ ID_GROUP_THEME    = 1
 ID_GROUP_WINE     = 2
 ID_GROUP_FINAL    = 3
 
-ID_PIXMAP_QUEQUE  = 0
+ID_PIXMAP_QUEUE   = 0
 ID_PIXMAP_PROCESS = 1
 ID_PIXMAP_DONE    = 2
 
@@ -162,7 +166,7 @@ CONFIG_THEME_ALL = (
 # ----------------------------------------------
 
 def create_folder_for_file(sfile):
-  if ("/" in sfile):
+  if "/" in sfile:
     spath = sfile.rsplit("/",1)[0]
     folder = os.path.join(HOME, ".%s" % (spath))
     if not os.path.exists(folder):
@@ -191,14 +195,14 @@ def do_copy_theme(fontSize, copy_all=False):
 
   for sfile in CONFIG_THEME_ALL:
     create_folder_for_file(sfile)
-    if (copy_all or not os.path.exists(os.path.join(HOME, sfile))):
+    if copy_all or not os.path.exists(os.path.join(HOME, sfile)):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
       os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
 
   # TESTING
   foxFolders = getoutput("find %s/.mozilla/firefox/*.default/chrome/ -type d" % HOME).strip().split("\n")
   foxFolders.sort()
-  if (len(foxFolders) >= 1 and os.path.exists(foxFolders[0])):
+  if len(foxFolders) >= 1 and os.path.exists(foxFolders[0]):
     foxFolder = foxFolders[0]
     os.system('cp "%s/mozilla/firefox/default/chrome/userContent.css" "%s"' % (CONFIG_THEME_DIR, foxFolder))
 
@@ -221,22 +225,17 @@ def do_wine_stuff():
   os.system("wineboot")
   #os.system("sed -i 's/\[drivers32\]/\[drivers32\]\nMSACM.vorbis=vorbis.acm/' ~/.wine/drive_c/windows/system.ini")
 
-  if (os.path.exists("/usr/lib/i386-linux-gnu/wine/wineasio.dll.so")):
+  if os.path.exists("/usr/lib/i386-linux-gnu/wine/wineasio.dll.so"):
     os.system("regsvr32 wineasio.dll")
 
-  if (os.path.exists("/usr/lib/x86_64-linux-gnu/wine/wineasio.dll.so")):
+  if os.path.exists("/usr/lib/x86_64-linux-gnu/wine/wineasio.dll.so"):
     os.system("wine64 regsvr32 wineasio.dll")
 
-  if (os.path.exists("/usr/bin/winetricks")):
+  if os.path.exists("/usr/bin/winetricks"):
     os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp")
 
 def do_final_stuff():
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink "pulsesink device=\'jack_out\'"')
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosrc "pulsesrc"')
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink "pulsesink device=\'jack_out\'"')
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink "pulsesink device=\'jack_out\'"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink_description "Jack"')
-  os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosrc_description "Pulse Audio"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink_description "Jack"')
 
@@ -245,13 +244,13 @@ def do_live_stuff():
   kxstudioDocs = "/usr/share/kxstudio/docs"
   ubiquityFile = "/usr/share/applications/kde4/ubiquity-kdeui.desktop"
 
-  if (not os.path.exists(desktopDir)):
+  if not os.path.exists(desktopDir):
     os.mkdir(desktopDir)
 
-  if (os.path.exists(kxstudioDocs)):
+  if os.path.exists(kxstudioDocs):
     os.system("ln -s '%s' '%s'" % (kxstudioDocs, os.path.join(desktopDir, "Docs")))
 
-  if (os.path.exists(ubiquityFile)):
+  if os.path.exists(ubiquityFile):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
 
 # ----------------------------------------------
@@ -277,30 +276,30 @@ class CopyStuffThread(QThread):
     def run(self):
         # Settings
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_SETTINGS, ID_PIXMAP_PROCESS)
-        if (self._copy):
+        if self._copy:
           sleep(1)
-          if (self._copy_all):
+          if self._copy_all:
             do_copy_all()
-          elif (self._copy_basic):
+          elif self._copy_basic:
             do_copy_basic()
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_SETTINGS, ID_PIXMAP_DONE)
 
         # Theme
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_PROCESS)
-        if (self._copy_theme):
+        if self._copy_theme:
           sleep(1)
           do_copy_theme(self._font_size)
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_DONE)
 
         # Wine
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_WINE, ID_PIXMAP_PROCESS)
-        if (self._copy):
+        if self._copy:
           do_wine_stuff()
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_WINE, ID_PIXMAP_DONE)
 
         # Final
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_FINAL, ID_PIXMAP_PROCESS)
-        if (self._copy):
+        if self._copy:
           sleep(1)
           do_final_stuff()
         self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_FINAL, ID_PIXMAP_DONE)
@@ -340,23 +339,24 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         isXFCE = (os.getenv("DESKTOP_SESSION") in ("xfce", "xfce4"))
         isDesktopSupported = bool(isKDE or isXFCE)
 
-        if (not (isDesktopSupported and os.path.exists("/usr/share/themes/KXStudio/index.theme"))):
+        if not (isDesktopSupported and os.path.exists("/usr/share/themes/KXStudio/index.theme")):
           self.group_theme.setChecked(False)
           self.group_theme.setEnabled(False)
 
     def showScreenshot(self):
+        styleIndex = self.cb_style.currentIndex()
         box = QMessageBox(self)
-        box.setIconPixmap(QPixmap(os.path.join(PWD, "icons", "screenshot.png")))
+        box.setIconPixmap(QPixmap(os.path.join(PWD, "icons", "screenshot-green.png" if styleIndex != 0 else "screenshot-black.png")))
         box.setWindowTitle(self.tr("Welcome to KXStudio - Screenshot"))
         box.exec_()
 
     def pageChanged(self, page):
         # Initial page
-        if (self.previous_page == -1 and page == 0):
+        if self.previous_page == -1 and page == 0:
           pass
 
         # Process Stuff
-        elif (self.previous_page == 0 and page == 1):
+        elif self.previous_page == 0 and page == 1:
           self.button(QWizard.BackButton).setEnabled(False)
           self.button(QWizard.NextButton).setEnabled(False)
           self.button(QWizard.CancelButton).setEnabled(False)
@@ -365,7 +365,7 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
           self.copyStuffThread.start()
 
         # Final page
-        elif (self.previous_page == 1 and page == 2):
+        elif self.previous_page == 1 and page == 2:
           self.button(QWizard.BackButton).setEnabled(False)
           self.button(QWizard.CancelButton).setEnabled(False)
 
@@ -374,26 +374,26 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
     def setLabelPixmap(self, group_id, pixmap_id):
         label = None
 
-        if (group_id == ID_GROUP_SETTINGS):
+        if group_id == ID_GROUP_SETTINGS:
           label = self.l_ico_settings
           self.progressBar.setValue(0)
-        elif (group_id == ID_GROUP_THEME):
+        elif group_id == ID_GROUP_THEME:
           label = self.l_ico_theme
           self.progressBar.setValue(25)
-        elif (group_id == ID_GROUP_WINE):
+        elif group_id == ID_GROUP_WINE:
           label = self.l_ico_wine
           self.progressBar.setValue(50)
-        elif (group_id == ID_GROUP_FINAL):
+        elif group_id == ID_GROUP_FINAL:
           label = self.l_ico_final
           self.progressBar.setValue(75)
         else:
           return
 
-        if (pixmap_id == ID_PIXMAP_QUEQUE):
+        if pixmap_id == ID_PIXMAP_QUEUE:
           label.setPixmap(self.pixmap_queque)
-        elif (pixmap_id == ID_PIXMAP_PROCESS):
+        elif pixmap_id == ID_PIXMAP_PROCESS:
           label.setPixmap(self.pixmap_process)
-        elif (pixmap_id == ID_PIXMAP_DONE):
+        elif pixmap_id == ID_PIXMAP_DONE:
           label.setPixmap(self.pixmap_done)
 
     def copyStuffFinished(self):
@@ -416,7 +416,7 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 if __name__ == '__main__':
 
     # Live-DVD usage
-    if ("--live-dvd" in sys.argv):
+    if "--live-dvd" in sys.argv:
       do_copy_all()
       do_copy_theme(8, True)
       #do_wine_stuff()
@@ -432,11 +432,15 @@ if __name__ == '__main__':
     settings = QSettings("KXStudio", "Welcome")
 
     run = True
-    if ("--first-run" in app.arguments()):
+    fullscreen = False
+
+    if "--first-run" in app.arguments():
       run = settings.value("FirstRun", True, type=bool)
+    if "--fullscreen" in app.arguments():
+      fullscreen = True
 
     # Show GUI
-    if (run):
+    if run:
       gui = WelcomeW()
       gui.show()
       ret = app.exec_()

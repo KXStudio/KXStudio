@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>630</width>
-    <height>502</height>
+    <width>615</width>
+    <height>509</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -124,7 +124,7 @@
        <item>
         <widget class="QRadioButton" name="rb_basic">
          <property name="text">
-          <string>Reset basic settings</string>
+          <string>Update basic settings</string>
          </property>
          <property name="checked">
           <bool>true</bool>
@@ -154,7 +154,7 @@
            <property name="text">
             <string>This will reset/update your settings only for some basic applications, and 
 copy other definitions if they don't exist yet.
-(Some settings will be overwritten if 'Update theme' is checked).</string>
+(Some basic theme settings will be overwritten if 'Update theme' is checked).</string>
            </property>
           </widget>
          </item>
@@ -227,6 +227,22 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
       </property>
      </spacer>
     </item>
+    <item row="5" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>544</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="4" column="1">
      <widget class="QGroupBox" name="group_theme">
       <property name="sizePolicy">
@@ -248,7 +264,7 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
        <bool>false</bool>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0" rowspan="2">
+       <item row="0" column="0" rowspan="3">
         <spacer name="horizontalSpacer_4">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -267,13 +283,33 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
        <item row="0" column="1">
         <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>Update your theme to the KXStudio default.
-The theme is very dark and flat, using QtCurve and the Oxygen icon theme.</string>
+          <string>Update your theme to one of the KXStudio defaults.&lt;br/&gt;You can choose the &lt;b&gt;classic dark and flat&lt;/b&gt; or a new &lt;b&gt;light green unity-like&lt;/b&gt; style.</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Style:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="cb_style">
+           <item>
+            <property name="text">
+             <string>Classic dark and flat</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Unity-like light green</string>
+            </property>
+           </item>
+          </widget>
+         </item>
          <item>
           <widget class="QLabel" name="label_4">
            <property name="text">
@@ -323,24 +359,15 @@ The theme is very dark and flat, using QtCurve and the Oxygen icon theme.</strin
          </item>
         </layout>
        </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Note that reverting back theme changes is not trivial, so &lt;b&gt;be sure this is what you want&lt;/b&gt;.</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
-    </item>
-    <item row="5" column="1">
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>544</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
     </item>
    </layout>
   </widget>
