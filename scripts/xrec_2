@@ -2,12 +2,22 @@
 
 DATE=`date +%Y%m%d`
 TIME=`date +%Hh%M`
+RATE=30
+SAMPLE_RATE=`jack_samplerate`
+FILENAME="$HOME/Screencasts/screencast_$DATE-$TIME"
+
 export DISPLAY=:2.0
 
-mkdir -p $HOME/Screencasts/
+mkdir -p "$HOME/Screencasts/"
 
 # Start screencast
-xterm -display :0.0 -e jack_capture -b 24 $HOME/Screencasts/screencast_audio_$DATE-$TIME.wav &
-avconv -an -f x11grab -r 30 -s 1280x720 -i :2 -vcodec libx264 -pre lossless_ultrafast -threads 2 $HOME/Screencasts/screencast_video_$DATE-$TIME.mkv
+ffmpeg_harvid \
+  -fflags +genpts+igndts \
+  -f x11grab -vsync 0 -r "$RATE" -s 1280x720 -i :2 -vcodec h264 \
+  -f jack -ac 2 -r:a "$SAMPLE_RATE" -i screencast -acodec pcm_s16le -r:v "$RATE" -vsync 2 -async 1 -map 0:0,1,0 -map 1:0 \
+  -preset ultrafast -qp 0 \
+  "$FILENAME-lossless.mkv"
 
-killall jack_capture
+# Compress file
+ffmpeg_harvid \
+  -i "$FILENAME-lossless.mkv" -acodec mp3 -ab 160000 -vcodec h264 "$FILENAME-final.mkv"

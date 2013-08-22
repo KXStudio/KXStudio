@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # all dependencies:
-# $ sudo apt-get install xserver-xephyr libav-tools jack-capture xterm
+# $ sudo apt-get install xserver-xephyr harvid
 
 init_screen () {
 # Set up nested X server
@@ -16,6 +16,9 @@ export DISPLAY=:2.0
 # start Gnome
 gnome-panel &
 nautilus
+
+# wait for everything to close properly
+sleep 2
 
 # wait for ctrl+c here
 export DISPLAY=:0
@@ -33,6 +36,9 @@ killall plasma-desktop plasma-desktop.kde4
 plasma-desktop
 kwin
 
+# wait for everything to close properly
+sleep 2
+
 # wait for ctrl+c here, restore desktop
 export DISPLAY=:0
 plasma-desktop
@@ -49,6 +55,9 @@ killall xfce4-panel
 xfce4-panel &
 xfdesktop &
 xfwm4
+
+# wait for everything to close properly
+sleep 2
 
 # wait for ctrl+c here, restore desktop
 export DISPLAY=:0
@@ -75,9 +84,9 @@ start_screen_xfce4
 echo "usage: xrec_1 <DE>
 
 DE can be:
-    -gnome2     Gnome2 session
-    -kde4       KDE4 session
-    -xfce4      XFCE4 session
+    gnome2     Gnome2 session
+    kde4       KDE4 session
+    xfce4      XFCE4 session
 "
   ;;
 
