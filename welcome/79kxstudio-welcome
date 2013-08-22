@@ -1,4 +1,6 @@
 # Run welcome screen if needed
 
-[ ! -f ~/.config/KXStudio/Welcome.conf ] &&
-    kxstudio-welcome --first-run --fullscreen
+if [ ! -f ~/.config/KXStudio/Welcome.conf ]; then
+    kxstudio-welcome --first-run --fullscreen || true
+fi
+
