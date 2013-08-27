@@ -1,5 +1,4 @@
 [Desktops]
-Name_1=
 Number=1
 
 [Effect-Blur]
@@ -71,10 +70,9 @@ kwin4_effect_zoomEnabled=false
 
 [Style]
 BorderSize=1
-ButtonsOnLeft=XIA
+ButtonsOnLeft=XIAL
 ButtonsOnRight=SM
 CustomButtonPositions=true
-PluginLib=kwin3_qtcurve
 ShowToolTips=true
 
 [TabBox]
