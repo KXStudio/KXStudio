@@ -283,7 +283,7 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
        <item row="0" column="1">
         <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>Update your theme to one of the KXStudio defaults.&lt;br/&gt;You can choose the &lt;b&gt;classic dark and flat&lt;/b&gt; or a new &lt;b&gt;light green unity-like&lt;/b&gt; style.</string>
+          <string>Update your theme to the KXStudio default one.</string>
          </property>
         </widget>
        </item>

@@ -344,7 +344,10 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
         # TODO
         self.label_5.setEnabled(False)
+        self.label_5.setVisible(False)
         self.cb_style.setEnabled(False)
+        self.cb_style.setVisible(False)
+        # Update your theme to one of the KXStudio defaults.<br/>You can choose the <b>classic dark and flat</b> or a new <b>light green unity-like</b> style.
 
     def showScreenshot(self):
         styleIndex = self.cb_style.currentIndex()
