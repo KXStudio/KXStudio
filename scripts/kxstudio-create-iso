@@ -48,6 +48,7 @@ mount -t sysfs none /sys/
 mount -t devpts none /dev/pts
 export HOME=/root
 export LANG=C
+unset LC_TIME
 "
 echo "
 SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
@@ -55,11 +56,10 @@ SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
 # Update Sources
 apt-get update
 apt-get install python-software-properties wget
-add-apt-repository -y ppa:kxstudio-team/kxstudio
+add-apt-repository -y ppa:kxstudio-debian/kxstudio
 add-apt-repository -y ppa:blue-shell/firefox-kde
 apt-get update
 apt-get install kxstudio-repos
-apt-get install kxstudio-repos-kde49
 apt-get clean
 
 # Check /etc/apt/sources.list
@@ -88,15 +88,17 @@ apt-get install kxstudio-kernel-lowlatency
 # Clean previous
 apt-get clean
 
+# Install packages (Xorg)
+apt-get install xserver-xorg-lts-raring
+apt-get purge linux-generic-lts-raring linux-headers-3.8.0-29 linux-headers-3.8.0-29-generic linux-headers-generic-lts-raring linux-image-3.8.0-29-generic linux-image-generic-lts-raring
+
 # Install packages (Download)
-apt-get install -d kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
+apt-get install -d xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
 
 # Install packages (Install)
-apt-get install kxstudio-desktop-kde4 kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
+apt-get install xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
 
 # Install extras
-apt-get install carla-bridge-linux32:i386 carla-bridge-win32:i386
-apt-get install carla-bridge-linux64 carla-bridge-win64
 apt-get install festige
 apt-get install sni-qt
 apt-get install kxstudio-docs
@@ -109,7 +111,7 @@ apt-get install lacie-labeler:i386
 apt-get install sni-qt:i386
 
 # Remove deprecated/dummy
-apt-get purge amsynth-dssi
+apt-get purge amsynth-dssi drumkv1-lv2 samplv1-lv2 synthv1-lv2
 apt-get purge calf-plugins-git
 apt-get purge composite composite-data
 apt-get purge hydrogen-drumkits

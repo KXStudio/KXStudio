@@ -1,9 +1,0 @@
-#define DISKNAME  X-ISO_NAME-X 10.04.3 "Lucid Lynx" - X-ISO_ARCH-X
-#define TYPE  binary
-#define TYPEbinary  1
-#define ARCH  X-ISO_ARCH-X
-#define ARCHX-ISO_ARCH-X  1
-#define DISKNUM  1
-#define DISKNUM1  1
-#define TOTALNUM  0
-#define TOTALNUM0  1

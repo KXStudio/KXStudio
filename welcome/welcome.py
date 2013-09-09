@@ -50,6 +50,7 @@ CONFIG_ALL = (
   "audacity-data/audacity.cfg",
   "bcast/Cinelerra_rc",
   "ccutie/Cinecutie_rc",
+  "giada/giada.conf",
   "gstreamer-0.10/registry.i686.bin",
   "gstreamer-0.10/registry.x86_64.bin",
   "hydrogen/hydrogen.conf",
