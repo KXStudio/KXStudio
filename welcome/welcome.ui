@@ -57,8 +57,8 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>&lt;p&gt;KXStudio is a collection of tools targeted at audio and video production.
-&lt;/p&gt;&lt;p&gt;This is a small application designed to help users with the update proccess.&lt;br&gt;If you come from a fresh install, it's recommended to force reset of all settings.
+         <string>&lt;p&gt;KXStudio is a collection of applications and plugins for professional audio production.
+&lt;/p&gt;&lt;p&gt;This is a small application designed to help users with the update process.&lt;br&gt;If you are making a fresh install it's recommended to force reset of all settings.
 &lt;/p&gt;</string>
         </property>
         <property name="alignment">
@@ -152,9 +152,7 @@
          <item>
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>This will reset/update your settings only for some basic applications, and 
-copy other definitions if they don't exist yet.
-(Some basic theme settings will be overwritten if 'Update theme' is checked).</string>
+            <string>This will reset various application settings only if they don't exist yet.</string>
            </property>
           </widget>
          </item>
