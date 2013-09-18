@@ -260,7 +260,7 @@ exit
 cd ~/livecd/cd
 sudo rm -f md5sum.txt MD5SUMS
 sudo su root -c "find . -type f -print0 | xargs -0 md5sum > md5sum.txt"
-sudo cp md5sum.txt MD5SUMS
+# sudo cp md5sum.txt MD5SUMS
 echo "done"
 exit
     ;;
@@ -275,6 +275,7 @@ fi
 cd ~/livecd/cd
 isolinux=`find . -name isolinux.bin | head -n 1 | awk 'sub("./","")'`
 bootcat=`find . -name boot.cat | head -n 1 | awk 'sub("./","")'`
+sudo chmod 777 -R .
 sudo mkisofs -r -V "$ARG2" -b $isolinux -c $bootcat -cache-inodes -J -l -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -o ~/$ARG2.iso .
 echo "done"
 exit
