@@ -149,7 +149,7 @@ apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfs
 
 apt-get purge archdetect-deb apt-clone btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack \
 ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2 \
-libdmraid1.0.0.rc16 libecryptfs0 libiw30 libreadline5 localechooser-data lupin-casper ntfsprogs \
+libdmraid1.0.0.rc16 libecryptfs0 libiw30 localechooser-data lupin-casper ntfsprogs \
 python-pyicu rdate realpath reiserfsprogs ubiquity ubiquity-casper ubiquity-frontend-kde ubiquity-ubuntu-artwork \
 user-setup xfsprogs sbsigntool
 "
@@ -179,18 +179,19 @@ exit
 
     mksquash)
 sudo mkdir -p ~/livecd/cd/casper/
+cd ~/livecd/
+sudo su root -c "printf $(sudo du -sx --block-size=1 custom | cut -f1) > cd/casper/filesystem.size"
 sudo touch ~/livecd/cd/casper/filesystem.manifest
 sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest
 sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest
 sudo rm -f ~/livecd/cd/casper/filesystem.squashfs
 sudo mksquashfs ~/livecd/custom ~/livecd/cd/casper/filesystem.squashfs -noappend
-cd ~/livecd/
-sudo su root -c "printf $(sudo du -sx --block-size=1 custom | cut -f1) > cd/casper/filesystem.size"
 echo "done"
 exit
     ;;
 
     mkboot)
+sudo mkdir -p ~/livecd/cd/casper/
 cd ~/livecd/
 sudo rm -f cd/casper/vmlinuz cd/casper/initrd.lz cd/casper/initrd_tmp.gz
 sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz
@@ -234,14 +235,22 @@ sudo 7z x -y ../iso-stuff.7z
 
 sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i ~/livecd/cd/README.diskdefines
 sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/README.diskdefines
-sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/text.cfg
+sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/txt.cfg
 sudo mkdir -p ~/livecd/cd/.disk/
-sudo su root -c 'echo "KXStudio 12.04.1 (Live 32bit)" > ./.disk/info'
-sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio12041:ReleaseNotes" > ./.disk/release_notes_url'
+
+if [ "$ISO_ARCH" == "i386" ]; then
+sudo su root -c 'echo "KXStudio 12.04.3 (Live 32bit)" > .disk/info'
+else
+sudo su root -c 'echo "KXStudio 12.04.3 (Live 64bit)" > .disk/info'
+fi
+
+sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio12043:ReleaseNotes" > .disk/release_notes_url'
+
 echo "Please edit these files manually:
 ~/livecd/cd/.disk/info
 ~/livecd/cd/.disk/release_notes_url
 ~/livecd/cd/README.diskdefines
+~/livecd/cd/isolinux/txt.cfg
 ~/livecd/cd/preseed/live.seed
 "
 exit
@@ -249,8 +258,9 @@ exit
 
     md5sum)
 cd ~/livecd/cd
-sudo rm -f ./md5sum.txt
+sudo rm -f md5sum.txt MD5SUMS
 sudo su root -c "find . -type f -print0 | xargs -0 md5sum > md5sum.txt"
+sudo cp md5sum.txt MD5SUMS
 echo "done"
 exit
     ;;
