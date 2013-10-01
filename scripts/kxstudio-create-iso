@@ -83,20 +83,21 @@ apt-get update; apt-get dist-upgrade
 
 # Base Install
 apt-get install ubuntu-standard laptop-detect os-prober
-apt-get install kxstudio-kernel-lowlatency
+apt-get install kxstudio-kernel-lowlatency # skip grub install/configure to HDD here
 
 # Clean previous
 apt-get clean
 
 # Install packages (Xorg)
 apt-get install xserver-xorg-lts-raring
-apt-get purge linux-generic-lts-raring linux-headers-3.8.0-29 linux-headers-3.8.0-29-generic linux-headers-generic-lts-raring linux-image-3.8.0-29-generic linux-image-generic-lts-raring
+apt-get purge linux-generic-lts-raring linux-headers-3.8.0-31 linux-headers-3.8.0-31-generic linux-headers-generic-lts-raring linux-image-3.8.0-31-generic linux-image-generic-lts-raring
+apt-get clean
 
 # Install packages (Download)
-apt-get install -d xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
+apt-get install -d xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
 
 # Install packages (Install)
-apt-get install xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free
+apt-get install xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
 
 # Install extras
 apt-get install festige
@@ -122,9 +123,6 @@ apt-get purge loomer-plugins loomer-plugins-vst
 
 # reinstall/configure renoise
 dpkg-reconfigure renoise
-
-# Clean previous
-apt-get clean
 
 # Cleanup
 apt-get autoremove
