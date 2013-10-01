@@ -70,8 +70,8 @@ kwin4_effect_zoomEnabled=false
 
 [Style]
 BorderSize=1
-ButtonsOnLeft=XIAL
-ButtonsOnRight=SM
+ButtonsOnLeft=XIA
+ButtonsOnRight=FSM
 CustomButtonPositions=true
 ShowToolTips=true
 
