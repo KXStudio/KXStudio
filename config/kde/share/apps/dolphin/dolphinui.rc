@@ -24,6 +24,8 @@
    <Action name="edit_copy"/>
    <Action name="edit_paste"/>
    <Separator weakSeparator="1"/>
+   <Action name="edit_find"/>
+   <Separator weakSeparator="1"/>
    <Action name="select_all"/>
    <Action name="invert_selection"/>
   </Menu>
@@ -96,7 +98,6 @@
   </Menu>
   <Menu name="tools" alreadyVisited="1">
    <text>&amp;Tools</text>
-   <Action name="find_file"/>
    <Action name="show_filter_bar"/>
    <Action name="open_terminal"/>
    <Action name="compare_files"/>
@@ -136,8 +137,12 @@
   <Action name="details"/>
   <Action name="columns"/>
   <Separator name="separator_1"/>
+  <Action name="edit_find"/>
   <Action name="show_preview"/>
   <Action name="split_view"/>
+ </ToolBar>
+ <ToolBar iconText="icononly" noMerge="1" name="searchToolBar" newline="false">
+  <text context="@title:menu">Search Toolbar</text>
  </ToolBar>
  <State name="new_file">
   <disable>
