@@ -145,6 +145,7 @@ echo "## ----- END PAUSE ----- ##
 # Now install the liveDVD specific packages
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils ntfsprogs xfsprogs
 
+# Just in case you want to revert the live-dvd install action
 apt-get purge archdetect-deb apt-clone btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack \
 ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2 \
 libdmraid1.0.0.rc16 libecryptfs0 libiw30 localechooser-data lupin-casper ntfsprogs \
