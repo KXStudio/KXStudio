@@ -4,7 +4,7 @@
 # ----------------------------------------------
 # Imports (Global)
 
-from PyQt4.QtCore import QSettings, QThread, SIGNAL
+from PyQt4.QtCore import QSettings, QTimer, QThread, SIGNAL
 from PyQt4.QtGui import QApplication, QIcon, QMessageBox, QPixmap, QWizard
 from subprocess import getoutput
 from time import sleep
@@ -332,6 +332,9 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
         self.connect(self, SIGNAL("finished(int)"), self.saveSettings)
         self.connect(self, SIGNAL("currentIdChanged(int)"), self.pageChanged)
+        self.connect(self.group_settings, SIGNAL("clicked(bool)"), self.checkNext)
+        self.connect(self.rb_basic, SIGNAL("clicked()"), self.enableNext)
+        self.connect(self.rb_all, SIGNAL("clicked()"), self.enableNext)
         self.connect(self.b_screenshot, SIGNAL("clicked()"), self.showScreenshot)
         self.connect(self.copyStuffThread, SIGNAL("setLabelPixmap(int, int)"), self.setLabelPixmap)
         self.connect(self.copyStuffThread, SIGNAL("finished()"), self.copyStuffFinished)
@@ -349,6 +352,20 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         self.cb_style.setEnabled(False)
         self.cb_style.setVisible(False)
         # Update your theme to one of the KXStudio defaults.<br/>You can choose the <b>classic dark and flat</b> or a new <b>light green unity-like</b> style.
+
+        QTimer.singleShot(0, self.disableNext)
+
+    def checkNext(self, clicked):
+        if clicked:
+            self.button(QWizard.NextButton).setEnabled(self.rb_basic.isChecked() or self.rb_all.isChecked())
+        else:
+            self.button(QWizard.NextButton).setEnabled(True)
+
+    def disableNext(self):
+        self.button(QWizard.NextButton).setEnabled(False)
+
+    def enableNext(self):
+        self.button(QWizard.NextButton).setEnabled(True)
 
     def showScreenshot(self):
         styleIndex = self.cb_style.currentIndex()
@@ -368,8 +385,17 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
           self.button(QWizard.NextButton).setEnabled(False)
           self.button(QWizard.CancelButton).setEnabled(False)
           self.progressBar.setValue(0)
-          self.copyStuffThread.setData(self.sb_fontSize.value(), self.group_settings.isChecked(), self.rb_all.isChecked(), self.rb_basic.isChecked(), self.group_theme.isChecked())
-          self.copyStuffThread.start()
+
+          if self.group_settings.isChecked():
+            self.copyStuffThread.setData(self.sb_fontSize.value(), self.group_settings.isChecked(), self.rb_all.isChecked(), self.rb_basic.isChecked(), self.group_theme.isChecked())
+            self.copyStuffThread.start()
+          else:
+            self.previous_page = page
+            self.label_7.setVisible(False)
+            self.label_8.setVisible(False)
+            self.label_11.setVisible(False)
+            self.next()
+            return
 
         # Final page
         elif self.previous_page == 1 and page == 2:

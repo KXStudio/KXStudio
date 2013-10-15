@@ -58,7 +58,13 @@
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>&lt;p&gt;KXStudio is a collection of applications and plugins for professional audio production.
-&lt;/p&gt;&lt;p&gt;This is a small application designed to help users with the update process.&lt;br&gt;If you are making a fresh install it's recommended to force reset of all settings.
+&lt;/p&gt;
+
+&lt;p&gt;This is a small application designed to help users with the update process.&lt;br&gt;If you are making a fresh install &lt;b&gt;it's recommended to force reset of all settings&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Please select one of the options below or uncheck &quot;Update settings&quot;, and then click 'Next'.
 &lt;/p&gt;</string>
         </property>
         <property name="alignment">
@@ -125,9 +131,6 @@
         <widget class="QRadioButton" name="rb_basic">
          <property name="text">
           <string>Update basic settings</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
