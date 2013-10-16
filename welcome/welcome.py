@@ -16,6 +16,14 @@ import os, sys
 import ui_welcome
 
 # ----------------------------------------------
+# Detect 64bit
+
+from platform import architecture
+from sys import maxsize
+
+kIs64bit = bool(architecture()[0] == "64bit" and maxsize > 2**32)
+
+# ----------------------------------------------
 
 HOME = os.getenv("HOME")
 PWD  = sys.path[0]
@@ -33,6 +41,8 @@ ID_PIXMAP_PROCESS = 1
 ID_PIXMAP_DONE    = 2
 
 # ----------------------------------------------
+
+CONFIG_ARCH_FILE = "_64bit.tar.gz" if kIs64bit else "_32bit.tar.gz"
 
 CONFIG_SMALL = (
   "bash_aliases",
@@ -253,6 +263,8 @@ def do_live_stuff():
 
   if os.path.exists(ubiquityFile):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
+
+  os.system("tar -xkf '%s/%s' -C '%s/'" % (CONFIG_DIR, CONFIG_ARCH_FILE, HOME))
 
 # ----------------------------------------------
 
