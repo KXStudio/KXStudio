@@ -129,6 +129,7 @@
       <Filename>ll-scope.desktop</Filename>
       <Filename>lmms.desktop</Filename>
       <Filename>lmms-git.desktop</Filename>
+      <Filename>los.desktop</Filename>
       <Filename>lpatchage.desktop</Filename>
       <Filename>lv2rack.desktop</Filename>
       <Filename>machina.desktop</Filename>
@@ -171,6 +172,7 @@
       <Filename>phasex.desktop</Filename>
       <Filename>pitivi.desktop</Filename>
       <Filename>playitslowly.desktop</Filename>
+      <Filename>protrekkr.desktop</Filename>
       <Filename>psynth3d.desktop</Filename>
       <Filename>puredata.desktop</Filename>
       <Filename>qamix.desktop</Filename>

@@ -134,6 +134,7 @@
       <Filename>ll-scope.desktop</Filename>
       <Filename>lmms.desktop</Filename>
       <Filename>lmms-git.desktop</Filename>
+      <Filename>los.desktop</Filename>
       <Filename>lpatchage.desktop</Filename>
       <Filename>lv2rack.desktop</Filename>
       <Filename>machina.desktop</Filename>
@@ -176,6 +177,7 @@
       <Filename>phasex.desktop</Filename>
       <Filename>pitivi.desktop</Filename>
       <Filename>playitslowly.desktop</Filename>
+      <Filename>protrekkr.desktop</Filename>
       <Filename>psynth3d.desktop</Filename>
       <Filename>puredata.desktop</Filename>
       <Filename>qamix.desktop</Filename>
@@ -348,6 +350,7 @@
         <Filename>kluppe.desktop</Filename>
         <Filename>lmms.desktop</Filename>
         <Filename>lmms-git.desktop</Filename>
+        <Filename>los.desktop</Filename>
         <Filename>machina.desktop</Filename>
         <Filename>machina-svn.desktop</Filename>
         <Filename>mhwaveedit.desktop</Filename>
@@ -361,6 +364,7 @@
         <Filename>non-timeline.desktop</Filename>
         <Filename>oom.desktop</Filename>
         <Filename>petri-foo.desktop</Filename>
+        <Filename>protrekkr.desktop</Filename>
         <Filename>puredata.desktop</Filename>
         <Filename>qarecord.desktop</Filename>
         <Filename>qtractor.desktop</Filename>
