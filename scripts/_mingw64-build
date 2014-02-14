@@ -13,7 +13,8 @@ export WINDRES=x86_64-w64-mingw32-windres
 export PKGCONFIG=x86_64-w64-mingw32-pkg-config
 export PKG_CONFIG_PATH=/opt/mingw64/lib/pkgconfig
 
-export CFLAGS="-I/opt/mingw64/include"
+export CFLAGS="-DPTW32_STATIC_LIB -I/opt/mingw64/include"
+export CXXFLAGS="-DPTW32_STATIC_LIB -DFLUIDSYNTH_NOT_A_DLL -I/opt/mingw64/include"
 
 export WIN32=true
 export WIN64=true
