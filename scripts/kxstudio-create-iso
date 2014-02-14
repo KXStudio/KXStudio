@@ -83,39 +83,67 @@ apt-get update; apt-get dist-upgrade
 
 # Base Install
 apt-get install ubuntu-standard laptop-detect os-prober
-apt-get install kxstudio-kernel-lowlatency # skip grub install/configure to HDD here
+apt-get install linux-lowlatency-3.8 # skip grub install/configure to HDD here
 
 # Clean previous
-apt-get clean
-
-# Install packages (Xorg)
-apt-get install xserver-xorg-lts-raring
-apt-get purge linux-generic-lts-raring linux-headers-3.8.0-31 linux-headers-3.8.0-31-generic linux-headers-generic-lts-raring linux-image-3.8.0-31-generic linux-image-generic-lts-raring
+apt-get purge kxstudio-kernel*
+apt-get purge libkscreen0 libslv2-9 libtaskmanager4abi4
+apt-get purge libllvm3.2 libllvm3.2:i386
+apt-get purge libwayland-ltsr0 libxrandr-ltsr2
+apt-get purge linux-lowlatency linux-headers-lowlatency linux-image-lowlatency
+apt-get purge linux-generic-lts-raring linux-headers-generic-lts-raring linux-image-generic-lts-raring
+apt-get purge linux-headers-3.8.0-30-lowlatency linux-image-3.8.0-30-lowlatency linux-lowlatency-headers-3.8.0-30
+apt-get purge linux-headers-3.8.0-31 linux-headers-3.8.0-31-generic linux-image-3.8.0-31-generic
+apt-get purge lts-quantal*
+apt-get purge lts-quantal*:i386
+apt-get purge lts-raring*
+apt-get purge lts-raring*:i386
+apt-get purge wine1.4*
+apt-get purge wine1.4*:i386
 apt-get clean
 
 # Install packages (Download)
-apt-get install -d xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
+apt-get install -d kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
 
 # Install packages (Install)
-apt-get install xserver-xorg-lts-raring kxstudio-desktop-base libkwinglesutils1 libkwinglutils1abi2 kde-window-manager kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
+apt-get install kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
 
 # Install extras
+apt-get install indicator-cpufreq
 apt-get install festige
 apt-get install sni-qt
 apt-get install kxstudio-docs
 apt-get install firefox firefox-kde-support
+apt-get install ubuntu-extras-keyring
+apt-get install libgl1-mesa-dri
+apt-get install libgl1-mesa-glx
+apt-get install libegl1-mesa
+apt-get install libegl1-mesa-drivers
+apt-get install libglapi-mesa
+apt-get install libgles2-mesa
+apt-get install libglu1-mesa
+apt-get install libtxc-dxtn-s2tc0
 
 # 64bit fix
 apt-get install reaper:i386
 apt-get install simplelabeler:i386
 apt-get install lacie-labeler:i386
 apt-get install sni-qt:i386
+apt-get install libgl1-mesa-dri:i386
+apt-get install libgl1-mesa-glx:i386
+apt-get install libegl1-mesa:i386
+apt-get install libegl1-mesa-drivers:i386
+apt-get install libglapi-mesa:i386
+apt-get install libgles2-mesa:i386
+apt-get install libglu1-mesa:i386
+apt-get install libtxc-dxtn-s2tc0:i386
 
 # Remove deprecated/dummy
 apt-get purge amsynth-dssi drumkv1-lv2 samplv1-lv2 synthv1-lv2
 apt-get purge calf-plugins-git
 apt-get purge composite composite-data
 apt-get purge hydrogen-drumkits
+apt-get purge kxstudio-kernel-lowlatency
 
 # Remove unwanted
 apt-get purge pulseaudio vlc-plugin-pulse gstreamer0.10-pulseaudio xterm rtkit pulseaudio-utils libpulsedsp
