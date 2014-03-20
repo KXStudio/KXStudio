@@ -1,0 +1,9 @@
+#!/bin/bash
+case "$1" in
+    --version)
+        /usr/bin/normalize-audio --version | sed -e 's/normalize/normalize-audio/g'
+        ;;
+    *)
+        /usr/bin/normalize-audio "$@"
+        ;;
+esac
