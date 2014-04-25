@@ -113,11 +113,32 @@ apt-get purge wine1.4*
 apt-get purge wine1.4*:i386
 apt-get clean
 
+# Pre-Install JACK1
+apt-get install jackd1
+apt-get purge libjack-jackd2-0:i386
+
+# Pre-Install DSSI
+apt-get install dssi-example-plugins fluidsynth-dssi hexter
+apt-get install linuxsampler-dssi ll-scope ls16 nekobee sineshaper
+apt-get install whysynth wsynth-dssi xsynth-dssi dssi-host-jack
+apt-get install zynaddsubfx-dssi
+apt-get install --no-install-recommends kxstudio-meta-audio-plugins-dssi
+
+# Pre-Install VST
+apt-get install foo-yc20-vst pizmidi-plugins
+apt-get install --no-install-recommends kxstudio-meta-audio-plugins-vst
+
+# Pre-Install LMMS
+apt-get install --no-install-recommends lmms
+
+# Test
+rm /var/cache/apt/archives/wine-rt*
+
 # Install packages (Download)
-apt-get install -d jackd1 kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
+apt-get install -d jackd1 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
 
 # Install packages (Install)
-apt-get install jackd1 kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-non-free wine-rt
+apt-get install jackd1 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
 
 # Fix
 touch /etc/init.d/modemmanager
@@ -126,9 +147,8 @@ rm /etc/init.d/modemmanager
 apt-get clean
 
 # Install extras
-apt-get install carla-git carla-bridge-win32
+apt-get install carla-git
 apt-get install indicator-cpufreq
-apt-get install festige
 apt-get install sni-qt
 apt-get install kxstudio-docs
 # apt-get install firefox firefox-kde-support
@@ -143,9 +163,6 @@ apt-get install libglu1-mesa
 apt-get install libtxc-dxtn-s2tc0
 
 # 64bit fix
-apt-get install reaper:i386
-apt-get install simplelabeler:i386
-apt-get install lacie-labeler:i386
 apt-get install sni-qt:i386
 apt-get install libgl1-mesa-dri:i386
 apt-get install libgl1-mesa-glx:i386
@@ -169,9 +186,10 @@ apt-get purge pulseaudio*
 apt-get purge loomer-plugins*
 apt-get purge linuxdsp-plugins*
 apt-get purge pianoteq*
-
-# reinstall/configure renoise
-dpkg-reconfigure renoise
+apt-get purge renoise*
+apt-get purge lilypond*
+apt-get purge libjack-jackd2-0
+apt-get purge libjack-jackd2-0:i386
 
 # Cleanup
 apt-get autoremove
