@@ -115,7 +115,7 @@ apt-get clean
 
 # Pre-Install JACK1
 apt-get install jackd1
-apt-get purge libjack-jackd2-0:i386
+apt-get purge libjack-jackd2-0
 
 # Pre-Install DSSI
 apt-get install dssi-example-plugins fluidsynth-dssi hexter
@@ -151,7 +151,7 @@ apt-get install carla-git
 apt-get install indicator-cpufreq
 apt-get install sni-qt
 apt-get install kxstudio-docs
-# apt-get install firefox firefox-kde-support
+apt-get install firefox firefox-kde-support
 apt-get install ubuntu-extras-keyring
 apt-get install libgl1-mesa-dri
 apt-get install libgl1-mesa-glx
@@ -163,6 +163,8 @@ apt-get install libglu1-mesa
 apt-get install libtxc-dxtn-s2tc0
 
 # 64bit fix
+dpkg --add-architecture i386
+apt-get update; apt-get dist-upgrade
 apt-get install sni-qt:i386
 apt-get install libgl1-mesa-dri:i386
 apt-get install libgl1-mesa-glx:i386
@@ -195,6 +197,8 @@ apt-get purge libjack-jackd2-0:i386
 apt-get autoremove
 apt-get clean
 
+dpkg -l | grep "rc "
+
 ## ---- PAUSE HERE ----- ##
 # Before installing ubiquity in the live session, you'll need to run this outside:
 $ sudo mkdir -p ~/livecd/cd/casper/
@@ -207,6 +211,7 @@ $ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version
 echo "## ----- END PAUSE ----- ##
 
 # Now use locate
+apt-get clean
 /usr/bin/updatedb.mlocate
 
 # Now install the liveDVD specific packages
@@ -285,12 +290,12 @@ sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/txt.cfg
 sudo mkdir -p ~/livecd/cd/.disk/
 
 if [ "$ISO_ARCH" == "i386" ]; then
-sudo su root -c 'echo "KXStudio 12.04.3 (Live 32bit)" > .disk/info'
+sudo su root -c 'echo "KXStudio 14.04 (Live 32bit)" > .disk/info'
 else
-sudo su root -c 'echo "KXStudio 12.04.3 (Live 64bit)" > .disk/info'
+sudo su root -c 'echo "KXStudio 14.04 (Live 64bit)" > .disk/info'
 fi
 
-sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio12043:ReleaseNotes" > .disk/release_notes_url'
+sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio1404:ReleaseNotes" > .disk/release_notes_url'
 
 echo "Please edit these files manually:
 ~/livecd/cd/.disk/info
@@ -313,11 +318,22 @@ cd ~/livecd/cd/casper
 sudo rm -rf ext
 sudo mkdir ext
 cd ext
-sudo su root -c '7z x -so ../initrd_tmp.gz | cpio -id'
-# this is weird...
-sudo rm sbin/modprobe sbin/rmmod
-sudo cp bin/kmod sbin/modprobe
-sudo cp bin/kmod sbin/rmmod
+sudo su root -c 'gzip -cd ../initrd_tmp.gz | cpio -i'
+
+# 32bit fix?
+LINKS=`find . -type l`
+for i in $LINKS; do
+  FILE=`readlink $i`
+  if [ "$FILE" == "busybox" ]; then
+    FILE="./bin/busybox"
+  elif [ "$FILE" == "lvm" ]; then
+    FILE="./sbin/lvm"
+  fi
+  FILE="./$FILE"
+  sudo rm "$i"
+  sudo cp -v "$FILE" "$i"
+done
+
 sudo su root -c 'find . | cpio --dereference -o -H newc | lzma -7 > ../initrd.lz'
 cd ..
 sudo rm -rf ext initrd_tmp.gz
