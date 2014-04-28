@@ -146,6 +146,13 @@ apt-get install -f
 rm /etc/init.d/modemmanager
 apt-get clean
 
+# Network Manager
+apt-get install network-manager-gnome
+apt-get purge plasma-widget-networkmanagement
+
+apt-get install plasma-widget-networkmanagement
+apt-get purge network-manager-gnome gnome-icon-theme humanity-icon-theme libgnome-bluetooth11 libgnome-keyring-common libgnome-keyring0 libnm-gtk-common libnm-gtk0
+
 # Install extras
 apt-get install carla-git
 apt-get install indicator-cpufreq
@@ -218,11 +225,10 @@ apt-get clean
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils xfsprogs
 
 # Just in case you want to revert the live-dvd install action
-apt-get purge archdetect-deb apt-clone btrfs-tools casper cryptsetup discover discover-data dmraid dpkg-repack \
-ecryptfs-utils jfsutils keyutils kpartx kpartx-boot libdebconfclient0 libdebian-installer4 libdiscover2 \
-libdmraid1.0.0.rc16 libecryptfs0 libiw30 localechooser-data lupin-casper \
-python-pyicu rdate realpath reiserfsprogs ubiquity ubiquity-casper ubiquity-frontend-kde ubiquity-ubuntu-artwork \
-user-setup xfsprogs sbsigntool
+apt-get purge ubiquity-frontend-kde casper lupin-casper discover jfsutils xfsprogs \
+archdetect-deb discover-data dpkg-repack libdebian-installer4 libdevmapper-event1.02.1 \
+libdiscover2 localechooser-data lvm2 python3-icu python3-pam rdate ubiquity-casper \
+ubiquity-ubuntu-artwork user-setup watershed apt-clone sbsigntool
 "
 sudo chroot ~/livecd/custom
 echo "done"
@@ -240,6 +246,7 @@ rm -f /var/kxstudio/*
 apt-get clean
 rm -rf /tmp/*
 rm -f /etc/hosts /etc/resolv.conf
+ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
 umount /dev/pts
 umount /proc/ # to force: 'umount -lf /proc'
 umount /sys/
