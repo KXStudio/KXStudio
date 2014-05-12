@@ -91,6 +91,7 @@ CONFIG_ALL = (
   "kde/env/qt-graphicssystem.sh",
   "kde/share/apps/dolphin/dolphinui.rc",
   "kde/share/autostart/akonaditray.desktop",
+  "kde/share/autostart/baloo_file.desktop",
   "kde/share/autostart/kactivitymanagerd.desktop",
   "kde/share/autostart/kaddressbookmigrator.desktop",
   "kde/share/autostart/nepomukserver.desktop",
