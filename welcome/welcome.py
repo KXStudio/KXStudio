@@ -42,8 +42,6 @@ ID_PIXMAP_DONE    = 2
 
 # ----------------------------------------------
 
-CONFIG_ARCH_FILE = "_64bit.tar.gz" if kIs64bit else "_32bit.tar.gz"
-
 CONFIG_SMALL = (
   "bash_aliases",
   "pulse/client.conf",
@@ -61,8 +59,6 @@ CONFIG_ALL = (
   "bcast/Cinelerra_rc",
   "ccutie/Cinecutie_rc",
   "giada/giada.conf",
-  "gstreamer-0.10/registry.i686.bin",
-  "gstreamer-0.10/registry.x86_64.bin",
   "hydrogen/hydrogen.conf",
   "Loomer/Aspect.xml",
   "Loomer/Manifold.xml",
@@ -74,7 +70,6 @@ CONFIG_ALL = (
   "phasex/phasex.cfg",
   "pulse/client.conf",
   "pulse/daemon.conf",
-  "renoise/V2.8.1/Config.xml",
   "traverso/Traverso-DAW/Traverso.ini",
 
   "config/audacious/config",
@@ -99,6 +94,7 @@ CONFIG_ALL = (
   "kde/share/autostart/kactivitymanagerd.desktop",
   "kde/share/autostart/kaddressbookmigrator.desktop",
   "kde/share/autostart/nepomukserver.desktop",
+  "kde/share/config/baloofilerc",
   "kde/share/config/dolphinrc",
   "kde/share/config/kdedrc",
   "kde/share/config/kdeglobals",
@@ -263,8 +259,6 @@ def do_live_stuff():
 
   if os.path.exists(ubiquityFile):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
-
-  os.system("tar -xkf '%s/%s' -C '%s/'" % (CONFIG_DIR, CONFIG_ARCH_FILE, HOME))
 
 # ----------------------------------------------
 
