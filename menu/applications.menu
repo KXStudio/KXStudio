@@ -87,6 +87,7 @@
       <Filename>gtk-recordmydesktop.desktop</Filename>
       <Filename>guitarix.desktop</Filename>
       <Filename>gxtuner.desktop</Filename>
+      <Filename>hdajackretask.desktop</Filename>
       <Filename>hdspconf.desktop</Filename>
       <Filename>hdspmixer.desktop</Filename>
       <Filename>hexter.desktop</Filename>
@@ -118,6 +119,7 @@
       <Filename>Kino.desktop</Filename>
       <Filename>klaudia.desktop</Filename>
       <Filename>kluppe.desktop</Filename>
+      <Filename>laborejo.desktop</Filename>
       <Filename>lacie-labeler.desktop</Filename>
       <Filename>ladiconf.desktop</Filename>
       <Filename>laditray.desktop</Filename>

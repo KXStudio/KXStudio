@@ -92,6 +92,7 @@
       <Filename>gtk-recordmydesktop.desktop</Filename>
       <Filename>guitarix.desktop</Filename>
       <Filename>gxtuner.desktop</Filename>
+      <Filename>hdajackretask.desktop</Filename>
       <Filename>hdspconf.desktop</Filename>
       <Filename>hdspmixer.desktop</Filename>
       <Filename>hexter.desktop</Filename>
@@ -123,6 +124,7 @@
       <Filename>Kino.desktop</Filename>
       <Filename>klaudia.desktop</Filename>
       <Filename>kluppe.desktop</Filename>
+      <Filename>laborejo.desktop</Filename>
       <Filename>lacie-labeler.desktop</Filename>
       <Filename>ladiconf.desktop</Filename>
       <Filename>laditray.desktop</Filename>
@@ -348,6 +350,7 @@
         <Filename>jack_mixer.desktop</Filename>
         <Filename>jokosher.desktop</Filename>
         <Filename>kluppe.desktop</Filename>
+        <Filename>laborejo.desktop</Filename>
         <Filename>lmms.desktop</Filename>
         <Filename>lmms-git.desktop</Filename>
         <Filename>los.desktop</Filename>
@@ -492,6 +495,7 @@
         <Filename>gmerlin-alsamixer.desktop</Filename>
         <Filename>gmerlin-kbd.desktop</Filename>
         <Filename>gmerlin-plugincfg.desktop</Filename>
+        <Filename>hdajackretask.desktop</Filename>
         <Filename>hdspconf.desktop</Filename>
         <Filename>hdspmixer.desktop</Filename>
         <Filename>j2sc.desktop</Filename>
