@@ -61,6 +61,7 @@ apt-get update
 apt-get install software-properties-common wget
 add-apt-repository -y ppa:kxstudio-debian/kxstudio
 add-apt-repository -y ppa:blue-shell/firefox-kde
+# add-apt-repository -y ppa:irie/blender
 apt-get update
 apt-get install kxstudio-repos
 apt-get clean
@@ -114,8 +115,8 @@ apt-get purge wine1.4*:i386
 apt-get clean
 
 # Pre-Install JACK1
-apt-get install jackd1
-apt-get purge libjack-jackd2-0
+apt-get install jackd2
+apt-get purge libjack0 jackd1 jackd1-firewire
 
 # Pre-Install DSSI
 apt-get install dssi-example-plugins fluidsynth-dssi hexter
@@ -125,7 +126,7 @@ apt-get install zynaddsubfx-dssi
 apt-get install --no-install-recommends kxstudio-meta-audio-plugins-dssi
 
 # Pre-Install VST
-apt-get install foo-yc20-vst pizmidi-plugins
+apt-get install jackass foo-yc20-vst pizmidi-plugins
 apt-get install --no-install-recommends kxstudio-meta-audio-plugins-vst
 
 # Pre-Install LMMS
@@ -135,10 +136,10 @@ apt-get install --no-install-recommends lmms
 rm /var/cache/apt/archives/wine-rt*
 
 # Install packages (Download)
-apt-get install -d jackd1 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
+apt-get install -d jackd2 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
 
 # Install packages (Install)
-apt-get install jackd1 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
+apt-get install jackd2 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
 
 # Fix
 touch /etc/init.d/modemmanager

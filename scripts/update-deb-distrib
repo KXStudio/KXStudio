@@ -1,16 +1,11 @@
 #!/bin/bash
 
-# Quantal
-VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("precise","quantal")' | awk 'sub("\\\)","\n")' | head -n 1`
-dch --force-distribution -D quantal -v $VERSION "Quantal build"
-debuild --no-lintian -S -sa
-
-# Saucy
-VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("quantal","saucy")' | awk 'sub("\\\)","\n")' | head -n 1`
-dch --force-distribution -D saucy -v $VERSION "Saucy build"
-debuild --no-lintian -S -sa
-
 # Trusty
-VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("saucy","trusty")' | awk 'sub("\\\)","\n")' | head -n 1`
+VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("precise","trusty")' | awk 'sub("\\\)","\n")' | head -n 1`
 dch --force-distribution -D trusty -v $VERSION "Trusty build"
 debuild --no-lintian -S -sa
+
+# # XXX
+# VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("trusty","")' | awk 'sub("\\\)","\n")' | head -n 1`
+# dch --force-distribution -D trusty -v $VERSION "Trusty build"
+# debuild --no-lintian -S -sa
