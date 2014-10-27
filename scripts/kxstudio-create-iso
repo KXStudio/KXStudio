@@ -114,7 +114,7 @@ apt-get purge wine1.4*
 apt-get purge wine1.4*:i386
 apt-get clean
 
-# Pre-Install JACK1
+# Pre-Install JACK2
 apt-get install jackd2
 apt-get purge libjack0 jackd1 jackd1-firewire
 

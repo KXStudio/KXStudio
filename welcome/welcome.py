@@ -115,7 +115,6 @@ CONFIG_ALL = (
 )
 
 CONFIG_THEME = (
-  "fonts.conf",
   "gtkrc-2.0-kxstudio",
   "kderc",
 
@@ -128,6 +127,7 @@ CONFIG_THEME = (
   "qt/qtrc",
   "traverso/Traverso-DAW/Traverso.ini",
 
+  "config/fontconfig/fonts.conf",
   "config/gtk-3.0/settings.ini",
   "config/kde.org/systemsettings.conf",
   "config/Nokia/QtCreator.ini",
