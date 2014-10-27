@@ -128,6 +128,7 @@ CONFIG_THEME = (
   "config/qtcurve/windowBorderSizes",
   "config/rncbc.org/QjackCtl.conf",
   "config/rncbc.org/Qsynth.conf",
+  "config/rncbc.org/Qtractor.conf",
   "config/rosegardenmusic/Rosegarden.conf",
   "config/xfce4/xinitrc",
   "config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml",
