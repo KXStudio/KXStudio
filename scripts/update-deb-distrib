@@ -5,7 +5,12 @@ VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","
 dch --force-distribution -D trusty -v $VERSION "Trusty build"
 debuild --no-lintian -S -sa
 
-# # XXX
-# VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("trusty","")' | awk 'sub("\\\)","\n")' | head -n 1`
-# dch --force-distribution -D trusty -v $VERSION "Trusty build"
-# debuild --no-lintian -S -sa
+# Utopic
+VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("trusty","utopic")' | awk 'sub("\\\)","\n")' | head -n 1`
+dch --force-distribution -D utopic -v $VERSION "Utopic build"
+debuild --no-lintian -S -sa
+
+# Vivid
+VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("utopic","vivid")' | awk 'sub("\\\)","\n")' | head -n 1`
+dch --force-distribution -D vivid -v $VERSION "Vivid build"
+debuild --no-lintian -S -sa
