@@ -87,7 +87,6 @@ apt-get update; apt-get dist-upgrade
 
 # Base Install
 apt-get install ubuntu-standard laptop-detect os-prober
-apt-get install linux-lowlatency # skip grub install/configure to HDD here
 
 # Fix upstart
 dpkg-divert --local --rename --add /sbin/initctl
@@ -97,6 +96,9 @@ apt-get install -f
 rm /etc/init.d/systemd-logind
 rm /sbin/initctl
 dpkg-divert --local --rename --remove /sbin/initctl
+
+# Kernel Install
+apt-get install linux-lowlatency # skip grub install/configure to HDD here
 
 # Clean previous
 apt-get purge kxstudio-kernel*
@@ -114,32 +116,14 @@ apt-get purge wine1.4*
 apt-get purge wine1.4*:i386
 apt-get clean
 
-# Pre-Install JACK2
-apt-get install jackd2
-apt-get purge libjack0 jackd1 jackd1-firewire
-
-# Pre-Install DSSI
-apt-get install dssi-example-plugins fluidsynth-dssi hexter
-apt-get install linuxsampler-dssi ll-scope ls16 nekobee sineshaper
-apt-get install whysynth wsynth-dssi xsynth-dssi dssi-host-jack
-apt-get install zynaddsubfx-dssi
-apt-get install --no-install-recommends kxstudio-meta-audio-plugins-dssi
-
-# Pre-Install VST
-apt-get install jackass foo-yc20-vst pizmidi-plugins
-apt-get install --no-install-recommends kxstudio-meta-audio-plugins-vst
-
-# Pre-Install LMMS
-apt-get install --no-install-recommends lmms
-
-# Test
-rm /var/cache/apt/archives/wine-rt*
-
 # Install packages (Download)
 apt-get install -d jackd2 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
 
 # Install packages (Install)
 apt-get install jackd2 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
+
+# Test
+rm /var/cache/apt/archives/wine-rt*
 
 # Fix
 touch /etc/init.d/modemmanager
