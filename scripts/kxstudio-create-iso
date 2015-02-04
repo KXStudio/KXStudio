@@ -265,6 +265,7 @@ sudo su root -c 'echo "KXStudio 14.04 (Live 32bit)" > .disk/info'
 else
 sudo su root -c 'echo "KXStudio 14.04 (Live 64bit)" > .disk/info'
 fi
+# sudo su root -c 'echo "Live-MOD 2015-02" > .disk/info'
 
 sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio1404:ReleaseNotes" > .disk/release_notes_url'
 
