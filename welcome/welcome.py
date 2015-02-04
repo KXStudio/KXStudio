@@ -254,7 +254,7 @@ def do_live_stuff():
   if os.path.exists(kxstudioDocs):
     os.system("ln -s '%s' '%s'" % (kxstudioDocs, os.path.join(desktopDir, "Docs")))
 
-  if os.path.exists(ubiquityFile):
+  if os.path.exists(ubiquityFile) and not os.path.exists(modAppFile):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
 
   if os.path.exists(modAppFile):
@@ -265,6 +265,20 @@ def do_live_stuff():
 
   if os.path.exists("/usr/bin/mod-client"):
     os.system("/usr/bin/mod-client --scan-lv2")
+
+    #-----------------------------------------------
+    # Custom Live-MOD setup
+
+    # Default browser
+    defs = HOME + "/.local/share/applications/defaults.list"
+    mims = HOME + "/.local/share/applications/mimeapps.list"
+    os.system("sed -i 's|firefox.desktop|chromium-browser.desktop|' '%s' '%s'" % (defs, mims))
+
+    # Start menu shortcuts
+    kickoffrc = HOME + "/.kde/share/config/kickoffrc"
+    os.system("sed -i 's|audacious.desktop|mod-app.desktop|' '%s'" % kickoffrc)
+    os.system("sed -i 's|firefox.desktop|mod-panel.desktop|' '%s'" % kickoffrc)
+    os.system("sed -i 's|claudia-launcher.desktop|carla.desktop|' '%s'" % kickoffrc)
 
 # ----------------------------------------------
 
