@@ -29,6 +29,11 @@ if (which genisoimage > /dev/null); then true; else
   exit
 fi
 
+if (which isohybrid > /dev/null); then true; else
+  echo "isohybrid not found, please install it"
+  exit
+fi
+
 if (which mksquashfs > /dev/null); then true; else
   echo "mksquashfs not found, please install it"
   exit
@@ -86,7 +91,7 @@ deb http://archive.canonical.com/ubuntu trusty partner
 apt-get update; apt-get dist-upgrade
 
 # Base Install
-apt-get install ubuntu-standard laptop-detect os-prober
+apt-get install ubuntu-standard laptop-detect os-prober dkms
 
 # Fix upstart
 dpkg-divert --local --rename --add /sbin/initctl
@@ -98,29 +103,16 @@ rm /sbin/initctl
 dpkg-divert --local --rename --remove /sbin/initctl
 
 # Kernel Install
-apt-get install linux-lowlatency # skip grub install/configure to HDD here
-
-# Clean previous
-apt-get purge kxstudio-kernel*
-apt-get purge libkscreen0 libslv2-9 libtaskmanager4abi4
-apt-get purge libllvm3.2 libllvm3.2:i386
-apt-get purge libwayland-ltsr0 libxrandr-ltsr2
-apt-get purge linux-generic-lts-raring linux-headers-generic-lts-raring linux-image-generic-lts-raring
-apt-get purge linux-headers-3.8.0-30-lowlatency linux-image-3.8.0-30-lowlatency linux-lowlatency-headers-3.8.0-30
-apt-get purge linux-headers-3.8.0-31 linux-headers-3.8.0-31-generic linux-image-3.8.0-31-generic
-apt-get purge lts-quantal*
-apt-get purge lts-quantal*:i386
-apt-get purge lts-raring*
-apt-get purge lts-raring*:i386
-apt-get purge wine1.4*
-apt-get purge wine1.4*:i386
+apt-get install linux-lowlatency linux-image-lowlatency linux-headers-lowlatency # skip grub install/configure to HDD here
+apt-get purge linux-headers-3.13.0-39 linux-headers-3.13.0-39-lowlatency linux-image-3.13.0-39-lowlatency
+apt-get purge linux-headers-3.13.0-40 linux-headers-3.13.0-40-lowlatency linux-image-3.13.0-40-lowlatency
 apt-get clean
 
-# Install packages (Download)
-apt-get install -d jackd2 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
+# Install packages (KXStudio)
+apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
 
-# Install packages (Install)
-apt-get install jackd2 carla-git kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras
+# Install packages (MOD)
+apt-get install jackd2 mod-desktop-kde4 mod-desktop mod-meta kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
 
 # Test
 rm /var/cache/apt/archives/wine-rt*
@@ -133,39 +125,20 @@ apt-get clean
 
 # Network Manager
 apt-get install network-manager-gnome
-apt-get purge plasma-widget-networkmanagement
+apt-get purge plasma-nm
 
-apt-get install plasma-widget-networkmanagement
+apt-get install plasma-nm
 apt-get purge network-manager-gnome gnome-icon-theme humanity-icon-theme libgnome-bluetooth11 libgnome-keyring-common libgnome-keyring0 libnm-gtk-common libnm-gtk0
-
-# Install extras
-apt-get install carla-git
-apt-get install indicator-cpufreq
-apt-get install sni-qt
-apt-get install kxstudio-docs
-apt-get install firefox firefox-kde-support
-apt-get install ubuntu-extras-keyring
-apt-get install libgl1-mesa-dri
-apt-get install libgl1-mesa-glx
-apt-get install libegl1-mesa
-apt-get install libegl1-mesa-drivers
-apt-get install libglapi-mesa
-apt-get install libgles2-mesa
-apt-get install libglu1-mesa
-apt-get install libtxc-dxtn-s2tc0
 
 # 64bit fix
 dpkg --add-architecture i386
 apt-get update; apt-get dist-upgrade
-apt-get install sni-qt:i386
-apt-get install libgl1-mesa-dri:i386
-apt-get install libgl1-mesa-glx:i386
-apt-get install libegl1-mesa:i386
-apt-get install libegl1-mesa-drivers:i386
-apt-get install libglapi-mesa:i386
-apt-get install libgles2-mesa:i386
-apt-get install libglu1-mesa:i386
-apt-get install libtxc-dxtn-s2tc0:i386
+
+# Install extras
+apt-get install kxstudio-docs
+apt-get install indicator-cpufreq ubuntu-extras-keyring \
+ sni-qt libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa libegl1-mesa-drivers libglapi-mesa libgles2-mesa libglu1-mesa libtxc-dxtn-s2tc0 \
+ sni-qt:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libegl1-mesa:i386 libegl1-mesa-drivers:i386 libglapi-mesa:i386 libgles2-mesa:i386 libglu1-mesa:i386 libtxc-dxtn-s2tc0:i386
 
 # Remove deprecated/dummy
 apt-get purge amsynth-dssi drumkv1-lv2 samplv1-lv2 synthv1-lv2
@@ -175,21 +148,23 @@ apt-get purge hydrogen-drumkits fluid-soundfont-gm
 apt-get purge kxstudio-kernel-lowlatency
 
 # Remove unwanted
-apt-get purge vlc-plugin-pulse gstreamer0.10-pulseaudio xterm rtkit pulseaudio-utils libpulsedsp
+apt-get purge vlc-plugin-pulse xterm rtkit libpulsedsp
 apt-get purge pulseaudio*
 apt-get purge loomer-plugins*
 apt-get purge linuxdsp-plugins*
 apt-get purge pianoteq*
 apt-get purge renoise*
 apt-get purge lilypond*
-apt-get purge libjack-jackd2-0
-apt-get purge libjack-jackd2-0:i386
+apt-get purge libjack0
+apt-get purge libjack0:i386
 
 # Cleanup
+apt-get remove kxstudio-meta-live-conflicts
 apt-get autoremove
 apt-get clean
 
 dpkg -l | grep "rc "
+rm /boot/*liquorix*
 
 ## ---- PAUSE HERE ----- ##
 # Before installing ubiquity in the live session, you'll need to run this outside:
@@ -210,10 +185,14 @@ apt-get clean
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils xfsprogs
 
 # Just in case you want to revert the live-dvd install action
-apt-get purge ubiquity-frontend-kde casper lupin-casper discover jfsutils xfsprogs \
-archdetect-deb discover-data dpkg-repack libdebian-installer4 libdevmapper-event1.02.1 \
-libdiscover2 localechooser-data lvm2 python3-icu python3-pam rdate ubiquity-casper \
-ubiquity-ubuntu-artwork user-setup watershed apt-clone sbsigntool
+apt-get purge \
+  apt-clone archdetect-deb btrfs-tools casper cifs-utils cryptsetup \
+  cryptsetup-bin discover discover-data dmraid dpkg-repack ecryptfs-utils \
+  jfsutils keyutils kpartx kpartx-boot libcryptsetup4 libdebian-installer4 \
+  libdevmapper-event1.02.1 libdiscover2 libdmraid1.0.0.rc16 libecryptfs0 \
+  libnss3-1d localechooser-data lupin-casper lvm2 python3-icu python3-pam \
+  rdate sbsigntool ubiquity ubiquity-casper ubiquity-frontend-kde \
+  ubiquity-ubuntu-artwork user-setup watershed xfsprogs
 "
 sudo chroot ~/livecd/custom
 echo "done"
@@ -355,6 +334,7 @@ isolinux=`find . -name isolinux.bin | head -n 1 | awk 'sub("./","")'`
 bootcat=`find . -name boot.cat | head -n 1 | awk 'sub("./","")'`
 sudo chmod 777 -R .
 sudo genisoimage -r -V "$ARG2" -b $isolinux -c $bootcat -cache-inodes -J -l -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -o ~/$ARG2.iso .
+sudo isohybrid ~/$ARG2.iso
 echo "done"
 exit
     ;;
@@ -378,7 +358,7 @@ echo "usage: $0 <cmd>
  5 - mkart <arch> <distro-name> [arch=i386/amd64] [distro=KXStudio (no spaces!)]
  6 - mkboot
  7 - md5sum
- 8 - iso <label> [label=KXStudio_12.04_32bit (no spaces!)]
+ 8 - iso <label> [label=KXStudio_14.04_32bit (no spaces!)]
 
  x - clean
 "
