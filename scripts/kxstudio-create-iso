@@ -195,13 +195,14 @@ apt-get purge \
   ubiquity-ubuntu-artwork user-setup watershed xfsprogs
 
 apt-get purge \
-  casper cifs-utils discover discover-data keyutils libdiscover2 \
-  localechooser-data lupin-casper python-crypto python-ldb python-ntdb \
-  python-samba python-tdb samba-common samba-common-bin user-setup \
-  ubiquity-casper jfsutils xfsprogs \
-  apt-clone archdetect-deb btrfs-tools cryptsetup cryptsetup-bin dmraid dpkg-repack ecryptfs-utils kpartx kpartx-boot \
-  libcryptsetup4 libdebian-installer4 libdevmapper-event1.02.1 libdmraid1.0.0.rc16 libecryptfs0 libiw30 libnss3-1d lvm2 \
-  python3-icu python3-pam rdate sbsigntool watershed
+  apt-clone archdetect-deb btrfs-tools casper cifs-utils cryptsetup \
+  cryptsetup-bin discover discover-data dmraid dpkg-repack ecryptfs-utils \
+  jfsutils keyutils kpartx kpartx-boot libcryptsetup4 libdebian-installer4 \
+  libdevmapper-event1.02.1 libdiscover2 libdmraid1.0.0.rc16 libecryptfs0 \
+  libiw30 libnss3-1d localechooser-data lupin-casper lvm2 python-crypto \
+  python-ldb python-ntdb python-samba python-tdb python3-icu python3-pam rdate \
+  samba-common samba-common-bin sbsigntool ubiquity ubiquity-casper \
+  ubiquity-frontend-kde ubiquity-ubuntu-artwork user-setup watershed xfsprogs
 "
 sudo chroot ~/livecd/custom
 echo "done"

@@ -254,7 +254,7 @@ def do_live_stuff():
   if os.path.exists(kxstudioDocs):
     os.system("ln -s '%s' '%s'" % (kxstudioDocs, os.path.join(desktopDir, "Docs")))
 
-  if os.path.exists(ubiquityFile) and not os.path.exists(modAppFile):
+  if os.path.exists(ubiquityFile):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
 
   if os.path.exists(modAppFile):
@@ -265,6 +265,7 @@ def do_live_stuff():
 
   if os.path.exists("/usr/bin/mod-client"):
     os.system("/usr/bin/mod-client --scan-lv2")
+    os.system("rm -f \"%s\"" % os.path.join(desktopDir, "ubiquity*desktop"))
 
     #-----------------------------------------------
     # Custom Live-MOD setup
