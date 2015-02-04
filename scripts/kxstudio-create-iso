@@ -123,7 +123,7 @@ apt-get install -f
 rm /etc/init.d/modemmanager
 apt-get clean
 
-# Network Manager
+# Network Manager (optional)
 apt-get install network-manager-gnome
 apt-get purge plasma-nm
 
@@ -142,7 +142,7 @@ apt-get install indicator-cpufreq ubuntu-extras-keyring \
 
 # Remove deprecated/dummy
 apt-get purge amsynth-dssi drumkv1-lv2 samplv1-lv2 synthv1-lv2
-apt-get purge calf-plugins-git
+apt-get purge carla calf-plugins
 apt-get purge composite composite-data
 apt-get purge hydrogen-drumkits fluid-soundfont-gm
 apt-get purge kxstudio-kernel-lowlatency
