@@ -48,6 +48,8 @@ exit
 
     custom)
 # sudo mount --bind /dev ~/livecd/custom/dev
+sudo rm -f ~/livecd/custom/etc/hosts
+sudo rm -f ~/livecd/custom/etc/resolv.conf
 sudo cp /etc/resolv.conf /etc/hosts ~/livecd/custom/etc/
 echo "run this now:
 
@@ -89,6 +91,8 @@ deb http://archive.canonical.com/ubuntu trusty partner
 
 # MOD only
 add-apt-repository -y ppa:kxstudio-debian/kxstudio-mod
+cp /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod-trusty.list /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod.list
+sed -i 's/trusty/lucid/' /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod.list
 
 # Update System
 apt-get update; apt-get dist-upgrade
