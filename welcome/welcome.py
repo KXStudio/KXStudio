@@ -178,6 +178,12 @@ def do_copy_all():
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
+  if os.path.exists("/usr/share/wallpapers/MOD-Logo/metadata.desktop"):
+    kickoffrc = HOME + "/.kde/share/config/kickoffrc"
+    os.system("sed -i 's|audacious.desktop|mod-app.desktop|' '%s'" % kickoffrc)
+    os.system("sed -i 's|firefox.desktop|mod-panel.desktop|' '%s'" % kickoffrc)
+    os.system("sed -i 's|claudia-launcher.desktop|carla.desktop|' '%s'" % kickoffrc)
+
 def do_copy_basic():
   for sfile in CONFIG_SMALL:
     create_folder_for_file(sfile)
@@ -187,6 +193,12 @@ def do_copy_basic():
     create_folder_for_file(sfile)
     if not os.path.exists("%s/.%s" % (HOME, sfile)):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
+
+  if os.path.exists("/usr/share/wallpapers/MOD-Logo/metadata.desktop"):
+    kickoffrc = HOME + "/.kde/share/config/kickoffrc"
+    os.system("sed -i 's|audacious.desktop|mod-app.desktop|' '%s'" % kickoffrc)
+    os.system("sed -i 's|firefox.desktop|mod-panel.desktop|' '%s'" % kickoffrc)
+    os.system("sed -i 's|claudia-launcher.desktop|carla.desktop|' '%s'" % kickoffrc)
 
 def do_copy_theme(fontSize, copy_all=False):
   for sfile in CONFIG_THEME:
@@ -199,6 +211,11 @@ def do_copy_theme(fontSize, copy_all=False):
       create_folder_for_file(sfile)
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
       os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
+
+  if os.path.exists("/lib/plymouth/themes/mod-logo/mod-logo.script"):
+    defs = HOME + "/.local/share/applications/defaults.list"
+    mims = HOME + "/.local/share/applications/mimeapps.list"
+    os.system("sed -i 's|firefox.desktop|chromium-browser.desktop|' '%s' '%s'" % (defs, mims))
 
   # TESTING
   foxFolders = getoutput("find %s/.mozilla/firefox/*.default/chrome/ -type d" % HOME).strip().split("\n")
@@ -258,28 +275,10 @@ def do_live_stuff():
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
 
   if os.path.exists(modAppFile):
-    os.system("cp '%s' '%s'" % (modAppFile, desktopDir))
+    os.system("install -m 755 '%s' '%s'" % (modAppFile, desktopDir))
 
   if os.path.exists(modPanelFile):
-    os.system("cp '%s' '%s'" % (modPanelFile, desktopDir))
-
-  if os.path.exists("/usr/bin/mod-client"):
-    os.system("/usr/bin/mod-client --scan-lv2")
-    os.system("rm -f \"%s\"" % os.path.join(desktopDir, "ubiquity*desktop"))
-
-    #-----------------------------------------------
-    # Custom Live-MOD setup
-
-    # Default browser
-    defs = HOME + "/.local/share/applications/defaults.list"
-    mims = HOME + "/.local/share/applications/mimeapps.list"
-    os.system("sed -i 's|firefox.desktop|chromium-browser.desktop|' '%s' '%s'" % (defs, mims))
-
-    # Start menu shortcuts
-    kickoffrc = HOME + "/.kde/share/config/kickoffrc"
-    os.system("sed -i 's|audacious.desktop|mod-app.desktop|' '%s'" % kickoffrc)
-    os.system("sed -i 's|firefox.desktop|mod-panel.desktop|' '%s'" % kickoffrc)
-    os.system("sed -i 's|claudia-launcher.desktop|carla.desktop|' '%s'" % kickoffrc)
+    os.system("install -m 755 '%s' '%s'" % (modPanelFile, desktopDir))
 
 # ----------------------------------------------
 
