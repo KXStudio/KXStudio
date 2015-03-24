@@ -242,9 +242,12 @@ sudo mkdir -p ~/livecd/cd/casper/
 cd ~/livecd/
 sudo su root -c "printf $(sudo du -sx --block-size=1 custom | cut -f1) > cd/casper/filesystem.size"
 sudo touch ~/livecd/cd/casper/filesystem.manifest
+sudo touch ~/livecd/cd/casper/filesystem.manifest-remove
 sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest
+sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-remove
 sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest
-sudo rm -f ~/livecd/cd/casper/filesystem.squashfs
+comm -3 <(cat ~/livecd/cd/casper/filesystem.manifest | awk '{print $1}' | sort) <(cat ~/livecd/cd/casper/filesystem.manifest-desktop | awk '{print $1}' | sort) > ~/livecd/cd/casper/filesystem.manifest-remove
+sudo rm -f ~/livecd/cd/casper/filesystem.squashfs ~/livecd/cd/casper/filesystem.manifest-desktop
 sudo mksquashfs ~/livecd/custom ~/livecd/cd/casper/filesystem.squashfs -noappend -comp xz
 echo "done"
 exit
@@ -285,7 +288,7 @@ sudo su root -c 'echo "KXStudio 14.04 (Live 64bit)" > .disk/info'
 fi
 # sudo su root -c 'echo "Live-MOD 2015-03" > .disk/info'
 
-sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio1404:ReleaseNotes" > .disk/release_notes_url'
+sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio14042:ReleaseNotes" > .disk/release_notes_url'
 
 echo "Please edit these files manually:
 ~/livecd/cd/.disk/info
@@ -300,8 +303,8 @@ exit
     mkboot)
 sudo mkdir -p ~/livecd/cd/casper/
 cd ~/livecd/
-sudo rm -f cd/casper/vmlinuz cd/casper/initrd.lz cd/casper/initrd_tmp.gz
-sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz
+sudo rm -f cd/casper/vmlinuz cd/casper/vmlinuz.efi cd/casper/initrd.lz cd/casper/initrd_tmp.gz
+sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz.efi
 sudo cp custom/boot/initrd.img-* cd/casper/initrd_tmp.gz
 
 cd ~/livecd/cd/casper
@@ -310,7 +313,7 @@ sudo mkdir ext
 cd ext
 sudo su root -c 'gzip -cd ../initrd_tmp.gz | cpio -i'
 
-# 32bit fix?
+# fix links
 LINKS=`find . -type l`
 for i in $LINKS; do
   FILE=`readlink $i`
@@ -338,8 +341,8 @@ exit
     md5sum)
 cd ~/livecd/cd
 sudo rm -f md5sum.txt MD5SUMS
-sudo su root -c "find . -type f -print0 | xargs -0 md5sum > md5sum.txt"
-# sudo cp md5sum.txt MD5SUMS
+sudo su root -c "find . -type f -print0 | xargs -0 md5sum > ../md5sum.txt"
+sudo mv ../md5sum.txt .
 echo "done"
 exit
     ;;
