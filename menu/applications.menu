@@ -272,6 +272,7 @@
       <Filename>kde4-kscd.desktop</Filename>
       <Filename>kde4-kwave.desktop</Filename>
       <Filename>kde4-nepomukbackup.desktop</Filename>
+      <Filename>kde4-nepomukcleaner.desktop</Filename>
       <Filename>kde4-nepomukcontroller.desktop</Filename>
       <Filename>kde4-recorditnow.desktop</Filename>
       <Filename>kde4-sparklemedia.desktop</Filename>
@@ -287,6 +288,7 @@
       <Filename>debian-uxterm.desktop</Filename>
       <Filename>ubuntustudio-controls.desktop</Filename>
       <Filename>kde4-nepomukbackup.desktop</Filename>
+      <Filename>kde4-nepomukcleaner.desktop</Filename>
       <Filename>kde4-nepomukcontroller.desktop</Filename>
     </Exclude>
   </Menu>

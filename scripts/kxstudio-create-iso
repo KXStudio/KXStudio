@@ -319,9 +319,12 @@ for i in $LINKS; do
   elif [ "$FILE" == "lvm" ]; then
     FILE="./sbin/lvm"
   fi
-  FILE="./$FILE"
   sudo rm "$i"
-  sudo cp -v "$FILE" "$i"
+  if [ -f "./$FILE" ]; then
+    sudo cp -v "./$FILE" "$i"
+  else
+    sudo cp -v "../../../custom/$FILE" "$i"
+  fi
 done
 
 sudo su root -c 'find . | cpio --dereference -o -H newc | lzma -7 > ../initrd.lz'
