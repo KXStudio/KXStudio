@@ -229,6 +229,7 @@ apt-get clean
 rm -rf /tmp/*
 rm -f /etc/hosts /etc/resolv.conf
 ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
+find /var/log -type f | while read file; do cat /dev/null | tee $file; done
 umount /dev/pts
 umount /proc/ # to force: 'umount -lf /proc'
 umount /sys/
@@ -342,6 +343,7 @@ exit
 
     md5sum)
 cd ~/livecd/cd
+sudo chmod 777 -R .
 sudo rm -f md5sum.txt MD5SUMS
 sudo su root -c "find . -type f -print0 | xargs -0 md5sum > ../md5sum.txt"
 sudo mv ../md5sum.txt .
@@ -351,17 +353,56 @@ exit
 
     iso)
 ARG2="$2"
+ARG3="$3"
 if [ $ARG2"0" == "0" ]; then
-echo "usage: $0 iso <label>"
+echo "usage: $0 iso <filename> <name>"
+exit
+fi
+if [ $ARG3"0" == "0" ]; then
+echo "usage: $0 iso <filename> <name>"
 exit
 fi
 
 cd ~/livecd/cd
-isolinux=`find . -name isolinux.bin | head -n 1 | awk 'sub("./","")'`
-bootcat=`find . -name boot.cat | head -n 1 | awk 'sub("./","")'`
-sudo chmod 777 -R .
-sudo genisoimage -r -V "$ARG2" -b $isolinux -c $bootcat -cache-inodes -J -l -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -o ~/livecd/$ARG2.iso .
-sudo isohybrid ~/livecd/$ARG2.iso
+
+# sudo genisoimage \
+#     -r \
+#     -V "$ARG2" \
+#     -o ~/livecd/"$ARG2".iso \
+#     -J -l \
+#     -cache-inodes \
+#     -b isolinux/isolinux.bin \
+#     -c isolinux/boot.cat \
+#     -no-emul-boot \
+#     -boot-load-size 4 \
+#     -boot-info-table \
+#     -input-charset utf-8 \
+#     .
+# sudo isohybrid ~/livecd/$ARG2.iso
+
+# i386 ends on -boot-info-table
+
+sudo xorriso -as mkisofs \
+    -r \
+    -V "$ARG3" \
+    -o ~/livecd/"$ARG2".iso \
+    -J \
+    -isohybrid-mbr isolinux/isohdpfx.bin \
+    -partition_offset 16 \
+    -joliet-long \
+    -cache-inodes \
+    -b isolinux/isolinux.bin \
+    -c isolinux/boot.cat \
+    -no-emul-boot \
+    -boot-load-size 4 \
+    -boot-info-table \
+    -eltorito-alt-boot \
+    -e boot/grub/efi.img \
+    -no-emul-boot \
+    -isohybrid-gpt-basdat \
+    -isohybrid-apm-hfsplus \
+    .
+
 echo "done"
 exit
     ;;
@@ -385,7 +426,7 @@ echo "usage: $0 <cmd>
  5 - mkart <arch> <distro-name> [arch=i386/amd64] [distro=KXStudio (no spaces!)]
  6 - mkboot
  7 - md5sum
- 8 - iso <label> [label=KXStudio_14.04_32bit (no spaces!)]
+ 8 - iso <filename> <name> [file/name=KXStudio_14.04_32bit]
 
  x - clean
 "
