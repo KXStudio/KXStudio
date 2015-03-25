@@ -307,6 +307,7 @@ exit
 sudo mkdir -p ~/livecd/cd/casper/
 cd ~/livecd/
 sudo rm -f cd/casper/vmlinuz cd/casper/vmlinuz.efi cd/casper/initrd.lz cd/casper/initrd_tmp.gz
+sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz
 sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz.efi
 sudo cp custom/boot/initrd.img-* cd/casper/initrd_tmp.gz
 
