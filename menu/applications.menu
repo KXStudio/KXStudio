@@ -255,11 +255,9 @@
       <Filename>kde-openoctave.desktop</Filename>
       <Filename>kde-pana.desktop</Filename>
 
-      <Filename>kde4-akonaditray.desktop</Filename>
       <Filename>kde4-amarok.desktop</Filename>
       <Filename>kde4-bangarang.desktop</Filename>
       <Filename>kde4-dragonplayer.desktop</Filename>
-      <Filename>kde4-gdebi-kde.desktop</Filename>
       <Filename>kde4-juk.desktop</Filename>
       <Filename>kde4-k3b.desktop</Filename>
       <Filename>kde4-k9copy_assistant.desktop</Filename>
@@ -274,9 +272,6 @@
       <Filename>kde4-kmplayer.desktop</Filename>
       <Filename>kde4-kscd.desktop</Filename>
       <Filename>kde4-kwave.desktop</Filename>
-      <Filename>kde4-nepomukbackup.desktop</Filename>
-      <Filename>kde4-nepomukcleaner.desktop</Filename>
-      <Filename>kde4-nepomukcontroller.desktop</Filename>
       <Filename>kde4-recorditnow.desktop</Filename>
       <Filename>kde4-sparklemedia.desktop</Filename>
     </Exclude>
@@ -285,11 +280,21 @@
   </Menu>
 
   <Menu>
+    <Name>Graphics</Name>
+    <Exclude>
+      <Filename>display.im6.desktop</Filename>
+      <Filename>display-im6.desktop</Filename>
+    </Exclude>
+  </Menu>
+
+  <Menu>
     <Name>System</Name>
     <Exclude>
       <Filename>debian-xterm.desktop</Filename>
       <Filename>debian-uxterm.desktop</Filename>
       <Filename>ubuntustudio-controls.desktop</Filename>
+
+      <Filename>kde4-gdebi-kde.desktop</Filename>
       <Filename>kde4-nepomukbackup.desktop</Filename>
       <Filename>kde4-nepomukcleaner.desktop</Filename>
       <Filename>kde4-nepomukcontroller.desktop</Filename>

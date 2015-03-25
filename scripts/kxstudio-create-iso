@@ -239,16 +239,18 @@ exit
 
     mksquash)
 sudo mkdir -p ~/livecd/cd/casper/
-cd ~/livecd/
-sudo su root -c "printf $(sudo du -sx --block-size=1 custom | cut -f1) > cd/casper/filesystem.size"
-sudo touch ~/livecd/cd/casper/filesystem.manifest
-sudo touch ~/livecd/cd/casper/filesystem.manifest-remove
-sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest
-sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-remove
-sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest
-comm -3 <(cat ~/livecd/cd/casper/filesystem.manifest | awk '{print $1}' | sort) <(cat ~/livecd/cd/casper/filesystem.manifest-desktop | awk '{print $1}' | sort) > ~/livecd/cd/casper/filesystem.manifest-remove
-sudo rm -f ~/livecd/cd/casper/filesystem.squashfs ~/livecd/cd/casper/filesystem.manifest-desktop
-sudo mksquashfs ~/livecd/custom ~/livecd/cd/casper/filesystem.squashfs -noappend -comp xz
+cd ~/livecd/cd/casper/
+sudo su root -c "printf $(sudo du -sx --block-size=1 ~/livecd/custom | cut -f1) > ./filesystem.size"
+sudo touch ./filesystem.manifest
+sudo touch ./filesystem.manifest-remove
+sudo chmod 777 ./filesystem.manifest
+sudo chmod 777 ./filesystem.manifest-remove
+sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ./filesystem.manifest
+if [ -f ./filesystem.manifest-desktop ]; then
+  comm -3 <(cat ./filesystem.manifest | awk '{print $1}' | sort) <(cat ./filesystem.manifest-desktop | awk '{print $1}' | sort) > ./filesystem.manifest-remove
+fi
+sudo rm -f ./filesystem.squashfs ./filesystem.manifest-desktop
+sudo mksquashfs ~/livecd/custom ./filesystem.squashfs -noappend -comp xz
 echo "done"
 exit
     ;;
