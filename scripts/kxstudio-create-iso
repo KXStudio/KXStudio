@@ -114,6 +114,7 @@ apt-get install linux-lowlatency linux-image-lowlatency linux-headers-lowlatency
 apt-get purge linux-headers-3.13.0-39 linux-headers-3.13.0-39-lowlatency linux-image-3.13.0-39-lowlatency
 apt-get purge linux-headers-3.13.0-40 linux-headers-3.13.0-40-lowlatency linux-image-3.13.0-40-lowlatency
 apt-get purge linux-headers-3.13.0-45 linux-headers-3.13.0-45-lowlatency linux-image-3.13.0-45-lowlatency
+apt-get purge linux-headers-3.13.0-46 linux-headers-3.13.0-46-lowlatency linux-image-3.13.0-46-lowlatency
 apt-get clean
 
 # Install packages (KXStudio)
@@ -355,11 +356,11 @@ exit
     iso)
 ARG2="$2"
 ARG3="$3"
-if [ $ARG2"0" == "0" ]; then
+if [ "$ARG2""0" == "0" ]; then
 echo "usage: $0 iso <filename> <name>"
 exit
 fi
-if [ $ARG3"0" == "0" ]; then
+if [ "$ARG3""0" == "0" ]; then
 echo "usage: $0 iso <filename> <name>"
 exit
 fi
