@@ -144,14 +144,16 @@ dpkg --add-architecture i386
 apt-get update; apt-get dist-upgrade
 
 # Install extras
+apt-get install calf-plugins
 apt-get install kxstudio-docs
 apt-get install indicator-cpufreq ubuntu-extras-keyring \
  sni-qt libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa libegl1-mesa-drivers libglapi-mesa libgles2-mesa libglu1-mesa libtxc-dxtn-s2tc0 \
  sni-qt:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libegl1-mesa:i386 libegl1-mesa-drivers:i386 libglapi-mesa:i386 libgles2-mesa:i386 libglu1-mesa:i386 libtxc-dxtn-s2tc0:i386
 
 # Remove deprecated/dummy
+apt-get purge ardour3
 apt-get purge amsynth-dssi drumkv1-lv2 samplv1-lv2 synthv1-lv2
-apt-get purge carla calf-plugins
+apt-get purge carla calf-plugins-git
 apt-get purge composite composite-data
 apt-get purge hydrogen-drumkits fluid-soundfont-gm
 apt-get purge kxstudio-kernel-lowlatency
