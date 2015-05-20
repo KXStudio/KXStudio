@@ -9,13 +9,18 @@ if (which 7z > /dev/null); then true; else
   exit
 fi
 
+if (which cpio > /dev/null); then true; else
+  echo "cpio not found, please install it"
+  exit
+fi
+
 if (which debootstrap > /dev/null); then true; else
   echo "debootstrap not found, please install it"
   exit
 fi
 
-if (which cpio > /dev/null); then true; else
-  echo "cpio not found, please install it"
+if (which gzip > /dev/null); then true; else
+  echo "gzip not found, please install it"
   exit
 fi
 
@@ -24,18 +29,13 @@ if (which lzma > /dev/null); then true; else
   exit
 fi
 
-if (which genisoimage > /dev/null); then true; else
-  echo "genisoimage not found, please install it"
-  exit
-fi
-
-if (which isohybrid > /dev/null); then true; else
-  echo "isohybrid not found, please install it"
-  exit
-fi
-
 if (which mksquashfs > /dev/null); then true; else
   echo "mksquashfs not found, please install it"
+  exit
+fi
+
+if (which xorriso > /dev/null); then true; else
+  echo "xorriso not found, please install it"
   exit
 fi
 
@@ -368,21 +368,6 @@ exit
 fi
 
 cd ~/livecd/cd
-
-# sudo genisoimage \
-#     -r \
-#     -V "$ARG2" \
-#     -o ~/livecd/"$ARG2".iso \
-#     -J -l \
-#     -cache-inodes \
-#     -b isolinux/isolinux.bin \
-#     -c isolinux/boot.cat \
-#     -no-emul-boot \
-#     -boot-load-size 4 \
-#     -boot-info-table \
-#     -input-charset utf-8 \
-#     .
-# sudo isohybrid ~/livecd/$ARG2.iso
 
 # i386 ends on -boot-info-table
 
