@@ -14,11 +14,13 @@
       <Filename>2mandvd.desktop</Filename>
       <Filename>aconnectgui.desktop</Filename>
       <Filename>aeolus.desktop</Filename>
+      <Filename>alsamixergui.desktop</Filename>
       <Filename>ams.desktop</Filename>
       <Filename>amsynth.desktop</Filename>
       <Filename>Aria.desktop</Filename>
       <Filename>ardour.desktop</Filename>
       <Filename>ardour3.desktop</Filename>
+      <Filename>ardour4.desktop</Filename>
       <Filename>arpage.desktop</Filename>
       <Filename>audacity.desktop</Filename>
       <Filename>audacious.desktop</Filename>
@@ -99,6 +101,8 @@
       <Filename>ingen.desktop</Filename>
       <Filename>ingen-svn.desktop</Filename>
       <Filename>j2sc.desktop</Filename>
+      <Filename>jaaa-alsa.desktop</Filename>
+      <Filename>jaaa-jack.desktop</Filename>
       <Filename>jackbeat.desktop</Filename>
       <Filename>jack-capture.desktop</Filename>
       <Filename>jack-capture-gui.desktop</Filename>
@@ -181,6 +185,7 @@
       <Filename>puredata.desktop</Filename>
       <Filename>qamix.desktop</Filename>
       <Filename>qarecord.desktop</Filename>
+      <Filename>qasmixer.desktop</Filename>
       <Filename>qdvdauthor.desktop</Filename>
       <Filename>qjackctl.desktop</Filename>
       <Filename>qmidiarp.desktop</Filename>
@@ -221,6 +226,7 @@
       <Filename>synthv1.desktop</Filename>
       <Filename>timemachine.desktop</Filename>
       <Filename>totem.desktop</Filename>
+      <Filename>tracktion.desktop</Filename>
       <Filename>traverso.desktop</Filename>
       <Filename>vex.desktop</Filename>
       <Filename>vocproc.desktop</Filename>
