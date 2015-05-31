@@ -264,6 +264,7 @@ def do_live_stuff():
 
   modAppFile   = "/usr/share/applications/mod-app.desktop"
   modPanelFile = "/usr/share/applications/mod-panel.desktop"
+  modRebuildDB = "/usr/bin/mod-rebuild-database"
 
   if not os.path.exists(desktopDir):
     os.mkdir(desktopDir)
@@ -279,6 +280,9 @@ def do_live_stuff():
 
   if os.path.exists(modPanelFile):
     os.system("install -m 755 '%s' '%s'" % (modPanelFile, desktopDir))
+
+  if os.path.exists(modRebuildDB):
+    os.system("%s" % modRebuildDB)
 
 # ----------------------------------------------
 
