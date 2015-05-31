@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Trusty
-VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("precise","trusty")' | awk 'sub("\\\)","\n")' | head -n 1`
+VERSION=`cat debian/changelog | head -n 1 | awk '{printf$2}' | awk 'sub("\\\(","")' | awk 'sub("kxstudio","trusty")' | awk 'sub("\\\)","\n")' | head -n 1`
 dch --force-distribution -D trusty -v $VERSION "Trusty build"
 debuild --no-lintian -S -sa
 
