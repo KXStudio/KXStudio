@@ -149,6 +149,9 @@
       <Filename>minicomputer.desktop</Filename>
       <Filename>minitube.desktop</Filename>
       <Filename>mixxx.desktop</Filename>
+      <Filename>mod-app.desktop</Filename>
+      <Filename>mod-panel.desktop</Filename>
+      <Filename>mod-remote.desktop</Filename>
       <Filename>monobristol.desktop</Filename>
       <Filename>mplayer.desktop</Filename>
       <Filename>mscore.desktop</Filename>
@@ -269,6 +272,7 @@
       <Filename>kde4-k9copy_assistant.desktop</Filename>
       <Filename>kde4-k9copy.desktop</Filename>
       <Filename>kde4-kdenlive.desktop</Filename>
+      <Filename>kde4-kid3.desktop</Filename>
       <Filename>kde4-kmetronome.desktop</Filename>
       <Filename>kde4-kmid.desktop</Filename>
       <Filename>kde4-kmid2.desktop</Filename>

@@ -152,6 +152,9 @@
       <Filename>minicomputer.desktop</Filename>
       <Filename>minitube.desktop</Filename>
       <Filename>mixxx.desktop</Filename>
+      <Filename>mod-app.desktop</Filename>
+      <Filename>mod-panel.desktop</Filename>
+      <Filename>mod-remote.desktop</Filename>
       <Filename>monobristol.desktop</Filename>
       <Filename>mplayer.desktop</Filename>
       <Filename>mscore.desktop</Filename>
@@ -272,6 +275,7 @@
       <Filename>kde4-k9copy_assistant.desktop</Filename>
       <Filename>kde4-k9copy.desktop</Filename>
       <Filename>kde4-kdenlive.desktop</Filename>
+      <Filename>kde4-kid3.desktop</Filename>
       <Filename>kde4-kmetronome.desktop</Filename>
       <Filename>kde4-kmid.desktop</Filename>
       <Filename>kde4-kmid2.desktop</Filename>
@@ -366,6 +370,7 @@
         <Filename>mhwaveedit.desktop</Filename>
         <Filename>milkytracker.desktop</Filename>
         <Filename>mixxx.desktop</Filename>
+        <Filename>mod-app.desktop</Filename>
         <Filename>mscore.desktop</Filename>
         <Filename>muse.desktop</Filename>
         <Filename>non-daw.desktop</Filename>
@@ -450,6 +455,8 @@
         <Filename>lpatchage.desktop</Filename>
         <Filename>meterbridge.desktop</Filename>
         <Filename>midisnoop.desktop</Filename>
+        <Filename>mod-panel.desktop</Filename>
+        <Filename>mod-remote.desktop</Filename>
         <Filename>non-session-manager.desktop</Filename>
         <Filename>patchage.desktop</Filename>
         <Filename>patchage-svn.desktop</Filename>
@@ -462,7 +469,9 @@
         <Filename>vmpk-jack.desktop</Filename>
         <Filename>zonage.desktop</Filename>
 
+        <Filename>kde4-kid3.desktop</Filename>
         <Filename>kde4-kmetronome.desktop</Filename>
+        <Filename>kde4-kmidimon.desktop</Filename>
         <Filename>kde4-kwave.desktop</Filename>
       </Include>
     </Menu>
@@ -533,7 +542,6 @@
 
         <Filename>kde-kmix.desktop</Filename>
 
-        <Filename>kde4-kmidimon.desktop</Filename>
         <Filename>kde4-kmix.desktop</Filename>
       </Include>
     </Menu>
