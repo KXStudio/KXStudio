@@ -262,9 +262,6 @@ def do_live_stuff():
   kxstudioDocs = "/usr/share/kxstudio/docs"
   ubiquityFile = "/usr/share/applications/kde4/ubiquity-kdeui.desktop"
 
-  modAppFile   = "/usr/share/applications/mod-app.desktop"
-  modPanelFile = "/usr/share/applications/mod-panel.desktop"
-
   if not os.path.exists(desktopDir):
     os.mkdir(desktopDir)
 
@@ -274,11 +271,15 @@ def do_live_stuff():
   if os.path.exists(ubiquityFile):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
 
-  if os.path.exists(modAppFile):
-    os.system("install -m 755 '%s' '%s'" % (modAppFile, desktopDir))
+  if os.path.exists("/usr/share/wallpapers/MOD-Logo/metadata.desktop"):
+    modAppFile   = "/usr/share/applications/mod-app.desktop"
+    modPanelFile = "/usr/share/applications/mod-panel.desktop"
 
-  if os.path.exists(modPanelFile):
-    os.system("install -m 755 '%s' '%s'" % (modPanelFile, desktopDir))
+    if os.path.exists(modAppFile):
+      os.system("install -m 755 '%s' '%s'" % (modAppFile, desktopDir))
+
+    if os.path.exists(modPanelFile):
+      os.system("install -m 755 '%s' '%s'" % (modPanelFile, desktopDir))
 
 # ----------------------------------------------
 
