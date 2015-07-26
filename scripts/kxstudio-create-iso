@@ -67,7 +67,7 @@ SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
 apt-get update
 apt-get install software-properties-common wget
 add-apt-repository -y ppa:kxstudio-debian/kxstudio
-add-apt-repository -y ppa:blue-shell/firefox-kde
+add-apt-repository -y ppa:plasmazilla/releases
 # add-apt-repository -y ppa:irie/blender
 apt-get update
 apt-get install kxstudio-repos
@@ -98,7 +98,10 @@ sed -i 's/trusty/lucid/' /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod.li
 apt-get update; apt-get dist-upgrade
 
 # Base Install
-apt-get install ubuntu-standard laptop-detect os-prober dkms
+apt-get install --no-install-recommends ubuntu-standard laptop-detect os-prober \
+ libpam-systemd command-not-found friendly-recovery nano ntfs-3g ufw uuid-runtime \
+ manpages geoip-database bash-completion irqbalance powermgmt-base ppp pppconfig pppoeconf \
+ dkms fakeroot libc6-dev libc-dev kxstudio-meta-live-conflicts
 
 # Fix upstart
 dpkg-divert --local --rename --add /sbin/initctl
@@ -110,15 +113,12 @@ rm /sbin/initctl
 dpkg-divert --local --rename --remove /sbin/initctl
 
 # Kernel Install
-apt-get install linux-lowlatency linux-image-lowlatency linux-headers-lowlatency # skip grub install/configure to HDD here
-apt-get purge linux-headers-3.13.0-39 linux-headers-3.13.0-39-lowlatency linux-image-3.13.0-39-lowlatency
-apt-get purge linux-headers-3.13.0-40 linux-headers-3.13.0-40-lowlatency linux-image-3.13.0-40-lowlatency
-apt-get purge linux-headers-3.13.0-45 linux-headers-3.13.0-45-lowlatency linux-image-3.13.0-45-lowlatency
+apt-get install linux-lowlatency linux-image-lowlatency linux-headers-lowlatency kxstudio-meta-live-conflicts # skip grub install/configure to HDD here
 apt-get purge linux-headers-3.13.0-46 linux-headers-3.13.0-46-lowlatency linux-image-3.13.0-46-lowlatency
 apt-get clean
 
 # Install packages (KXStudio)
-apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
+apt-get install jackd2 desktop-base mod-app kxstudio-meta-audio-plugins-collection kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
 
 # Install packages (MOD)
 apt-get install jackd2 mod-desktop-kde4 mod-desktop mod-meta kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
@@ -144,8 +144,8 @@ dpkg --add-architecture i386
 apt-get update; apt-get dist-upgrade
 
 # Install extras
-apt-get install calf-plugins
 apt-get install kxstudio-docs
+apt-get install firefox-plasma thunderbird-plasma mozilla-kde-support
 apt-get install indicator-cpufreq ubuntu-extras-keyring \
  sni-qt libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa libegl1-mesa-drivers libglapi-mesa libgles2-mesa libglu1-mesa libtxc-dxtn-s2tc0 \
  sni-qt:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libegl1-mesa:i386 libegl1-mesa-drivers:i386 libglapi-mesa:i386 libgles2-mesa:i386 libglu1-mesa:i386 libtxc-dxtn-s2tc0:i386
@@ -190,7 +190,7 @@ echo "## ----- END PAUSE ----- ##
 
 # Now use locate
 apt-get clean
-/usr/bin/updatedb.mlocate
+# /usr/bin/updatedb.mlocate
 
 # Now install the liveDVD specific packages
 apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils xfsprogs
@@ -234,8 +234,8 @@ rm -f /etc/hosts /etc/resolv.conf
 ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
 find /var/log -type f | while read file; do cat /dev/null | tee $file; done
 umount /dev/pts
-umount /proc/ # to force: 'umount -lf /proc'
-umount /sys/
+umount -lf /proc
+umount -lf /sys
 exit
 "
 exit
