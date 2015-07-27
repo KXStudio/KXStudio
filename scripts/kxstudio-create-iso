@@ -118,7 +118,7 @@ apt-get purge linux-headers-3.13.0-46 linux-headers-3.13.0-46-lowlatency linux-i
 apt-get clean
 
 # Install packages (KXStudio)
-apt-get install jackd2 desktop-base mod-app kxstudio-meta-audio-plugins-collection kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
+apt-get install jackd2 mod-app kxstudio-meta-audio-plugins-collection kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
 
 # Install packages (MOD)
 apt-get install jackd2 mod-desktop-kde4 mod-desktop mod-meta kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
@@ -232,11 +232,13 @@ apt-get clean
 rm -rf /tmp/*
 rm -f /etc/hosts /etc/resolv.conf
 ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
+chmod 644 /root/.{b,p}*
 find /var/log -type f | while read file; do cat /dev/null | tee $file; done
 umount /dev/pts
 umount -lf /proc
 umount -lf /sys
 exit
+sudo nano ~/livecd/custom/root/.bash_history
 "
 exit
   ;;

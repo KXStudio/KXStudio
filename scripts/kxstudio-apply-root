@@ -1,10 +1,12 @@
 #!/bin/bash
 
-sudo mkdir -p /root/.config/
-sudo mkdir -p /root/.config/qtcurve/
-sudo mkdir -p /root/.kde/
-sudo mkdir -p /root/.kde/share/
-sudo mkdir -p /root/.kde/share/config/
+sudo mkdir -p /root/.config
+sudo mkdir -p /root/.config/gtk-2.0
+sudo mkdir -p /root/.config/gtk-3.0
+sudo mkdir -p /root/.config/qtcurve
+sudo mkdir -p /root/.kde
+sudo mkdir -p /root/.kde/share
+sudo mkdir -p /root/.kde/share/config
 
 if [ -f ~/.gtkrc-2.0-kxstudio ]; then
   sudo cp ~/.gtkrc-2.0-kxstudio /root/.gtkrc-2.0
@@ -14,8 +16,16 @@ if [ -f ~/.gtkrc-2.0-kde4 ]; then
   sudo cp ~/.gtkrc-2.0-kde4 /root/.gtkrc-2.0
 fi
 
+if [ -d ~/.config/gtk-2.0 ]; then
+  sudo cp ~/.config/gtk-2.0/* /root/.config/gtk-2.0/
+fi
+
+if [ -d ~/.config/gtk-3.0 ]; then
+  sudo cp ~/.config/gtk-3.0/* /root/.config/gtk-3.0/
+fi
+
 if [ -d ~/.config/qtcurve ]; then
-  sudo cp ~/.config/qtcurve/* /root/.config/qtcurve
+  sudo cp ~/.config/qtcurve/* /root/.config/qtcurve/
 fi
 
 if [ -f ~/.config/Trolltech.conf ]; then
