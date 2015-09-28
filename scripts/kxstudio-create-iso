@@ -101,7 +101,7 @@ apt-get update; apt-get dist-upgrade
 apt-get install --no-install-recommends ubuntu-standard laptop-detect os-prober \
  libpam-systemd command-not-found friendly-recovery nano ntfs-3g ufw uuid-runtime \
  manpages geoip-database bash-completion irqbalance powermgmt-base ppp pppconfig pppoeconf \
- dkms fakeroot libc6-dev libc-dev kxstudio-meta-live-conflicts
+ cryptsetup lvm2 dkms fakeroot libc6-dev libc-dev kxstudio-meta-live-conflicts
 
 # Fix upstart
 dpkg-divert --local --rename --add /sbin/initctl
