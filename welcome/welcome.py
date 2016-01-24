@@ -156,8 +156,6 @@ CONFIG_THEME = (
 )
 
 CONFIG_THEME_ALL = (
-  "ardour2/ardour.rc",
-  "config/ardour3/ardour.rc",
   "config/libreoffice/3/user/registrymodifications.xcu",
   "kde/share/config/konversationrc",
   "local/share/applications/defaults.list",
