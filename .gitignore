@@ -1,5 +1,6 @@
 *~
 *.directory
 *.pyc
+debian/
 welcome/__pycache__/
 welcome/ui_*
