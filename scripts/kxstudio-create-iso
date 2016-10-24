@@ -58,6 +58,7 @@ mount -t sysfs none /sys/
 mount -t devpts none /dev/pts
 export HOME=/root
 export LANG=C
+export LC_ALL=C
 unset LC_TIME
 "
 echo "
@@ -122,6 +123,12 @@ apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-k
 
 # Install packages (MOD)
 apt-get install jackd2 mod-desktop-kde4 mod-desktop mod-meta kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
+
+# Install packages (mod-plugin-builder)
+apt-get install acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man nano perl patch tar texinfo unzip
+apt-get install automake binutils build-essential cpio libtool libncurses-dev pkg-config
+apt-get install casper lupin-casper kpartx kpartx-boot
+apt-get install btrfs-tools dmraid ecryptfs-utils jfsutils xfsprogs
 
 # Test
 rm /var/cache/apt/archives/wine-rt*
