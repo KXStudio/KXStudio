@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# kill alsa bridge, may lead to kernel crashes later
+
+case "$1" in
+        pre)
+                killall -KILL alsa_in alsa_out zita-a2j zita-j2a || true
+                ;;
+esac
