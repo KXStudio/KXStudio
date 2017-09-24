@@ -158,9 +158,11 @@ apt-get install indicator-cpufreq ubuntu-extras-keyring \
  sni-qt:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libegl1-mesa:i386 libegl1-mesa-drivers:i386 libglapi-mesa:i386 libgles2-mesa:i386 libglu1-mesa:i386 libtxc-dxtn-s2tc0:i386
 
 # Remove deprecated/dummy
+apt-get purge kxstudio-meta-live-conflicts
+apt-get install calf-plugins-git
 apt-get purge ardour3
-apt-get purge amsynth-dssi drumkv1-lv2 samplv1-lv2 synthv1-lv2
-apt-get purge carla calf-plugins-git
+apt-get purge amsynth-dssi drumkv1 samplv1 synthv1
+apt-get purge carla calf-plugins
 apt-get purge composite composite-data
 apt-get purge hydrogen-drumkits fluid-soundfont-gm
 apt-get purge kxstudio-kernel-lowlatency
@@ -178,7 +180,6 @@ apt-get purge libjack0
 apt-get purge libjack0:i386
 
 # Cleanup
-apt-get remove kxstudio-meta-live-conflicts
 apt-get autoremove
 apt-get clean
 
@@ -192,6 +193,9 @@ $ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
 $ sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
 $ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop"
 
+# sudo mkdir -p ~/livecd/cd/casper/
+# sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
+# sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
 # sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
 
 echo "## ----- END PAUSE ----- ##
@@ -288,13 +292,13 @@ sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/txt.cfg
 sudo mkdir -p ~/livecd/cd/.disk/
 
 if [ "$ISO_ARCH" == "i386" ]; then
-sudo su root -c 'echo "KXStudio 14.04 (Live 32bit)" > .disk/info'
+sudo su root -c 'echo "KXStudio 14.04.5 (Live 32bit)" > .disk/info'
 else
-sudo su root -c 'echo "KXStudio 14.04 (Live 64bit)" > .disk/info'
+sudo su root -c 'echo "KXStudio 14.04.5 (Live 64bit)" > .disk/info'
 fi
 # sudo su root -c 'echo "Live-MOD 2015-03" > .disk/info'
 
-sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio14042:ReleaseNotes" > .disk/release_notes_url'
+sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio14045:ReleaseNotes" > .disk/release_notes_url'
 
 echo "Please edit these files manually:
 ~/livecd/cd/.disk/info
