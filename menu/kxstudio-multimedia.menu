@@ -98,6 +98,7 @@
       <Filename>hdajackretask.desktop</Filename>
       <Filename>hdspconf.desktop</Filename>
       <Filename>hdspmixer.desktop</Filename>
+      <Filename>helio-workstation.desktop</Filename>
       <Filename>helm.desktop</Filename>
       <Filename>hexter.desktop</Filename>
       <Filename>highlife.desktop</Filename>
@@ -236,6 +237,7 @@
       <Filename>totem.desktop</Filename>
       <Filename>tracktion.desktop</Filename>
       <Filename>traverso.desktop</Filename>
+      <Filename>vcvrack.desktop</Filename>
       <Filename>vex.desktop</Filename>
       <Filename>vocproc.desktop</Filename>
       <Filename>vkeybd.desktop</Filename>
@@ -330,7 +332,7 @@
         <Filename>rakarrack.desktop</Filename>
         <Filename>samplv1.desktop</Filename>
         <Filename>synthv1.desktop</Filename>
-        <Filename>vocproc.desktop</Filename>
+        <Filename>vcvrack.desktop</Filename>
         <Filename>zita-at1.desktop</Filename>
         <Filename>zita-rev1.desktop</Filename>
         <Filename>zynjacku.desktop</Filename>
@@ -353,6 +355,7 @@
         <Filename>energyxt2.desktop</Filename>
         <Filename>freebirth.desktop</Filename>
         <Filename>freqtweak.desktop</Filename>
+        <Filename>helio-workstation.desktop</Filename>
         <Filename>hydrogen.desktop</Filename>
         <Filename>ingen.desktop</Filename>
         <Filename>ingen-svn.desktop</Filename>

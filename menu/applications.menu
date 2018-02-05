@@ -95,6 +95,7 @@
       <Filename>hdajackretask.desktop</Filename>
       <Filename>hdspconf.desktop</Filename>
       <Filename>hdspmixer.desktop</Filename>
+      <Filename>helio-workstation.desktop</Filename>
       <Filename>helm.desktop</Filename>
       <Filename>hexter.desktop</Filename>
       <Filename>highlife.desktop</Filename>
@@ -233,6 +234,7 @@
       <Filename>totem.desktop</Filename>
       <Filename>tracktion.desktop</Filename>
       <Filename>traverso.desktop</Filename>
+      <Filename>vcvrack.desktop</Filename>
       <Filename>vex.desktop</Filename>
       <Filename>vocproc.desktop</Filename>
       <Filename>vkeybd.desktop</Filename>
