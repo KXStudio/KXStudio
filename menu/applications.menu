@@ -252,6 +252,7 @@
       <Filename>zynaddsubfx.desktop</Filename>
       <Filename>zynaddsubfx-alsa.desktop</Filename>
       <Filename>zynaddsubfx-jack.desktop</Filename>
+      <Filename>zynaddsubfx-oss.desktop</Filename>
       <Filename>zynjacku.desktop</Filename>
 
       <Filename>kde-amarok.desktop</Filename>
@@ -284,6 +285,8 @@
       <Filename>kde4-kwave.desktop</Filename>
       <Filename>kde4-recorditnow.desktop</Filename>
       <Filename>kde4-sparklemedia.desktop</Filename>
+
+      <Filename>org.kde.kdenlive.desktop</Filename>
     </Exclude>
     <!-- <AppDir>/usr/local/share/applications</AppDir> -->
 
