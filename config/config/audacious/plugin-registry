@@ -1,0 +1,11 @@
+format 11
+output /usr/lib/x86_64-linux-gnu/audacious/Output/jack-ng.so
+stamp 1512523113
+version 48
+flags 0
+name JACK Output
+domain audacious-plugins
+priority 10
+about 0
+config 1
+enabled 1

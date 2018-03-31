@@ -1,3 +1,0 @@
-export QT_PLUGIN_PATH=$HOME/.kde/lib/kde4/plugins/:/usr/lib/kde4/plugins/
-export QT_GRAPHICSSYSTEM=raster
-. /etc/xdg/xfce4/xinitrc
