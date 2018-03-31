@@ -5,7 +5,3 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 
 # Force KMix to use raw ALSA mode (disable PulseAudio)
 export KMIX_PULSEAUDIO_DISABLE=1
-
-# Wine Real-Time Schedulling
-#export WINE_RT=15
-#export WINE_SVR_RT=10
