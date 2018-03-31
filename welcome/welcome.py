@@ -4,8 +4,9 @@
 # ----------------------------------------------
 # Imports (Global)
 
-from PyQt4.QtCore import QSettings, QTimer, QThread, SIGNAL
-from PyQt4.QtGui import QApplication, QIcon, QMessageBox, QPixmap, QWizard
+from PyQt5.QtCore import pyqtSignal, QSettings, QTimer, QThread
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtWidgets import QApplication, QMessageBox, QWizard
 from subprocess import getoutput
 from time import sleep
 import os, sys
@@ -172,17 +173,15 @@ def create_folder_for_file(sfile):
       os.system("mkdir -p %s" % (folder))
 
 def do_copy_all():
+  return # TODO
+
   for sfile in CONFIG_ALL:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
-  if os.path.exists("/usr/share/wallpapers/MOD-Logo/metadata.desktop"):
-    kickoffrc = HOME + "/.kde/share/config/kickoffrc"
-    os.system("sed -i 's|audacious.desktop|mod-app.desktop|' '%s'" % kickoffrc)
-    os.system("sed -i 's|firefox.desktop|mod-panel.desktop|' '%s'" % kickoffrc)
-    os.system("sed -i 's|claudia-launcher.desktop|carla.desktop|' '%s'" % kickoffrc)
-
 def do_copy_basic():
+  return # TODO
+
   for sfile in CONFIG_SMALL:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
@@ -192,13 +191,9 @@ def do_copy_basic():
     if not os.path.exists("%s/.%s" % (HOME, sfile)):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
-  if os.path.exists("/usr/share/wallpapers/MOD-Logo/metadata.desktop"):
-    kickoffrc = HOME + "/.kde/share/config/kickoffrc"
-    os.system("sed -i 's|audacious.desktop|mod-app.desktop|' '%s'" % kickoffrc)
-    os.system("sed -i 's|firefox.desktop|mod-panel.desktop|' '%s'" % kickoffrc)
-    os.system("sed -i 's|claudia-launcher.desktop|carla.desktop|' '%s'" % kickoffrc)
-
 def do_copy_theme(fontSize, copy_all=False):
+  return # TODO
+
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
@@ -209,11 +204,6 @@ def do_copy_theme(fontSize, copy_all=False):
       create_folder_for_file(sfile)
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
       os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
-
-  if os.path.exists("/lib/plymouth/themes/mod-logo/mod-logo.script"):
-    defs = HOME + "/.local/share/applications/defaults.list"
-    mims = HOME + "/.local/share/applications/mimeapps.list"
-    os.system("sed -i 's|firefox.desktop|chromium-browser.desktop|' '%s' '%s'" % (defs, mims))
 
   # TESTING
   foxFolders = getoutput("find %s/.mozilla/firefox/*.default/chrome/ -type d" % HOME).strip().split("\n")
@@ -235,6 +225,8 @@ def do_copy_theme(fontSize, copy_all=False):
   os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
 
 def do_wine_stuff():
+  return # TODO
+
   if not os.path.exists("/usr/bin/wineboot"):
     return
 
@@ -251,6 +243,8 @@ def do_wine_stuff():
     os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp")
 
 def do_final_stuff():
+  return # TODO
+
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink_description "Jack"')
@@ -269,20 +263,12 @@ def do_live_stuff():
   if os.path.exists(ubiquityFile):
     os.system("cp '%s' '%s'" % (ubiquityFile, desktopDir))
 
-  if os.path.exists("/usr/share/wallpapers/MOD-Logo/metadata.desktop"):
-    modAppFile   = "/usr/share/applications/mod-app.desktop"
-    modPanelFile = "/usr/share/applications/mod-panel.desktop"
-
-    if os.path.exists(modAppFile):
-      os.system("install -m 755 '%s' '%s'" % (modAppFile, desktopDir))
-
-    if os.path.exists(modPanelFile):
-      os.system("install -m 755 '%s' '%s'" % (modPanelFile, desktopDir))
-
 # ----------------------------------------------
 
 # Separate Thread for Copying Stuff
 class CopyStuffThread(QThread):
+    setLabelPixmap = pyqtSignal(int, int)
+    
     def __init__(self, parent=None):
         super(CopyStuffThread, self).__init__(parent)
 
@@ -301,34 +287,34 @@ class CopyStuffThread(QThread):
 
     def run(self):
         # Settings
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_SETTINGS, ID_PIXMAP_PROCESS)
+        self.setLabelPixmap.emit(ID_GROUP_SETTINGS, ID_PIXMAP_PROCESS)
         if self._copy:
           sleep(1)
           if self._copy_all:
             do_copy_all()
           elif self._copy_basic:
             do_copy_basic()
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_SETTINGS, ID_PIXMAP_DONE)
+        self.setLabelPixmap.emit(ID_GROUP_SETTINGS, ID_PIXMAP_DONE)
 
         # Theme
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_PROCESS)
+        self.setLabelPixmap.emit(ID_GROUP_THEME, ID_PIXMAP_PROCESS)
         if self._copy_theme:
           sleep(1)
           do_copy_theme(self._font_size)
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_THEME, ID_PIXMAP_DONE)
+        self.setLabelPixmap.emit(ID_GROUP_THEME, ID_PIXMAP_DONE)
 
         # Wine
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_WINE, ID_PIXMAP_PROCESS)
+        self.setLabelPixmap.emit(ID_GROUP_WINE, ID_PIXMAP_PROCESS)
         if self._copy:
           do_wine_stuff()
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_WINE, ID_PIXMAP_DONE)
+        self.setLabelPixmap.emit(ID_GROUP_WINE, ID_PIXMAP_DONE)
 
         # Final
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_FINAL, ID_PIXMAP_PROCESS)
+        self.setLabelPixmap.emit(ID_GROUP_FINAL, ID_PIXMAP_PROCESS)
         if self._copy:
           sleep(1)
           do_final_stuff()
-        self.emit(SIGNAL("setLabelPixmap(int, int)"), ID_GROUP_FINAL, ID_PIXMAP_DONE)
+        self.setLabelPixmap.emit(ID_GROUP_FINAL, ID_PIXMAP_DONE)
 
 # Main Window
 class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
@@ -355,14 +341,14 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
         self.copyStuffThread = CopyStuffThread(self)
 
-        self.connect(self, SIGNAL("finished(int)"), self.saveSettings)
-        self.connect(self, SIGNAL("currentIdChanged(int)"), self.pageChanged)
-        self.connect(self.group_settings, SIGNAL("clicked(bool)"), self.checkNext)
-        self.connect(self.rb_basic, SIGNAL("clicked()"), self.enableNext)
-        self.connect(self.rb_all, SIGNAL("clicked()"), self.enableNext)
-        self.connect(self.b_screenshot, SIGNAL("clicked()"), self.showScreenshot)
-        self.connect(self.copyStuffThread, SIGNAL("setLabelPixmap(int, int)"), self.setLabelPixmap)
-        self.connect(self.copyStuffThread, SIGNAL("finished()"), self.copyStuffFinished)
+        self.finished.connect(self.saveSettings)
+        self.currentIdChanged.connect(self.pageChanged)
+        self.group_settings.clicked.connect(self.checkNext)
+        self.rb_basic.clicked.connect(self.enableNext)
+        self.rb_all.clicked.connect(self.enableNext)
+        self.b_screenshot.clicked.connect(self.showScreenshot)
+        self.copyStuffThread.setLabelPixmap.connect(self.setLabelPixmap)
+        self.copyStuffThread.finished.connect(self.copyStuffFinished)
 
         if not os.path.exists("/usr/share/themes/KXStudio/index.theme"):
           self.group_theme.setChecked(False)
