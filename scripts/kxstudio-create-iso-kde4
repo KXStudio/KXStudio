@@ -1,0 +1,428 @@
+#!/bin/bash
+
+# Debian fix
+export PATH=/usr/sbin/:$PATH
+
+# Check dependencies
+if (which 7z > /dev/null); then true; else
+  echo "7z not found, please install it"
+  exit
+fi
+
+if (which cpio > /dev/null); then true; else
+  echo "cpio not found, please install it"
+  exit
+fi
+
+if (which debootstrap > /dev/null); then true; else
+  echo "debootstrap not found, please install it"
+  exit
+fi
+
+if (which gzip > /dev/null); then true; else
+  echo "gzip not found, please install it"
+  exit
+fi
+
+if (which lzma > /dev/null); then true; else
+  echo "lzma not found, please install it"
+  exit
+fi
+
+if (which mksquashfs > /dev/null); then true; else
+  echo "mksquashfs not found, please install it"
+  exit
+fi
+
+if (which xorriso > /dev/null); then true; else
+  echo "xorriso not found, please install it"
+  exit
+fi
+
+case $1 in
+
+    squash)
+sudo debootstrap --arch=$3 $2 ~/livecd/custom http://archive.ubuntu.com/ubuntu/
+exit
+    ;;
+
+    custom)
+# sudo mount --bind /dev ~/livecd/custom/dev
+sudo rm -f ~/livecd/custom/etc/hosts
+sudo rm -f ~/livecd/custom/etc/resolv.conf
+sudo cp /etc/resolv.conf /etc/hosts ~/livecd/custom/etc/
+echo "run this now:
+
+mount -t proc none /proc/
+mount -t sysfs none /sys/
+mount -t devpts none /dev/pts
+export HOME=/root
+export LANG=C
+export LC_ALL=C
+unset LC_TIME
+"
+echo "
+SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
+
+# Update Sources
+apt-get update
+apt-get install software-properties-common wget
+add-apt-repository -y ppa:kxstudio-debian/kxstudio
+add-apt-repository -y ppa:plasmazilla/releases
+# add-apt-repository -y ppa:irie/blender
+apt-get update
+apt-get install kxstudio-repos
+apt-get clean
+
+# Check /etc/apt/sources.list
+echo 'deb http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+# deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+
+deb http://archive.canonical.com/ubuntu trusty partner
+# deb-src http://archive.canonical.com/ubuntu trusty partner' > /etc/apt/sources.list
+
+# MOD only
+add-apt-repository -y ppa:kxstudio-debian/kxstudio-mod
+cp /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod-trusty.list /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod.list
+sed -i 's/trusty/lucid/' /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod.list
+
+# Update System
+apt-get update; apt-get dist-upgrade
+
+# Base Install
+apt-get install --no-install-recommends ubuntu-standard laptop-detect os-prober \
+ libpam-systemd command-not-found friendly-recovery nano ntfs-3g ufw uuid-runtime \
+ manpages geoip-database bash-completion irqbalance powermgmt-base ppp pppconfig pppoeconf \
+ cryptsetup lvm2 dkms fakeroot libc6-dev libc-dev kxstudio-meta-live-conflicts
+
+# Fix upstart
+dpkg-divert --local --rename --add /sbin/initctl
+ln -s /bin/true /sbin/initctl
+touch /etc/init.d/systemd-logind
+apt-get install -f
+rm /etc/init.d/systemd-logind
+rm /sbin/initctl
+dpkg-divert --local --rename --remove /sbin/initctl
+
+# Kernel Install
+apt-get install linux-lowlatency linux-image-lowlatency linux-headers-lowlatency kxstudio-meta-live-conflicts # skip grub install/configure to HDD here
+apt-get purge linux-headers-3.13.0-46 linux-headers-3.13.0-46-lowlatency linux-image-3.13.0-46-lowlatency
+apt-get clean
+
+# Install packages (KXStudio)
+apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
+
+# Install packages (MOD)
+apt-get install jackd2 mod-desktop-kde4 mod-desktop mod-meta kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
+
+# Install packages (mod-plugin-builder)
+apt-get install acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man nano perl patch tar texinfo unzip
+apt-get install automake binutils build-essential cpio libtool libncurses-dev pkg-config
+apt-get install casper lupin-casper kpartx kpartx-boot
+apt-get install btrfs-tools dmraid ecryptfs-utils jfsutils xfsprogs
+
+# Test
+rm /var/cache/apt/archives/wine-rt*
+
+# Fix
+touch /etc/init.d/modemmanager
+apt-get install -f
+rm /etc/init.d/modemmanager
+apt-get clean
+
+# Network Manager (optional)
+apt-get install network-manager-gnome
+apt-get purge plasma-nm
+
+apt-get install plasma-nm
+apt-get purge network-manager-gnome gnome-icon-theme humanity-icon-theme libgnome-bluetooth11 libgnome-keyring-common libgnome-keyring0 libnm-gtk-common libnm-gtk0
+
+# 64bit fix
+dpkg --add-architecture i386
+apt-get update; apt-get dist-upgrade
+
+# Install extras
+apt-get install kxstudio-docs
+apt-get install firefox-plasma thunderbird-plasma mozilla-kde-support
+apt-get install indicator-cpufreq ubuntu-extras-keyring \
+ sni-qt libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa libegl1-mesa-drivers libglapi-mesa libgles2-mesa libglu1-mesa libtxc-dxtn-s2tc0 \
+ sni-qt:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libegl1-mesa:i386 libegl1-mesa-drivers:i386 libglapi-mesa:i386 libgles2-mesa:i386 libglu1-mesa:i386 libtxc-dxtn-s2tc0:i386
+
+# Remove deprecated/dummy
+apt-get purge kxstudio-meta-live-conflicts
+apt-get install calf-plugins-git
+apt-get purge ardour3
+apt-get purge amsynth-dssi drumkv1 samplv1 synthv1
+apt-get purge carla calf-plugins
+apt-get purge composite composite-data
+apt-get purge hydrogen-drumkits fluid-soundfont-gm
+apt-get purge kxstudio-kernel-lowlatency
+apt-get purge flashplugin-installer
+
+# Remove unwanted
+apt-get purge vlc-plugin-pulse xterm rtkit libpulsedsp
+apt-get purge pulseaudio*
+apt-get purge loomer-plugins*
+apt-get purge linuxdsp-plugins*
+apt-get purge pianoteq*
+apt-get purge renoise*
+apt-get purge lilypond*
+apt-get purge libjack0
+apt-get purge libjack0:i386
+
+# Cleanup
+apt-get autoremove
+apt-get clean
+
+dpkg -l | grep "rc "
+rm /boot/*liquorix*
+
+## ---- PAUSE HERE ----- ##
+# Before installing ubiquity in the live session, you'll need to run this outside:
+$ sudo mkdir -p ~/livecd/cd/casper/
+$ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
+$ sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
+$ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop"
+
+# sudo mkdir -p ~/livecd/cd/casper/
+# sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
+# sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
+# sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
+
+echo "## ----- END PAUSE ----- ##
+
+# Now use locate
+apt-get clean
+# /usr/bin/updatedb.mlocate
+
+# Now install the liveDVD specific packages
+apt-get install ubiquity-frontend-kde casper lupin-casper discover jfsutils xfsprogs
+
+# Just in case you want to revert the live-dvd install action
+apt-get purge \
+  apt-clone archdetect-deb btrfs-tools casper cifs-utils discover \
+  discover-data dmraid dpkg-repack ecryptfs-utils jfsutils keyutils kpartx \
+  kpartx-boot libdebian-installer4 libdiscover2 libdmraid1.0.0.rc16 \
+  libecryptfs0 libnss3-1d localechooser-data lupin-casper python3-icu \
+  python3-pam rdate sbsigntool ubiquity ubiquity-casper ubiquity-frontend-kde \
+  ubiquity-ubuntu-artwork user-setup xfsprogs
+
+"
+sudo chroot ~/livecd/custom
+echo "done"
+exit
+    ;;
+
+    custom_end)
+echo "run this now:
+
+#rm -f /sbin/initctl
+#dpkg-divert --rename --remove /sbin/initctl
+
+rm -f /var/kxstudio/*
+
+apt-get clean
+rm -rf /tmp/*
+rm -f /etc/hosts /etc/resolv.conf
+ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
+chmod 644 /root/.{b,p}*
+find /var/log -type f | while read file; do cat /dev/null | tee $file; done
+umount /dev/pts
+umount -lf /proc
+umount -lf /sys
+exit
+sudo nano ~/livecd/custom/root/.bash_history
+"
+exit
+  ;;
+
+    mksquash)
+sudo mkdir -p ~/livecd/cd/casper/
+cd ~/livecd/cd/casper/
+sudo su root -c "printf $(sudo du -sx --block-size=1 ~/livecd/custom | cut -f1) > ./filesystem.size"
+sudo touch ./filesystem.manifest
+sudo touch ./filesystem.manifest-remove
+sudo chmod 777 ./filesystem.manifest
+sudo chmod 777 ./filesystem.manifest-remove
+sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ./filesystem.manifest
+if [ -f ./filesystem.manifest-desktop ]; then
+  comm -3 <(cat ./filesystem.manifest | awk '{print $1}' | sort) <(cat ./filesystem.manifest-desktop | awk '{print $1}' | sort) > ./filesystem.manifest-remove
+fi
+sudo rm -f ./filesystem.squashfs ./filesystem.manifest-desktop
+sudo mksquashfs ~/livecd/custom ./filesystem.squashfs -noappend -comp xz
+echo "done"
+exit
+    ;;
+
+    mkart)
+if [ ! -f ~/livecd/iso-stuff.7z ]; then
+  echo "Please copy iso-stuff.7z to ~/livecd before continuing"
+  exit
+fi
+
+ISO_ARCH="$2"
+ISO_NAME="$3"
+
+if [ $ISO_ARCH"0" == "0" ]; then
+echo "usage: $0 mkart <arch> <distro>"
+exit
+fi
+
+if [ $ISO_NAME"0" == "0" ]; then
+echo "usage: $0 mkart $ISO_ARCH <distro>"
+exit
+fi
+
+sudo mkdir -p ~/livecd/cd
+cd ~/livecd/cd
+sudo 7z x -y ../iso-stuff.7z
+
+sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i ~/livecd/cd/README.diskdefines
+sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/README.diskdefines
+sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/txt.cfg
+sudo mkdir -p ~/livecd/cd/.disk/
+
+if [ "$ISO_ARCH" == "i386" ]; then
+sudo su root -c 'echo "KXStudio 14.04.5 (Live 32bit)" > .disk/info'
+else
+sudo su root -c 'echo "KXStudio 14.04.5 (Live 64bit)" > .disk/info'
+fi
+# sudo su root -c 'echo "Live-MOD 2015-03" > .disk/info'
+
+sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio14045:ReleaseNotes" > .disk/release_notes_url'
+
+echo "Please edit these files manually:
+~/livecd/cd/.disk/info
+~/livecd/cd/.disk/release_notes_url
+~/livecd/cd/README.diskdefines
+~/livecd/cd/isolinux/txt.cfg
+~/livecd/cd/preseed/live.seed
+"
+exit
+    ;;
+
+    mkboot)
+sudo mkdir -p ~/livecd/cd/casper/
+cd ~/livecd/
+sudo rm -f cd/casper/vmlinuz cd/casper/vmlinuz.efi cd/casper/initrd.lz cd/casper/initrd_tmp.gz
+sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz
+sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz.efi
+sudo cp custom/boot/initrd.img-* cd/casper/initrd_tmp.gz
+
+cd ~/livecd/cd/casper
+sudo rm -rf ext
+sudo mkdir ext
+cd ext
+sudo su root -c 'gzip -cd ../initrd_tmp.gz | cpio -i'
+
+# fix links
+LINKS=`find . -type l`
+for i in $LINKS; do
+  FILE=`readlink $i`
+  if [ "$FILE" == "busybox" ]; then
+    FILE="./bin/busybox"
+  elif [ "$FILE" == "lvm" ]; then
+    FILE="./sbin/lvm"
+  fi
+  sudo rm "$i"
+  if [ -f "./$FILE" ]; then
+    sudo cp -v "./$FILE" "$i"
+  else
+    sudo cp -v "../../../custom/$FILE" "$i"
+  fi
+done
+
+sudo su root -c 'find . | cpio --dereference -o -H newc | lzma -7 > ../initrd.lz'
+cd ..
+sudo rm -rf ext initrd_tmp.gz
+
+echo "done"
+exit
+    ;;
+
+    md5sum)
+cd ~/livecd/cd
+sudo chmod 777 -R .
+sudo rm -f md5sum.txt MD5SUMS
+sudo su root -c "find . -type f -print0 | xargs -0 md5sum > ../md5sum.txt"
+sudo mv ../md5sum.txt .
+echo "done"
+exit
+    ;;
+
+    iso)
+ARG2="$2"
+ARG3="$3"
+if [ "$ARG2""0" == "0" ]; then
+echo "usage: $0 iso <filename> <name>"
+exit
+fi
+if [ "$ARG3""0" == "0" ]; then
+echo "usage: $0 iso <filename> <name>"
+exit
+fi
+
+cd ~/livecd/cd
+
+# i386 ends on -boot-info-table
+
+sudo xorriso -as mkisofs \
+    -r \
+    -V "$ARG3" \
+    -o ~/livecd/"$ARG2".iso \
+    -J \
+    -isohybrid-mbr isolinux/isohdpfx.bin \
+    -partition_offset 16 \
+    -joliet-long \
+    -cache-inodes \
+    -b isolinux/isolinux.bin \
+    -c isolinux/boot.cat \
+    -no-emul-boot \
+    -boot-load-size 4 \
+    -boot-info-table \
+    -eltorito-alt-boot \
+    -e boot/grub/efi.img \
+    -no-emul-boot \
+    -isohybrid-gpt-basdat \
+    -isohybrid-apm-hfsplus \
+    .
+
+echo "done"
+exit
+    ;;
+
+    clean)
+sudo umount /tmp/livecd/
+sudo umount ~/livecd/squashfs/
+sudo rm -rf /tmp/livecd/
+sudo rm -rf ~/livecd/
+echo "done"
+exit
+    ;;
+
+    *)
+echo "usage: $0 <cmd>
+
+ 1 - squash <version> <arch> [version=trusty] [arch=i386/amd64]
+ 2 - custom
+ 3 - custom_end
+ 4 - mksquash
+ 5 - mkart <arch> <distro-name> [arch=i386/amd64] [distro=KXStudio (no spaces!)]
+ 6 - mkboot
+ 7 - md5sum
+ 8 - iso <filename> <name> [file/name=KXStudio_14.04_32bit]
+
+ x - clean
+"
+exit
+    ;;
+esac
