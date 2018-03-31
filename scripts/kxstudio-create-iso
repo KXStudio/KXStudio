@@ -68,32 +68,37 @@ SAVE THIS INFORMATION BELLOW, AND RUN IT ONE AT A TIME:
 apt-get update
 apt-get install software-properties-common wget
 add-apt-repository -y ppa:kxstudio-debian/kxstudio
+sed -i 's/bionic/trusty/' /etc/apt/sources.list.d/kxstudio-debian-ubuntu-kxstudio-bionic.list
 add-apt-repository -y ppa:plasmazilla/releases
-# add-apt-repository -y ppa:irie/blender
+sed -i 's/bionic/artful/' /etc/apt/sources.list.d/plasmazilla-ubuntu-releases-bionic.list # FIXME: remove when bionic is supported
 apt-get update
-apt-get install kxstudio-repos
+apt-get install kxstudio-repos kxstudio-repos-gcc5
+rm /etc/apt/sources.list.d/kxstudio-debian-ubuntu-kxstudio-bionic.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E6D4736255751E5D
 apt-get clean
 
 # Check /etc/apt/sources.list
-echo 'deb http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
-# deb-src http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+echo 'deb http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse
 
-deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
-# deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse
 
-deb http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
-# deb-src http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
 
-deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
-# deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu bionic-security main restricted universe multiverse
+# deb-src http://security.ubuntu.com/ubuntu bionic-security main restricted universe multiverse
 
-deb http://archive.canonical.com/ubuntu trusty partner
-# deb-src http://archive.canonical.com/ubuntu trusty partner' > /etc/apt/sources.list
+deb http://archive.canonical.com/ubuntu bionic partner
+# deb-src http://archive.canonical.com/ubuntu bionic partner
 
-# MOD only
-add-apt-repository -y ppa:kxstudio-debian/kxstudio-mod
-cp /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod-trusty.list /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod.list
-sed -i 's/trusty/lucid/' /etc/apt/sources.list.d/kxstudio-debian-kxstudio-mod.list
+# Neon repos, change to bionic LTS when available
+deb [arch=amd64] http://archive.neon.kde.org/user/lts xenial main
+# deb-src http://archive.neon.kde.org/user/lts xenial main
+
+deb http://archive.neon.kde.org/dev/unstable bionic main
+# deb-src http://archive.neon.kde.org/dev/unstable bionic main' > /etc/apt/sources.list
 
 # Update System
 apt-get update; apt-get dist-upgrade
@@ -104,31 +109,16 @@ apt-get install --no-install-recommends ubuntu-standard laptop-detect os-prober 
  manpages geoip-database bash-completion irqbalance powermgmt-base ppp pppconfig pppoeconf \
  cryptsetup lvm2 dkms fakeroot libc6-dev libc-dev kxstudio-meta-live-conflicts
 
-# Fix upstart
-dpkg-divert --local --rename --add /sbin/initctl
-ln -s /bin/true /sbin/initctl
-touch /etc/init.d/systemd-logind
-apt-get install -f
-rm /etc/init.d/systemd-logind
-rm /sbin/initctl
-dpkg-divert --local --rename --remove /sbin/initctl
-
 # Kernel Install
 apt-get install linux-lowlatency linux-image-lowlatency linux-headers-lowlatency kxstudio-meta-live-conflicts # skip grub install/configure to HDD here
 apt-get purge linux-headers-3.13.0-46 linux-headers-3.13.0-46-lowlatency linux-image-3.13.0-46-lowlatency
 apt-get clean
 
 # Install packages (KXStudio)
-apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-kde4 kxstudio-desktop kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
+apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-neon kxstudio-meta-all kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
 
-# Install packages (MOD)
-apt-get install jackd2 mod-desktop-kde4 mod-desktop mod-meta kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
-
-# Install packages (mod-plugin-builder)
-apt-get install acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man nano perl patch tar texinfo unzip
-apt-get install automake binutils build-essential cpio libtool libncurses-dev pkg-config
-apt-get install casper lupin-casper kpartx kpartx-boot
-apt-get install btrfs-tools dmraid ecryptfs-utils jfsutils xfsprogs
+# FIXME: graphics not installable on neon, fix later (also video needs tweaking)
+apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-neon kxstudio-meta-audio kxstudio-meta-audio-plugins kubuntu-restricted-extras kxstudio-meta-restricted-extras kxstudio-meta-live-conflicts
 
 # Test
 rm /var/cache/apt/archives/wine-rt*
@@ -139,20 +129,12 @@ apt-get install -f
 rm /etc/init.d/modemmanager
 apt-get clean
 
-# Network Manager (optional)
-apt-get install network-manager-gnome
-apt-get purge plasma-nm
-
-apt-get install plasma-nm
-apt-get purge network-manager-gnome gnome-icon-theme humanity-icon-theme libgnome-bluetooth11 libgnome-keyring-common libgnome-keyring0 libnm-gtk-common libnm-gtk0
-
 # 64bit fix
 dpkg --add-architecture i386
 apt-get update; apt-get dist-upgrade
 
 # Install extras
 apt-get install kxstudio-docs
-apt-get install firefox-plasma thunderbird-plasma mozilla-kde-support
 apt-get install indicator-cpufreq ubuntu-extras-keyring \
  sni-qt libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa libegl1-mesa-drivers libglapi-mesa libgles2-mesa libglu1-mesa libtxc-dxtn-s2tc0 \
  sni-qt:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libegl1-mesa:i386 libegl1-mesa-drivers:i386 libglapi-mesa:i386 libgles2-mesa:i386 libglu1-mesa:i386 libtxc-dxtn-s2tc0:i386
@@ -167,17 +149,6 @@ apt-get purge composite composite-data
 apt-get purge hydrogen-drumkits fluid-soundfont-gm
 apt-get purge kxstudio-kernel-lowlatency
 apt-get purge flashplugin-installer
-
-# Remove unwanted
-apt-get purge vlc-plugin-pulse xterm rtkit libpulsedsp
-apt-get purge pulseaudio*
-apt-get purge loomer-plugins*
-apt-get purge linuxdsp-plugins*
-apt-get purge pianoteq*
-apt-get purge renoise*
-apt-get purge lilypond*
-apt-get purge libjack0
-apt-get purge libjack0:i386
 
 # Cleanup
 apt-get autoremove
