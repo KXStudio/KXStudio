@@ -1,23 +1,26 @@
-<!DOCTYPE kpartgui SYSTEM 'kpartgui.dtd'>
-<kpartgui version="12" name="dolphin">
+<!DOCTYPE gui>
+<gui version="19" name="dolphin" translationDomain="kxmlgui5">
  <MenuBar alreadyVisited="1">
-  <Menu name="file" alreadyVisited="1">
-   <text>&amp;File</text>
-   <Action name="create_new"/>
+  <Menu name="file" alreadyVisited="1" noMerge="1">
+   <text translationDomain="kxmlgui5">&amp;File</text>
+   <Action name="new_menu"/>
    <Action name="new_window"/>
    <Action name="new_tab"/>
    <Action name="close_tab"/>
+   <Action name="undo_close_tab"/>
    <Separator/>
-   <Action name="rename"/>
-   <Action name="move_to_trash"/>
-   <Action name="delete"/>
+   <Action name="renamefile"/>
+   <Action name="movetotrash"/>
+   <Action name="deletefile"/>
+   <Separator/>
+   <Action name="show_target"/>
    <Separator/>
    <Action name="properties"/>
    <Separator weakSeparator="1"/>
    <Action name="file_quit"/>
   </Menu>
-  <Menu name="edit" alreadyVisited="1">
-   <text>&amp;Edit</text>
+  <Menu name="edit" alreadyVisited="1" noMerge="1">
+   <text translationDomain="kxmlgui5">&amp;Edit</text>
    <Action name="edit_undo"/>
    <Separator weakSeparator="1"/>
    <Action name="edit_cut"/>
@@ -29,66 +32,34 @@
    <Action name="select_all"/>
    <Action name="invert_selection"/>
   </Menu>
-  <Menu name="view" alreadyVisited="1">
-   <text>&amp;View</text>
+  <Menu name="view" alreadyVisited="1" noMerge="1">
+   <text translationDomain="kxmlgui5">&amp;View</text>
    <Action name="view_zoom_in"/>
    <Action name="view_zoom_out"/>
    <Separator weakSeparator="1"/>
-   <Menu name="view_mode">
-    <text context="@title:menu">View Mode</text>
-    <Action name="icons"/>
-    <Action name="details"/>
-    <Action name="columns"/>
-   </Menu>
-   <Menu name="sort">
-    <text context="@title:menu">Sort By</text>
-    <Action name="sort_by_name"/>
-    <Action name="sort_by_size"/>
-    <Action name="sort_by_date"/>
-    <Action name="sort_by_permissions"/>
-    <Action name="sort_by_owner"/>
-    <Action name="sort_by_group"/>
-    <Action name="sort_by_type"/>
-    <Action name="sort_by_rating"/>
-    <Action name="sort_by_tags"/>
-    <Separator/>
-    <Action name="descending"/>
-    <Action name="folders_first"/>
-   </Menu>
-   <Menu name="additional_info">
-    <text context="@title:menu">Additional Information</text>
-    <Action name="show_size_info"/>
-    <Action name="show_date_info"/>
-    <Action name="show_permissions_info"/>
-    <Action name="show_owner_info"/>
-    <Action name="show_group_info"/>
-    <Action name="show_mime_info"/>
-   </Menu>
+   <Action name="view_mode"/>
+   <Action name="sort"/>
+   <Action name="additional_info"/>
    <Action name="show_preview"/>
    <Action name="show_in_groups"/>
    <Action name="show_hidden_files"/>
    <Separator/>
    <Action name="split_view"/>
+   <Action name="split_stash"/>
    <Action name="reload"/>
    <Action name="stop"/>
    <Separator/>
-   <Menu name="panels">
-    <text context="@title:menu">Panels</text>
-    <Action name="show_places_panel"/>
-    <Action name="show_info_panel"/>
-    <Action name="show_folders_panel"/>
-    <Action name="show_terminal_panel"/>
-   </Menu>
-   <Menu name="navigation_bar">
-    <text context="@title:menu">Navigation Bar</text>
+   <Action name="panels"/>
+   <Menu name="location_bar" noMerge="1">
+    <text context="@title:menu" translationDomain="dolphin">Location Bar</text>
     <Action name="editable_location"/>
     <Action name="replace_location"/>
    </Menu>
    <Separator/>
    <Action name="view_properties"/>
   </Menu>
-  <Menu name="go" alreadyVisited="1">
-   <text>&amp;Go</text>
+  <Menu name="go" alreadyVisited="1" noMerge="1">
+   <text translationDomain="kxmlgui5">&amp;Go</text>
    <Action name="go_up"/>
    <Action name="go_back"/>
    <Action name="go_forward"/>
@@ -96,15 +67,15 @@
    <Separator weakSeparator="1"/>
    <Action name="closed_tabs"/>
   </Menu>
-  <Menu name="tools" alreadyVisited="1">
-   <text>&amp;Tools</text>
+  <Menu name="tools" alreadyVisited="1" noMerge="1">
+   <text translationDomain="kxmlgui5">&amp;Tools</text>
    <Action name="show_filter_bar"/>
    <Action name="open_terminal"/>
    <Action name="compare_files"/>
    <Action name="change_remote_encoding"/>
   </Menu>
-  <Menu name="settings">
-   <text>&amp;Settings</text>
+  <Menu name="settings" noMerge="1">
+   <text translationDomain="kxmlgui5">&amp;Settings</text>
    <Action name="options_show_menubar"/>
    <Merge name="StandardToolBarMenuHandler"/>
    <Merge name="KMDIViewActions"/>
@@ -114,12 +85,14 @@
    <Action name="options_configure"/>
   </Menu>
   <Separator weakSeparator="1"/>
-  <Menu name="help">
-   <text>&amp;Help</text>
+  <Menu name="help" noMerge="1">
+   <text translationDomain="kxmlgui5">&amp;Help</text>
    <Action name="help_contents"/>
    <Action name="help_whats_this"/>
    <Separator weakSeparator="1"/>
    <Action name="help_report_bug"/>
+   <Separator weakSeparator="1"/>
+   <Action name="help_donate"/>
    <Separator weakSeparator="1"/>
    <Action name="switch_application_language"/>
    <Separator weakSeparator="1"/>
@@ -128,21 +101,19 @@
   </Menu>
  </MenuBar>
  <ToolBar noMerge="1" name="mainToolBar" alreadyVisited="1">
-  <text context="@title:menu">Main Toolbar</text>
+  <text context="@title:menu" translationDomain="dolphin">Main Toolbar</text>
   <Action name="go_back"/>
   <Action name="go_forward"/>
   <Action name="go_up"/>
   <Separator name="separator_0"/>
   <Action name="icons"/>
+  <Action name="compact"/>
   <Action name="details"/>
-  <Action name="columns"/>
   <Separator name="separator_1"/>
   <Action name="edit_find"/>
   <Action name="show_preview"/>
   <Action name="split_view"/>
- </ToolBar>
- <ToolBar iconText="icononly" noMerge="1" name="searchToolBar" newline="false">
-  <text context="@title:menu">Search Toolbar</text>
+  <Action name="split_stash"/>
  </ToolBar>
  <State name="new_file">
   <disable>
@@ -150,9 +121,9 @@
    <Action name="edit_redo"/>
    <Action name="edit_cut"/>
    <Action name="edit_copy"/>
-   <Action name="rename"/>
-   <Action name="move_to_trash"/>
-   <Action name="delete"/>
+   <Action name="renamefile"/>
+   <Action name="movetotrash"/>
+   <Action name="deletefile"/>
    <Action name="invert_selection"/>
    <Separator/>
    <Action name="go_back"/>
@@ -163,9 +134,9 @@
   <enable>
    <Action name="edit_cut"/>
    <Action name="edit_copy"/>
-   <Action name="rename"/>
-   <Action name="move_to_trash"/>
-   <Action name="delete"/>
+   <Action name="renamefile"/>
+   <Action name="movetotrash"/>
+   <Action name="deletefile"/>
    <Action name="invert_selection"/>
   </enable>
  </State>
@@ -173,14 +144,26 @@
   <disable>
    <Action name="edit_cut"/>
    <Action name="edit_copy"/>
-   <Action name="rename"/>
-   <Action name="move_to_trash"/>
-   <Action name="delete"/>
+   <Action name="renamefile"/>
+   <Action name="movetotrash"/>
+   <Action name="deletefile"/>
    <Action name="delete_shortcut"/>
    <Action name="invert_selection"/>
   </disable>
  </State>
- <ToolBar iconText="icononly" noMerge="1" name="searchToolBar" newline="false">
-  <text context="@title:menu">Search Toolbar</text>
- </ToolBar>
-</kpartgui>
+ <ActionProperties scheme="Default">
+  <Action name="go_back" priority="0"/>
+  <Action name="go_forward" priority="0"/>
+  <Action name="go_up" priority="0"/>
+  <Action name="go_home" priority="0"/>
+  <Action name="stop" priority="0"/>
+  <Action name="icons" priority="0"/>
+  <Action name="compact" priority="0"/>
+  <Action name="details" priority="0"/>
+  <Action name="view_zoom_in" priority="0"/>
+  <Action name="view_zoom_out" priority="0"/>
+  <Action name="edit_cut" priority="0"/>
+  <Action name="edit_copy" priority="0"/>
+  <Action name="edit_paste" priority="0"/>
+ </ActionProperties>
+</gui>
