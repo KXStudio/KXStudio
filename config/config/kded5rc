@@ -4,6 +4,9 @@ autoload=false
 [Module-bluedevil]
 autoload=false
 
+[Module-colorcorrectlocationupdater]
+autoload=false
+
 [Module-device_automounter]
 autoload=false
 

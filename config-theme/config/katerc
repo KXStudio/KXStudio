@@ -1,0 +1,17 @@
+[General]
+Show Full Path in Title=false
+Show Menu Bar=true
+Show Status Bar=true
+Show Tab Bar=false
+Startup Session=new
+
+[MainWindow]
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAO9AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+
+[filetree]
+editShade=34,87,115
+listMode=true
+shadingEnabled=true
+showFullPathOnRoots=false
+sortRole=259
+viewShade=6,92,104

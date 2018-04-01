@@ -49,6 +49,7 @@ CONFIG_ALL = (
   "akonadi/akonadiserverrc",
   "audacity-data/audacity.cfg",
   "giada/giada.conf",
+  "gimp-2.8/sessionrc",
   "hydrogen/hydrogen.conf",
   "mplayer/config",
   "phasex/phasex.cfg",
@@ -65,6 +66,7 @@ CONFIG_ALL = (
   "config/rosegardenmusic/Rosegarden.conf",
   "config/smplayer/smplayer.ini",
   "config/vlc/vlcrc",
+  
   "config/baloofilerc",
   "config/dolphinrc",
   "config/kded5rc",
@@ -74,6 +76,7 @@ CONFIG_ALL = (
   "config/ksmserverrc",
   "config/kwalletrc",
   "config/kwinrc",
+  "config/systemsettingsrc",
   "config/yakuakerc",
 
   "config/autostart/akonaditray.desktop",
@@ -103,9 +106,12 @@ CONFIG_THEME = (
   "config/rncbc.org/Qsynth.conf",
   "config/rncbc.org/Qtractor.conf",
   "config/rosegardenmusic/Rosegarden.conf",
+  
   "config/breezerc",
   "config/gtkrc",
   "config/gtkrc-2.0",
+  "config/katerc",
+  "config/katepartrc",
   "config/kcmdisplayrc",
   "config/kcmfonts",
   "config/kcminputrc",

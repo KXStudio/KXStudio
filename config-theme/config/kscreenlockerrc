@@ -1,2 +1,7 @@
 [Greeter]
 Theme=org.linuxaudio.kxstudio.desktop
+WallpaperPlugin=org.kde.image
+
+[Greeter][Wallpaper][org.kde.image][General]
+FillMode=2
+Image=file:///usr/share/wallpapers/KXStudio-Stripes/contents/images/1920x1080.jpg
