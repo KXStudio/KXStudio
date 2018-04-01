@@ -1,8 +1,0 @@
-[General]
-AutoStart=false
-MaxClipItems=10
-URLGrabberEnabled=false
-Synchronize=false
-
-[Notification Messages]
-StartAutomatically=false

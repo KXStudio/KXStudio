@@ -1,12 +1,19 @@
 [Plugins]
+Kill RunnerEnabled=false
 PowerDevilEnabled=false
+baloosearchEnabled=false
 bookmarksEnabled=false
+browsertabsEnabled=false
 calculatorEnabled=false
 desktopsessionsEnabled=false
+kdevelopsessionsEnabled=false
 installerEnabled=false
 killEnabled=false
+krunner_appstreamEnabled=false
+kwinEnabled=false
 locationsEnabled=false
 nepomuksearchEnabled=false
+org.kde.activitiesEnabled=false
 org.kde.windowedwidgetsEnabled=false
 placesEnabled=false
 plasma-desktopEnabled=false

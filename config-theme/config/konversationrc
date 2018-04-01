@@ -1,0 +1,51 @@
+[General Options]
+AutomaticRememberLine=true
+ShowTrayIcon=true
+TrayNotify=true
+TrayNotifyOnlyOwnNick=true
+
+[Channel 0]
+EnableNotifications=true
+Name=#kxstudio
+Password=
+
+[Server 0]
+Password=
+Port=6667
+SSLEnabled=false
+Server=irc.freenode.com
+
+[ServerGroup 0]
+AutoJoinChannels=Channel 0
+Name=KXStudio
+ServerList=Server 0
+
+[Appearance]
+AllowColorCodes=false
+ChannelSplitterSizes=819,122
+NickColor0=233,133,188
+NickColor1=171,133,233
+NickColor2=179,102,102
+NickColor3=102,179,118
+NickColor4=109,176,179
+NickColor5=166,123,179
+NickColor6=179,163,144
+NickColor7=109,146,179
+NickColor8=255,255,255
+TopicSplitterSizes=28,529
+TreeSplitterSizes=145,941
+
+[Highlight List]
+HighlightNickColor=255,105,105
+
+[Message Text Colors]
+ActionMessage=135,135,255
+AlternateBackground=49,54,59
+BacklogMessage=190,190,190
+ChannelMessage=255,255,255
+CommandMessage=150,91,150
+Hyperlink=135,135,255
+QueryMessage=255,255,255
+ServerMessage=234,188,96
+TextViewBackground=35,38,41
+Time=132,144,132
