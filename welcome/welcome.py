@@ -41,7 +41,7 @@ CONFIG_SMALL = (
 )
 
 CONFIG_ALL = (
-  #"asoundrc",
+  "asoundrc",
   "bash_aliases",
   "jackdrc",
   "lmmsrc.xml",
@@ -57,7 +57,7 @@ CONFIG_ALL = (
   "pulse/daemon.conf",
 
   "config/audacious/config",
-  #"config/Cadence/GlobalSettings.conf",
+  "config/Cadence/GlobalSettings.conf",
   "config/jack/conf.xml",
   "config/KXStudio/Welcome.conf",
   "config/linuxsampler.org/Qsampler.conf",
