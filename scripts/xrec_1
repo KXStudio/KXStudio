@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # all dependencies:
-# $ sudo apt-get install xserver-xephyr harvid
+# $ sudo apt-get install xserver-xephyr
 
 init_screen () {
 # Set up nested X server
 Xephyr -keybd ephyr,,,xkbmodel=evdev -br -reset -screen 1280x720x24 -dpi 96 :2 &
-sleep 3
+sleep 1
 }
 
 start_screen_gnome2 () {
@@ -44,6 +44,11 @@ export DISPLAY=:0
 plasma-desktop
 }
 
+start_screen_kde5 () {
+# set environment
+sudo su - falk -c "$(pwd)/$(dirname $0)/xrec_1b.sh"
+}
+
 start_screen_xfce4 () {
 # set environment
 export DISPLAY=:2.0
@@ -75,6 +80,11 @@ init_screen
 start_screen_kde4
   ;;
 
+  kde5|-kde5|--kde5)
+init_screen
+start_screen_kde5
+  ;;
+
   xfce4|-xfce4|--xfce4)
 init_screen
 start_screen_xfce4
@@ -86,6 +96,7 @@ echo "usage: xrec_1 <DE>
 DE can be:
     gnome2     Gnome2 session
     kde4       KDE4 session
+    kde5       KDE5 session
     xfce4      XFCE4 session
 "
   ;;

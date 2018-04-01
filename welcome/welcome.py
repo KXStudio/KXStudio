@@ -8,7 +8,6 @@ from PyQt5.QtCore import pyqtSignal, QSettings, QTimer, QThread
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QApplication, QMessageBox, QWizard
 from subprocess import getoutput
-from time import sleep
 import os, sys
 
 # ----------------------------------------------
@@ -95,6 +94,7 @@ CONFIG_THEME = (
   "hydrogen/hydrogen.conf",
   "phasex/phasex.cfg",
 
+  "gtkrc-2.0",
   "config/fontconfig/fonts.conf",
   "config/gtk-3.0/settings.ini",
   "config/linuxsampler.org/Qsampler.conf",
@@ -103,6 +103,7 @@ CONFIG_THEME = (
   "config/rncbc.org/Qsynth.conf",
   "config/rncbc.org/Qtractor.conf",
   "config/rosegardenmusic/Rosegarden.conf",
+  "config/breezerc",
   "config/gtkrc",
   "config/gtkrc-2.0",
   "config/kcmdisplayrc",
@@ -183,6 +184,8 @@ def do_copy_theme(fontSize, copy_all=False):
     os.system('cp "%s/mozilla/firefox/default/chrome/userContent.css" "%s"' % (CONFIG_THEME_DIR, foxFolder))
 
 def do_wine_stuff():
+  return
+
   if not os.path.exists("/usr/bin/wineboot"):
     return
 
@@ -247,7 +250,6 @@ class CopyStuffThread(QThread):
         # Settings
         self.setLabelPixmap.emit(ID_GROUP_SETTINGS, ID_PIXMAP_PROCESS)
         if self._copy:
-          sleep(1)
           if self._copy_all:
             do_copy_all()
           elif self._copy_basic:
@@ -257,7 +259,6 @@ class CopyStuffThread(QThread):
         # Theme
         self.setLabelPixmap.emit(ID_GROUP_THEME, ID_PIXMAP_PROCESS)
         if self._copy_theme:
-          sleep(1)
           do_copy_theme(self._font_size)
         self.setLabelPixmap.emit(ID_GROUP_THEME, ID_PIXMAP_DONE)
 
@@ -270,7 +271,6 @@ class CopyStuffThread(QThread):
         # Final
         self.setLabelPixmap.emit(ID_GROUP_FINAL, ID_PIXMAP_PROCESS)
         if self._copy:
-          sleep(1)
           do_final_stuff()
         self.setLabelPixmap.emit(ID_GROUP_FINAL, ID_PIXMAP_DONE)
 

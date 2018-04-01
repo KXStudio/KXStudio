@@ -1,0 +1,15 @@
+[Common]
+ShadowColor=7,8,9
+ShadowSize=ShadowMedium
+ShadowStrength=89
+
+[Style]
+AnimationsEnabled=false
+ScrollBarAddLineButtons=2
+ScrollBarSubLineButtons=1
+ViewDrawFocusIndicator=false
+
+[Windeco]
+AnimationsEnabled=false
+ButtonSize=ButtonSmall
+DrawTitleBarSeparator=false
