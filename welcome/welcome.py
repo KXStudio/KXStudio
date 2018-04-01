@@ -17,14 +17,6 @@ import os, sys
 import ui_welcome
 
 # ----------------------------------------------
-# Detect 64bit
-
-from platform import architecture
-from sys import maxsize
-
-kIs64bit = bool(architecture()[0] == "64bit" and maxsize > 2**32)
-
-# ----------------------------------------------
 
 HOME = os.getenv("HOME")
 PWD  = sys.path[0]
@@ -50,26 +42,22 @@ CONFIG_SMALL = (
 )
 
 CONFIG_ALL = (
-  "asoundrc",
+  #"asoundrc",
   "bash_aliases",
   "jackdrc",
   "lmmsrc.xml",
 
   "akonadi/akonadiserverrc",
   "audacity-data/audacity.cfg",
-  "bcast/Cinelerra_rc",
-  "ccutie/Cinecutie_rc",
   "giada/giada.conf",
   "hydrogen/hydrogen.conf",
   "mplayer/config",
   "phasex/phasex.cfg",
   "pulse/client.conf",
   "pulse/daemon.conf",
-  "traverso/Traverso-DAW/Traverso.ini",
 
   "config/audacious/config",
-  "config/Cadence/GlobalSettings.conf",
-  "config/Clementine/Clementine.conf",
+  #"config/Cadence/GlobalSettings.conf",
   "config/jack/conf.xml",
   "config/KXStudio/Welcome.conf",
   "config/linuxsampler.org/Qsampler.conf",
@@ -78,87 +66,59 @@ CONFIG_ALL = (
   "config/rosegardenmusic/Rosegarden.conf",
   "config/smplayer/smplayer.ini",
   "config/vlc/vlcrc",
-  "config/xfce4/xinitrc",
+  "config/baloofilerc",
+  "config/dolphinrc",
+  "config/kded5rc",
+  "config/klaunchrc",
+  "config/konversationrc",
+  "config/krunnerrc",
+  "config/ksmserverrc",
+  "config/kwalletrc",
+  "config/kwinrc",
+  "config/yakuakerc",
 
-  "kde/env/gtk2-engines-qtcurve.rc.sh",
-  "kde/env/qt-graphicssystem.sh",
-  "kde/share/apps/dolphin/dolphinui.rc",
   "kde/share/autostart/akonaditray.desktop",
   "kde/share/autostart/baloo_file.desktop",
   "kde/share/autostart/kactivitymanagerd.desktop",
   "kde/share/autostart/kaddressbookmigrator.desktop",
   "kde/share/autostart/nepomukserver.desktop",
-  "kde/share/config/baloofilerc",
-  "kde/share/config/dolphinrc",
-  "kde/share/config/kdedrc",
-  "kde/share/config/kdeglobals",
-  "kde/share/config/kickoffrc",
-  "kde/share/config/klaunchrc",
-  "kde/share/config/klipperrc",
-  "kde/share/config/knotifyrc",
-  "kde/share/config/konversationrc",
-  "kde/share/config/krunnerrc",
-  "kde/share/config/ksmserverrc",
-  "kde/share/config/kwalletrc",
-  "kde/share/config/kwinrc",
   "kde/share/config/nepomukserverrc",
-  "kde/share/config/oxygenrc",
-  "kde/share/config/taskmanagerrulesrc",
-  "kde/share/config/yakuakerc"
+  
+  "local/share/kxmlgui5/dolphin/dolphinui.rc",
 )
 
+# forced copied
 CONFIG_THEME = (
-  "gtkrc-2.0-kxstudio",
-  "kderc",
-
-  "composite/composite.conf",
+  "audacity-data/audacity.cfg",
   "hydrogen/hydrogen.conf",
-  "mozilla/firefox/default/chrome/userContent.css",
-  "non-daw/options",
-  "non-mixer/options",
   "phasex/phasex.cfg",
-  "qt/qtrc",
-  "traverso/Traverso-DAW/Traverso.ini",
 
   "config/fontconfig/fonts.conf",
   "config/gtk-3.0/settings.ini",
-  "config/kde.org/systemsettings.conf",
-  "config/Nokia/QtCreator.ini",
-  "config/qtcurve/gtk-icons",
-  "config/qtcurve/stylerc",
-  "config/qtcurve/windowBorderSizes",
+  "config/linuxsampler.org/Qsampler.conf",
+  "config/ntk/theme.prefs",
   "config/rncbc.org/QjackCtl.conf",
   "config/rncbc.org/Qsynth.conf",
   "config/rncbc.org/Qtractor.conf",
   "config/rosegardenmusic/Rosegarden.conf",
-  "config/xfce4/xinitrc",
-  "config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml",
-  "config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml",
+  "config/gtkrc",
+  "config/gtkrc-2.0",
+  "config/kcmdisplayrc",
+  "config/kcmfonts",
+  "config/kcminputrc",
+  "config/kdeglobals",
+  "config/kscreenlockerrc",
+  "config/ksplashrc",
+  "config/kwinrc",
+  "config/plasmarc",
   "config/Trolltech.conf",
 
-  "kde/env/colibri.sh",
-  "kde/env/gtk2-engines-qtcurve.rc.sh",
-  "kde/share/config/colibrirc",
-  "kde/share/config/glmatrixrc",
-  "kde/share/config/gtkrc",
-  "kde/share/config/gtkrc-2.0",
-  "kde/share/config/kateschemarc",
-  "kde/share/config/katesyntaxhighlightingrc",
-  "kde/share/config/kcmdisplayrc",
-  "kde/share/config/kcmfonts",
-  "kde/share/config/kcminputrc",
+  "kde/share/config/breezerc",
   "kde/share/config/kdeglobals",
-  "kde/share/config/kscreensaverrc",
-  "kde/share/config/ksplashrc",
-  "kde/share/config/kwinrc",
-  "kde/share/config/kwinqtcurverc",
-  "kde/share/config/oxygenrc",
-  "kde/share/config/plasmarc"
 )
 
 CONFIG_THEME_ALL = (
-  "config/libreoffice/3/user/registrymodifications.xcu",
-  "kde/share/config/konversationrc",
+  "config/konversationrc",
   "local/share/applications/defaults.list",
   "local/share/applications/mimeapps.list"
 )
@@ -173,15 +133,11 @@ def create_folder_for_file(sfile):
       os.system("mkdir -p %s" % (folder))
 
 def do_copy_all():
-  return # TODO
-
   for sfile in CONFIG_ALL:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
 def do_copy_basic():
-  return # TODO
-
   for sfile in CONFIG_SMALL:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
@@ -192,8 +148,6 @@ def do_copy_basic():
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
 
 def do_copy_theme(fontSize, copy_all=False):
-  return # TODO
-
   for sfile in CONFIG_THEME:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
@@ -205,33 +159,32 @@ def do_copy_theme(fontSize, copy_all=False):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
       os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
 
-  # TESTING
-  foxFolders = getoutput("find %s/.mozilla/firefox/*.default/chrome/ -type d" % HOME).strip().split("\n")
-  foxFolders.sort()
-  if len(foxFolders) >= 1 and os.path.exists(foxFolders[0]):
-    foxFolder = foxFolders[0]
-    os.system('cp "%s/mozilla/firefox/default/chrome/userContent.css" "%s"' % (CONFIG_THEME_DIR, foxFolder))
-
   os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/titlebar_font "DejaVu Sans Bold %i"' % fontSize)
   os.system('gconftool-2 -t str -s /apps/nautilus/preferences/desktop_font "DejaVu Sans %i"' % fontSize)
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/gtk_theme "QtCurve"')
-  os.system('gconftool-2 -t str -s /desktop/gnome/interface/icon_theme "Oxygen Mono Dark"')
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/gtk_theme "Breeze-Dark"')
+  os.system('gconftool-2 -t str -s /desktop/gnome/interface/icon_theme "breeze-dark"')
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/font_name "DejaVu Sans %i"' % fontSize)
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/document_font_name "DejaVu Sans %i"' % fontSize)
   os.system('gconftool-2 -t str -s /desktop/gnome/interface/monospace_font_name "DejaVu Sans Mono %i"' % fontSize)
   os.system('gconftool-2 -t bool -s /desktop/gnome/interface/buttons_have_icons true')
   os.system('gconftool-2 -t bool -s /desktop/gnome/interface/menus_have_icons true')
 
-def do_wine_stuff():
-  return # TODO
+  # TESTING
+  return
 
+  foxFolders = getoutput("find %s/.mozilla/firefox/*.default/chrome/ -type d" % HOME).strip().split("\n")
+  foxFolders.sort()
+  if len(foxFolders) >= 1 and os.path.exists(foxFolders[0]):
+    foxFolder = foxFolders[0]
+    os.system('cp "%s/mozilla/firefox/default/chrome/userContent.css" "%s"' % (CONFIG_THEME_DIR, foxFolder))
+
+def do_wine_stuff():
   if not os.path.exists("/usr/bin/wineboot"):
     return
 
   os.system("wineboot")
-  #os.system("sed -i 's/\[drivers32\]/\[drivers32\]\nMSACM.vorbis=vorbis.acm/' ~/.wine/drive_c/windows/system.ini")
 
   if os.path.exists("/usr/lib/i386-linux-gnu/wine/wineasio.dll.so"):
     os.system("regsvr32 wineasio.dll")
@@ -243,13 +196,16 @@ def do_wine_stuff():
     os.system("winetricks fontfix fontsmooth-rgb nocrashdialog winxp")
 
 def do_final_stuff():
-  return # TODO
-
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink_description "Jack"')
+  
+  os.system('gconftool-2 --type string --set /system/gstreamer/1.0/default/audiosink_description "Jack"')
+  os.system('gconftool-2 --type string --set /system/gstreamer/1.0/default/chataudiosink_description "Jack"')
+  os.system('gconftool-2 --type string --set /system/gstreamer/1.0/default/musicaudiosink_description "Jack"')
 
 def do_live_stuff():
+  # FIXME
   desktopDir   = os.path.join(HOME, "Desktop")
   kxstudioDocs = "/usr/share/kxstudio/docs"
   ubiquityFile = "/usr/share/applications/kde4/ubiquity-kdeui.desktop"
@@ -350,7 +306,7 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         self.copyStuffThread.setLabelPixmap.connect(self.setLabelPixmap)
         self.copyStuffThread.finished.connect(self.copyStuffFinished)
 
-        if not os.path.exists("/usr/share/themes/KXStudio/index.theme"):
+        if not os.path.exists("/usr/share/plasma/look-and-feel/org.linuxaudio.kxstudio.desktop/metadata.desktop"):
           self.group_theme.setChecked(False)
           self.group_theme.setEnabled(False)
 
