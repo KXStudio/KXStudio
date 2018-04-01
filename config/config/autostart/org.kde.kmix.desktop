@@ -1,0 +1,20 @@
+[Desktop Entry]
+Categories=Qt;KDE;AudioVideo;Audio;Mixer;
+Comment=
+Exec=kmix -qwindowtitle "%c" %i
+GenericName=Sound Mixer
+Icon=kmix
+MimeType=
+Name=KMix
+OnlyShowIn=KDE;
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=unique
+X-DocPath=kmix/index.html
+X-KDE-StartupNotify=true
+X-KDE-SubstituteUID=false
+X-KDE-Username=

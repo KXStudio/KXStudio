@@ -77,11 +77,13 @@ CONFIG_ALL = (
   "config/kwinrc",
   "config/yakuakerc",
 
-  "kde/share/autostart/akonaditray.desktop",
-  "kde/share/autostart/baloo_file.desktop",
-  "kde/share/autostart/kactivitymanagerd.desktop",
-  "kde/share/autostart/kaddressbookmigrator.desktop",
-  "kde/share/autostart/nepomukserver.desktop",
+  "config/autostart/akonaditray.desktop",
+  "config/autostart/baloo_file.desktop",
+  "config/autostart/kactivitymanagerd.desktop",
+  "config/autostart/kaddressbookmigrator.desktop",
+  "config/autostart/nepomukserver.desktop",
+  "config/autostart/org.kde.kmix.desktop",
+  
   "kde/share/config/nepomukserverrc",
   
   "local/share/kxmlgui5/dolphin/dolphinui.rc",
