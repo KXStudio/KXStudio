@@ -329,7 +329,7 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
 
     def showScreenshot(self):
         box = QMessageBox(self)
-        box.setIconPixmap(QPixmap(os.path.join(PWD, "icons", "screenshot-black.png")))
+        box.setIconPixmap(QPixmap(os.path.join(PWD, "icons", "screenshot.png")))
         box.setWindowTitle(self.tr("Welcome to KXStudio - Screenshot"))
         box.exec_()
 
