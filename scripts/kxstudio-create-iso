@@ -87,18 +87,23 @@ deb http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe mu
 deb http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
 # deb-src http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
 
-deb http://security.ubuntu.com/ubuntu bionic-security main restricted universe multiverse
-# deb-src http://security.ubuntu.com/ubuntu bionic-security main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse
+# deb-src http://security.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse
 
-deb http://archive.canonical.com/ubuntu bionic partner
-# deb-src http://archive.canonical.com/ubuntu bionic partner
+deb http://archive.canonical.com/ubuntu/ bionic partner
+# deb-src http://archive.canonical.com/ubuntu/ bionic partner
 
 # Neon repos, change to bionic LTS when available
-deb [arch=amd64] http://archive.neon.kde.org/user/lts xenial main
-# deb-src http://archive.neon.kde.org/user/lts xenial main
+deb [arch=amd64] http://archive.neon.kde.org/user/lts/ xenial main
+# deb-src http://archive.neon.kde.org/user/lts/ xenial main
 
-deb http://archive.neon.kde.org/dev/unstable bionic main
-# deb-src http://archive.neon.kde.org/dev/unstable bionic main' > /etc/apt/sources.list
+# Stuff to delete later on
+deb http://archive.neon.kde.org/dev/unstable/ bionic main
+# deb-src http://archive.neon.kde.org/dev/unstable/ bionic main
+deb http://archive.ubuntu.com/ubuntu/ artful main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ artful-updates main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ artful-security main restricted universe multiverse
+' > /etc/apt/sources.list
 
 # Update System
 apt-get update; apt-get dist-upgrade
@@ -123,8 +128,9 @@ apt-get install jackd2 kxstudio-meta-audio-plugins-collection kxstudio-desktop-n
 # Test
 rm /var/cache/apt/archives/wine-rt*
 
-# Fix
-sed -i 's/DISTRIB_ID=neon/DISTRIB_ID=Ubuntu/' /etc/lsb-release
+# needed for a few gtk things
+apt-get install --no-install-recommends gnome-themes-standard
+
 apt-get update; apt-get dist-upgrade
 apt-get clean
 
