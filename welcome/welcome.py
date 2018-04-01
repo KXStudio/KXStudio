@@ -159,7 +159,7 @@ def do_copy_theme(fontSize, copy_all=False):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_THEME_DIR, sfile, HOME, sfile))
       os.system("sed -i s/_X-FONTSIZE-X_/%i/ '%s/.%s'" % (fontSize, HOME, sfile))
 
-  os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
+  #os.system('gconftool-2 -t str -s /apps/metacity/general/theme "KXStudio"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/button_layout "close,minimize,maximize:menu"')
   os.system('gconftool-2 -t str -s /apps/metacity/general/titlebar_font "DejaVu Sans Bold %i"' % fontSize)
   os.system('gconftool-2 -t str -s /apps/nautilus/preferences/desktop_font "DejaVu Sans %i"' % fontSize)
@@ -313,13 +313,6 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         if firstRun:
           self.label_7.setVisible(False)
 
-        # TODO
-        self.label_5.setEnabled(False)
-        self.label_5.setVisible(False)
-        self.cb_style.setEnabled(False)
-        self.cb_style.setVisible(False)
-        # Update your theme to one of the KXStudio defaults.<br/>You can choose the <b>classic dark and flat</b> or a new <b>light green unity-like</b> style.
-
         QTimer.singleShot(0, self.disableNext)
 
     def checkNext(self, clicked):
@@ -335,9 +328,8 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         self.button(QWizard.NextButton).setEnabled(True)
 
     def showScreenshot(self):
-        styleIndex = self.cb_style.currentIndex()
         box = QMessageBox(self)
-        box.setIconPixmap(QPixmap(os.path.join(PWD, "icons", "screenshot-green.png" if styleIndex != 0 else "screenshot-black.png")))
+        box.setIconPixmap(QPixmap(os.path.join(PWD, "icons", "screenshot-black.png")))
         box.setWindowTitle(self.tr("Welcome to KXStudio - Screenshot"))
         box.exec_()
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>615</width>
-    <height>509</height>
+    <height>565</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -130,7 +130,7 @@ Please select one of the options below or uncheck &quot;Update settings&quot;, a
        <item>
         <widget class="QRadioButton" name="rb_basic">
          <property name="text">
-          <string>Update basic settings</string>
+          <string>&amp;Update basic settings</string>
          </property>
         </widget>
        </item>
@@ -253,7 +253,7 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
        </sizepolicy>
       </property>
       <property name="title">
-       <string>Update theme</string>
+       <string>Update &amp;theme</string>
       </property>
       <property name="flat">
        <bool>true</bool>
@@ -288,29 +288,15 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
          </property>
         </widget>
        </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Note that reverting back theme changes is not trivial, so &lt;b&gt;be sure this is what you want&lt;/b&gt;.</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Style: (TODO)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="cb_style">
-           <item>
-            <property name="text">
-             <string>Classic dark and flat</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Unity-like light green</string>
-            </property>
-           </item>
-          </widget>
-         </item>
          <item>
           <widget class="QLabel" name="label_4">
            <property name="text">
@@ -359,13 +345,6 @@ Use it to clean up your settings, or if you just installed KXStudio.</string>
           </spacer>
          </item>
         </layout>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Note that reverting back theme changes is not trivial, so &lt;b&gt;be sure this is what you want&lt;/b&gt;.</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
