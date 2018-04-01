@@ -398,7 +398,7 @@ class WelcomeW(QWizard, ui_welcome.Ui_WelcomeW):
         settings.setValue("FirstRun", False)
 
     def loadSettings(self):
-        self.restoreGeometry(settings.value("Geometry", ""))
+        self.restoreGeometry(settings.value("Geometry", b""))
 
     def closeEvent(self, event):
         self.saveSettings()
