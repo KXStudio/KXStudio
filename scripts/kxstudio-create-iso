@@ -145,10 +145,10 @@ apt-get install indicator-cpufreq \
  sni-qt:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libegl1-mesa:i386 libglapi-mesa:i386 libgles2-mesa:i386 libglu1-mesa:i386
 
 # Remove deprecated/dummy
-apt-get purge kxstudio-meta-live-conflicts
 apt-get install calf-plugins-git zynaddsubfx-git
-apt-get purge carla calf-plugins ardour3 amsynth-dssi drumkv1 samplv1 synthv1 composite composite-data flashplugin-installer
-apt-get purge hydrogen-drumkits hydrogen-drumkits-effects fluid-soundfont-gm
+apt-get purge kxstudio-meta-live-conflicts \
+  carla calf-plugins ardour3 amsynth-dssi drumkv1 samplv1 synthv1 composite composite-data flashplugin-installer \
+  hydrogen-drumkits hydrogen-drumkits-effects fluid-soundfont-gm
 
 # Cleanup
 apt-get autoremove
@@ -208,6 +208,7 @@ umount /dev/pts
 umount -lf /proc
 umount -lf /sys
 exit
+sudo umount /home/falktx/livecd/custom/sys
 sudo nano /home/falktx/livecd/custom/root/.bash_history
 "
 exit
@@ -237,43 +238,17 @@ if [ ! -f /home/falktx/livecd/iso-stuff.7z ]; then
   exit
 fi
 
-ISO_ARCH="$2"
-ISO_NAME="$3"
-
-if [ $ISO_ARCH"0" == "0" ]; then
-echo "usage: $0 mkart <arch> <distro>"
-exit
-fi
-
-if [ $ISO_NAME"0" == "0" ]; then
-echo "usage: $0 mkart $ISO_ARCH <distro>"
-exit
-fi
-
 sudo mkdir -p /home/falktx/livecd/cd
 cd /home/falktx/livecd/cd
 sudo 7z x -y ../iso-stuff.7z
-
-sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i /home/falktx/livecd/cd/README.diskdefines
-sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i /home/falktx/livecd/cd/README.diskdefines
-sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i /home/falktx/livecd/cd/isolinux/txt.cfg
-sudo mkdir -p /home/falktx/livecd/cd/.disk/
-
-if [ "$ISO_ARCH" == "i386" ]; then
-sudo su root -c 'echo "KXStudio 14.04.5 (Live 32bit)" > .disk/info'
-else
-sudo su root -c 'echo "KXStudio 14.04.5 (Live 64bit)" > .disk/info'
-fi
-# sudo su root -c 'echo "Live-MOD 2015-03" > .disk/info'
-
-sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio14045:ReleaseNotes" > .disk/release_notes_url'
 
 echo "Please edit these files manually:
 /home/falktx/livecd/cd/.disk/info
 /home/falktx/livecd/cd/.disk/release_notes_url
 /home/falktx/livecd/cd/README.diskdefines
+... grub
 /home/falktx/livecd/cd/isolinux/txt.cfg
-/home/falktx/livecd/cd/preseed/live.seed
+/home/falktx/livecd/cd/preseed/kxstudio.seed
 "
 exit
     ;;
@@ -283,7 +258,6 @@ sudo mkdir -p /home/falktx/livecd/cd/casper/
 cd /home/falktx/livecd/
 sudo rm -f cd/casper/vmlinuz cd/casper/vmlinuz.efi cd/casper/initrd.lz cd/casper/initrd_tmp.gz
 sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz
-sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz.efi
 sudo cp custom/boot/initrd.img-* cd/casper/initrd_tmp.gz
 
 cd /home/falktx/livecd/cd/casper
@@ -294,18 +268,36 @@ sudo su root -c 'gzip -cd ../initrd_tmp.gz | cpio -i'
 
 # fix links
 LINKS=`find . -type l`
-for i in $LINKS; do
-  FILE=`readlink $i`
-  if [ "$FILE" == "busybox" ]; then
-    FILE="./bin/busybox"
-  elif [ "$FILE" == "lvm" ]; then
-    FILE="./sbin/lvm"
+for i in ${LINKS}; do
+  FILE=`readlink ${i}`
+  CUSTOM=0
+  if [ "${FILE}" == "/proc/mounts" ]; then
+    continue
+  elif [ "${FILE}" == "busybox" ]; then
+    FILE="/bin/busybox"
+    CUSTOM=1
+  elif [ "${FILE}" == "lvm" ]; then
+    FILE="/sbin/lvm"
+    CUSTOM=1
+  elif [ "${FILE}" == "/usr/share/plymouth/themes/kxstudio-logo/kxstudio-logo.plymouth" ]; then
+    FILE="/lib/plymouth/themes/kxstudio-logo/kxstudio-logo.plymouth"
+    CUSTOM=2
+  elif [ "${FILE}" == "/usr/share/plymouth/themes/kxstudio-text/kxstudio-text.plymouth" ]; then
+    FILE="/lib/plymouth/themes/kxstudio-text/kxstudio-text.plymouth"
+    CUSTOM=2
   fi
-  sudo rm "$i"
-  if [ -f "./$FILE" ]; then
-    sudo cp -v "./$FILE" "$i"
+  sudo rm "${i}"
+  if [ "${CUSTOM}" == "1" ]; then
+    sudo cp -v ".${FILE}" "${i}"
+  elif [ "${CUSTOM}" == "2" ]; then
+    sudo cp -v "../../../custom/${FILE}" "${i}"
   else
-    sudo cp -v "../../../custom/$FILE" "$i"
+    DIRNAME=`dirname ${i}`
+    if [ "${DIRNAME}" == "./sbin" ]; then
+      sudo cp -v "../../../custom/${FILE}" "${i}"
+    else
+      sudo cp -v "../../../custom/${DIRNAME}/${FILE}" "${i}" || echo "${DIRNAME} || ${FILE} || ${i}"
+    fi
   fi
 done
 
@@ -342,13 +334,13 @@ fi
 cd /home/falktx/livecd/cd
 
 # i386 ends on -boot-info-table
+#     -isohybrid-mbr isolinux/isohdpfx.bin \
 
 sudo xorriso -as mkisofs \
     -r \
     -V "$ARG3" \
-    -o /home/falktx/livecd/"$ARG2".iso \
+    -o "/home/falktx/livecd/${ARG2}.iso" \
     -J \
-    -isohybrid-mbr isolinux/isohdpfx.bin \
     -partition_offset 16 \
     -joliet-long \
     -cache-inodes \
