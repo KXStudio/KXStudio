@@ -42,15 +42,15 @@ fi
 case $1 in
 
     squash)
-sudo debootstrap --arch=$3 $2 ~/livecd/custom http://archive.ubuntu.com/ubuntu/
+sudo debootstrap --arch=$3 $2 /home/falktx/livecd/custom http://archive.ubuntu.com/ubuntu/
 exit
     ;;
 
     custom)
-# sudo mount --bind /dev ~/livecd/custom/dev
-sudo rm -f ~/livecd/custom/etc/hosts
-sudo rm -f ~/livecd/custom/etc/resolv.conf
-sudo cp /etc/resolv.conf /etc/hosts ~/livecd/custom/etc/
+# sudo mount --bind /dev /home/falktx/livecd/custom/dev
+sudo rm -f /home/falktx/livecd/custom/etc/hosts
+sudo rm -f /home/falktx/livecd/custom/etc/resolv.conf
+sudo cp /etc/resolv.conf /etc/hosts /home/falktx/livecd/custom/etc/
 echo "run this now:
 
 mount -t proc none /proc/
@@ -98,11 +98,11 @@ deb [arch=amd64] http://archive.neon.kde.org/user/lts/ xenial main
 # deb-src http://archive.neon.kde.org/user/lts/ xenial main
 
 # Stuff to delete later on
-deb http://archive.neon.kde.org/dev/unstable/ bionic main
-# deb-src http://archive.neon.kde.org/dev/unstable/ bionic main
-deb http://archive.ubuntu.com/ubuntu/ artful main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ artful-updates main restricted universe multiverse
-deb http://security.ubuntu.com/ubuntu/ artful-security main restricted universe multiverse
+deb http://archive.neon.kde.org/dev/stable/ bionic main
+# deb-src http://archive.neon.kde.org/dev/stable/ bionic main
+deb http://archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
 ' > /etc/apt/sources.list
 
 # Update System
@@ -147,13 +147,8 @@ apt-get install indicator-cpufreq \
 # Remove deprecated/dummy
 apt-get purge kxstudio-meta-live-conflicts
 apt-get install calf-plugins-git zynaddsubfx-git
-apt-get purge ardour3
-apt-get purge amsynth-dssi drumkv1 samplv1 synthv1
-apt-get purge carla calf-plugins
-apt-get purge composite composite-data
+apt-get purge carla calf-plugins ardour3 amsynth-dssi drumkv1 samplv1 synthv1 composite composite-data flashplugin-installer
 apt-get purge hydrogen-drumkits hydrogen-drumkits-effects fluid-soundfont-gm
-apt-get purge kxstudio-kernel-lowlatency
-apt-get purge flashplugin-installer
 
 # Cleanup
 apt-get autoremove
@@ -164,15 +159,15 @@ rm /boot/*liquorix*
 
 ## ---- PAUSE HERE ----- ##
 # Before installing ubiquity in the live session, you'll need to run this outside:
-$ sudo mkdir -p ~/livecd/cd/casper/
-$ sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
-$ sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
-$ sudo chroot ~/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop"
+$ sudo mkdir -p /home/falktx/livecd/cd/casper/
+$ sudo touch /home/falktx/livecd/cd/casper/filesystem.manifest-desktop
+$ sudo chmod 777 /home/falktx/livecd/cd/casper/filesystem.manifest-desktop
+$ sudo chroot /home/falktx/livecd/custom dpkg-query -W --showformat='\${Package} \${Version}\n' > /home/falktx/livecd/cd/casper/filesystem.manifest-desktop"
 
-# sudo mkdir -p ~/livecd/cd/casper/
-# sudo touch ~/livecd/cd/casper/filesystem.manifest-desktop
-# sudo chmod 777 ~/livecd/cd/casper/filesystem.manifest-desktop
-# sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ~/livecd/cd/casper/filesystem.manifest-desktop
+# sudo mkdir -p /home/falktx/livecd/cd/casper/
+# sudo touch /home/falktx/livecd/cd/casper/filesystem.manifest-desktop
+# sudo chmod 777 /home/falktx/livecd/cd/casper/filesystem.manifest-desktop
+# sudo chroot /home/falktx/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > /home/falktx/livecd/cd/casper/filesystem.manifest-desktop
 
 echo "## ----- END PAUSE ----- ##
 
@@ -193,16 +188,13 @@ apt-get purge \
   ubiquity-ubuntu-artwork user-setup xfsprogs
 
 "
-sudo chroot ~/livecd/custom
+sudo chroot /home/falktx/livecd/custom
 echo "done"
 exit
     ;;
 
     custom_end)
 echo "run this now:
-
-#rm -f /sbin/initctl
-#dpkg-divert --rename --remove /sbin/initctl
 
 rm -f /var/kxstudio/*
 
@@ -216,32 +208,32 @@ umount /dev/pts
 umount -lf /proc
 umount -lf /sys
 exit
-sudo nano ~/livecd/custom/root/.bash_history
+sudo nano /home/falktx/livecd/custom/root/.bash_history
 "
 exit
   ;;
 
     mksquash)
-sudo mkdir -p ~/livecd/cd/casper/
-cd ~/livecd/cd/casper/
-sudo su root -c "printf $(sudo du -sx --block-size=1 ~/livecd/custom | cut -f1) > ./filesystem.size"
+sudo mkdir -p /home/falktx/livecd/cd/casper/
+cd /home/falktx/livecd/cd/casper/
+sudo su root -c "printf $(sudo du -sx --block-size=1 /home/falktx/livecd/custom | cut -f1) > ./filesystem.size"
 sudo touch ./filesystem.manifest
 sudo touch ./filesystem.manifest-remove
 sudo chmod 777 ./filesystem.manifest
 sudo chmod 777 ./filesystem.manifest-remove
-sudo chroot ~/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ./filesystem.manifest
+sudo chroot /home/falktx/livecd/custom dpkg-query -W --showformat='${Package} ${Version}\n' > ./filesystem.manifest
 if [ -f ./filesystem.manifest-desktop ]; then
   comm -3 <(cat ./filesystem.manifest | awk '{print $1}' | sort) <(cat ./filesystem.manifest-desktop | awk '{print $1}' | sort) > ./filesystem.manifest-remove
 fi
 sudo rm -f ./filesystem.squashfs ./filesystem.manifest-desktop
-sudo mksquashfs ~/livecd/custom ./filesystem.squashfs -noappend -comp xz
+sudo mksquashfs /home/falktx/livecd/custom ./filesystem.squashfs -noappend -comp xz
 echo "done"
 exit
     ;;
 
     mkart)
-if [ ! -f ~/livecd/iso-stuff.7z ]; then
-  echo "Please copy iso-stuff.7z to ~/livecd before continuing"
+if [ ! -f /home/falktx/livecd/iso-stuff.7z ]; then
+  echo "Please copy iso-stuff.7z to /home/falktx/livecd before continuing"
   exit
 fi
 
@@ -258,14 +250,14 @@ echo "usage: $0 mkart $ISO_ARCH <distro>"
 exit
 fi
 
-sudo mkdir -p ~/livecd/cd
-cd ~/livecd/cd
+sudo mkdir -p /home/falktx/livecd/cd
+cd /home/falktx/livecd/cd
 sudo 7z x -y ../iso-stuff.7z
 
-sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i ~/livecd/cd/README.diskdefines
-sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/README.diskdefines
-sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i ~/livecd/cd/isolinux/txt.cfg
-sudo mkdir -p ~/livecd/cd/.disk/
+sudo sed "s/X-ISO_ARCH-X/$ISO_ARCH/" -i /home/falktx/livecd/cd/README.diskdefines
+sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i /home/falktx/livecd/cd/README.diskdefines
+sudo sed "s/X-ISO_NAME-X/$ISO_NAME/" -i /home/falktx/livecd/cd/isolinux/txt.cfg
+sudo mkdir -p /home/falktx/livecd/cd/.disk/
 
 if [ "$ISO_ARCH" == "i386" ]; then
 sudo su root -c 'echo "KXStudio 14.04.5 (Live 32bit)" > .disk/info'
@@ -277,24 +269,24 @@ fi
 sudo su root -c 'echo "http://kxstudio.sourceforge.net/Documentation:KXStudio14045:ReleaseNotes" > .disk/release_notes_url'
 
 echo "Please edit these files manually:
-~/livecd/cd/.disk/info
-~/livecd/cd/.disk/release_notes_url
-~/livecd/cd/README.diskdefines
-~/livecd/cd/isolinux/txt.cfg
-~/livecd/cd/preseed/live.seed
+/home/falktx/livecd/cd/.disk/info
+/home/falktx/livecd/cd/.disk/release_notes_url
+/home/falktx/livecd/cd/README.diskdefines
+/home/falktx/livecd/cd/isolinux/txt.cfg
+/home/falktx/livecd/cd/preseed/live.seed
 "
 exit
     ;;
 
     mkboot)
-sudo mkdir -p ~/livecd/cd/casper/
-cd ~/livecd/
+sudo mkdir -p /home/falktx/livecd/cd/casper/
+cd /home/falktx/livecd/
 sudo rm -f cd/casper/vmlinuz cd/casper/vmlinuz.efi cd/casper/initrd.lz cd/casper/initrd_tmp.gz
 sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz
 sudo cp custom/boot/vmlinuz-* cd/casper/vmlinuz.efi
 sudo cp custom/boot/initrd.img-* cd/casper/initrd_tmp.gz
 
-cd ~/livecd/cd/casper
+cd /home/falktx/livecd/cd/casper
 sudo rm -rf ext
 sudo mkdir ext
 cd ext
@@ -326,7 +318,7 @@ exit
     ;;
 
     md5sum)
-cd ~/livecd/cd
+cd /home/falktx/livecd/cd
 sudo chmod 777 -R .
 sudo rm -f md5sum.txt MD5SUMS
 sudo su root -c "find . -type f -print0 | xargs -0 md5sum > ../md5sum.txt"
@@ -347,14 +339,14 @@ echo "usage: $0 iso <filename> <name>"
 exit
 fi
 
-cd ~/livecd/cd
+cd /home/falktx/livecd/cd
 
 # i386 ends on -boot-info-table
 
 sudo xorriso -as mkisofs \
     -r \
     -V "$ARG3" \
-    -o ~/livecd/"$ARG2".iso \
+    -o /home/falktx/livecd/"$ARG2".iso \
     -J \
     -isohybrid-mbr isolinux/isohdpfx.bin \
     -partition_offset 16 \
@@ -378,9 +370,9 @@ exit
 
     clean)
 sudo umount /tmp/livecd/
-sudo umount ~/livecd/squashfs/
+sudo umount /home/falktx/livecd/squashfs/
 sudo rm -rf /tmp/livecd/
-sudo rm -rf ~/livecd/
+sudo rm -rf /home/falktx/livecd/
 echo "done"
 exit
     ;;
