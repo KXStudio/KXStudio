@@ -1,0 +1,8 @@
+# Enable extras.ubuntu.com.
+d-i	apt-setup/extras	boolean true
+# Install the Kubuntu desktop.
+tasksel	tasksel/first	multiselect kxstudio-desktop-neon
+# Install KDE translation packages.
+d-i	pkgsel/language-pack-patterns	string language-pack-kde-$LL kde-i18n-$LL
+# Install the KDE oem-config frontend (if in OEM mode).
+d-i	oem-config-udeb/frontend	string kde
