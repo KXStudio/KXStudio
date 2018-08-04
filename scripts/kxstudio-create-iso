@@ -334,13 +334,13 @@ fi
 cd /home/falktx/livecd/cd
 
 # i386 ends on -boot-info-table
-#     -isohybrid-mbr isolinux/isohdpfx.bin \
 
 sudo xorriso -as mkisofs \
     -r \
     -V "$ARG3" \
     -o "/home/falktx/livecd/${ARG2}.iso" \
     -J \
+    -isohybrid-mbr isolinux/isohdpfx.bin \
     -partition_offset 16 \
     -joliet-long \
     -cache-inodes \
