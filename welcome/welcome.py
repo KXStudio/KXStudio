@@ -66,7 +66,7 @@ CONFIG_ALL = (
   "config/rosegardenmusic/Rosegarden.conf",
   "config/smplayer/smplayer.ini",
   "config/vlc/vlcrc",
-  
+
   "config/baloofilerc",
   "config/dolphinrc",
   "config/kded5rc",
@@ -85,9 +85,9 @@ CONFIG_ALL = (
   "config/autostart/kaddressbookmigrator.desktop",
   "config/autostart/nepomukserver.desktop",
   "config/autostart/org.kde.kmix.desktop",
-  
+
   "kde/share/config/nepomukserverrc",
-  
+
   "local/share/kxmlgui5/dolphin/dolphinui.rc",
 )
 
@@ -106,7 +106,7 @@ CONFIG_THEME = (
   "config/rncbc.org/Qsynth.conf",
   "config/rncbc.org/Qtractor.conf",
   "config/rosegardenmusic/Rosegarden.conf",
-  
+
   "config/breezerc",
   "config/gtkrc",
   "config/gtkrc-2.0",
@@ -145,6 +145,8 @@ def do_copy_all():
   for sfile in CONFIG_ALL:
     create_folder_for_file(sfile)
     os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
+  if not os.path.exists("/usr/bin/pulseaudio"):
+    os.remove("%s/.asoundrc" % (HOME,))
 
 def do_copy_basic():
   for sfile in CONFIG_SMALL:
@@ -155,6 +157,8 @@ def do_copy_basic():
     create_folder_for_file(sfile)
     if not os.path.exists("%s/.%s" % (HOME, sfile)):
       os.system("cp '%s/%s' '%s/.%s'" % (CONFIG_DIR, sfile, HOME, sfile))
+  if not os.path.exists("/usr/bin/pulseaudio"):
+    os.remove("%s/.asoundrc" % (HOME,))
 
 def do_copy_theme(fontSize, copy_all=False):
   for sfile in CONFIG_THEME:
@@ -210,7 +214,7 @@ def do_final_stuff():
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/audiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/chataudiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/0.10/default/musicaudiosink_description "Jack"')
-  
+
   os.system('gconftool-2 --type string --set /system/gstreamer/1.0/default/audiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/1.0/default/chataudiosink_description "Jack"')
   os.system('gconftool-2 --type string --set /system/gstreamer/1.0/default/musicaudiosink_description "Jack"')
@@ -235,7 +239,7 @@ def do_live_stuff():
 # Separate Thread for Copying Stuff
 class CopyStuffThread(QThread):
     setLabelPixmap = pyqtSignal(int, int)
-    
+
     def __init__(self, parent=None):
         super(CopyStuffThread, self).__init__(parent)
 
