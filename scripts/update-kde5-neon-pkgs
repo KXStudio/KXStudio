@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -e
+
+sudo apt-get update
+sudo apt-get upgrade
+
+mkdir -p ~/kde5-pkgs
+cd ~/kde5-pkgs
+
+# TODO update base packages first
+# TODO get version for all base packages
+
+BASE_PACKAGES=("" "")
+
+if ! dpkg -l | grep kmix | grep -q kxstudio; then
+    rm -rf kmix*
+    apt-get source kmix
+    pushd kmix-*
+    sed -i "/libpulse-dev/d" debian/control
+    VERSION=$(cat debian/changelog | head -n 1 | awk '{printf$2}')
+    VERSION=$(python3 -c 'import sys; print(sys.argv[1].replace("(","").replace(")","").rsplit("+",1)[0]+"+kxstudio1")' ${VERSION})
+    dch --force-distribution -D bionic -v ${VERSION} "Build without pulseaudio"
+    debuild --no-lintian -S -sa -d
+    popd
+fi
+
+# libkf5dbusaddons-dev,
+# libkf5globalaccel-dev,
+# libkf5i18n-dev,
+# libkf5kdelibs4support-dev,
+# libkf5xmlgui-dev,
