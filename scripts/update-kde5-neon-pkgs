@@ -2,31 +2,384 @@
 
 set -e
 
-sudo apt-get update
-sudo apt-get upgrade
+trap "exit 1" TERM
+export TOP_PID=$$
+
+# sudo apt-get update
+# sudo apt-get upgrade
 
 mkdir -p ~/kde5-pkgs
 cd ~/kde5-pkgs
 
-# TODO update base packages first
-# TODO get version for all base packages
+# ---------------------------------------------------------------------------------------------------------------------
 
-BASE_PACKAGES=("" "")
+function get_current_package_version {
+  local PACKAGE=${1}
 
-if ! dpkg -l | grep kmix | grep -q kxstudio; then
-    rm -rf kmix*
-    apt-get source kmix
-    pushd kmix-*
-    sed -i "/libpulse-dev/d" debian/control
-    VERSION=$(cat debian/changelog | head -n 1 | awk '{printf$2}')
-    VERSION=$(python3 -c 'import sys; print(sys.argv[1].replace("(","").replace(")","").rsplit("+",1)[0]+"+kxstudio1")' ${VERSION})
-    dch --force-distribution -D bionic -v ${VERSION} "Build without pulseaudio"
-    debuild --no-lintian -S -sa -d
-    popd
-fi
+  if ! dpkg -l | grep -q ${PACKAGE}; then
+    echo "Package ${PACKAGE} is not installed, stop." 1>&2
+    kill -s TERM ${TOP_PID}
+    exit 1
+  fi
 
-# libkf5dbusaddons-dev,
-# libkf5globalaccel-dev,
-# libkf5i18n-dev,
-# libkf5kdelibs4support-dev,
-# libkf5xmlgui-dev,
+  dpkg -s ${PACKAGE} | grep "Version:" | awk 'sub("Version: ","")'
+}
+
+function get_kxstudio_package_version {
+  local PACKAGE=${1}
+  local V=$(get_current_package_version ${PACKAGE})
+
+  if echo ${V} | grep -q "kxstudio"; then
+    echo ${V}
+  else
+    python3 -c 'import sys;print(sys.argv[1].replace("(","").replace(")","").rsplit("+",1)[0]+"+kxstudio2")' ${V}
+  fi
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+export QT5_VERSION=$(get_kxstudio_package_version libqt5core5a)
+export QT5DECLARATIVE_VERSION=$(get_kxstudio_package_version libqt5qml5)
+export QT5LOCATION_VERSION=$(get_kxstudio_package_version libqt5location5)
+export QT5MULTIMEDIA_VERSION=$(get_kxstudio_package_version libqt5multimedia5)
+export QT5QUICKCONTROLS2_VERSION=$(get_kxstudio_package_version libqt5quickcontrols2-5)
+export QT5SCRIPT_VERSION=$(get_kxstudio_package_version libqt5script5)
+export QT5SENSORS_VERSION=$(get_kxstudio_package_version libqt5sensors5)
+export QT5TEXTTOSPEECH_VERSION=$(get_kxstudio_package_version libqt5texttospeech5)
+export QT5SVG_VERSION=$(get_kxstudio_package_version libqt5svg5)
+export QT5TOOLS_VERSION=$(get_kxstudio_package_version libqt5designer5)
+export QT5WEBCHANNEL_VERSION=$(get_kxstudio_package_version libqt5webchannel5)
+export QT5WEBKIT_VERSION=$(get_kxstudio_package_version libqt5webkit5)
+export QT5WEBSOCKETS_VERSION=$(get_kxstudio_package_version libqt5websockets5)
+export QT5XMLPATTERNS_VERSION=$(get_kxstudio_package_version libqt5xmlpatterns5)
+export QT5X11EXTRAS_VERSION=$(get_kxstudio_package_version libqt5x11extras5)
+export QT5QUICKCONTROLS1_VERSION=$(get_kxstudio_package_version qml-module-qtquick-controls)
+export QT5GRAPHICALFX_VERSION=$(get_kxstudio_package_version qml-module-qtgraphicaleffects)
+
+export PHONON_VERSION=$(get_kxstudio_package_version libphonon4)
+export QALCULATE_VERSION=$(get_kxstudio_package_version libqalculate14)
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+export EXTRA_CMAKE_VERSION=$(get_kxstudio_package_version extra-cmake-modules)
+export KF5COREADDONS_VERSION=$(get_kxstudio_package_version libkf5coreaddons5)
+export KF5CRASH_VERSION=$(get_kxstudio_package_version libkf5crash5)
+export KF5DBUSADDONS_VERSION=$(get_kxstudio_package_version libkf5dbusaddons5)
+export KF5I18N_VERSION=$(get_kxstudio_package_version libkf5i18n5)
+export KF5WINDOWSYSTEM_VERSION=$(get_kxstudio_package_version libkf5windowsystem5)
+
+export KF5ATTICA_VERSION=$(get_kxstudio_package_version libkf5attica5)
+export KF5ARCHIVE_VERSION=$(get_kxstudio_package_version libkf5archive5)
+export KF5CONFIG_VERSION=$(get_kxstudio_package_version libkf5configcore5)
+export KF5DOCTOOLS_VERSION=$(get_kxstudio_package_version libkf5doctools5)
+export KF5EMOTICONS_VERSION=$(get_kxstudio_package_version libkf5emoticons5)
+export KF5GLOBALACCEL_VERSION=$(get_kxstudio_package_version libkf5globalaccel5)
+export KF5SERVICE_VERSION=$(get_kxstudio_package_version libkf5service5)
+
+export KF5AUTH_VERSION=$(get_kxstudio_package_version libkf5auth5)
+export KF5BOOKMARKS_VERSION=$(get_kxstudio_package_version libkf5bookmarks5)
+export KF5CODECS_VERSION=$(get_kxstudio_package_version libkf5codecs5)
+export KF5COMPLETION_VERSION=$(get_kxstudio_package_version libkf5completion5)
+export KF5CONFIGWIDGETS_VERSION=$(get_kxstudio_package_version libkf5configwidgets5)
+export KF5GUIADDONS_VERSION=$(get_kxstudio_package_version libkf5guiaddons5)
+export KF5ICONTHEMES_VERSION=$(get_kxstudio_package_version libkf5iconthemes5)
+export KF5ITEMVIEWS_VERSION=$(get_kxstudio_package_version libkf5itemviews5)
+export KF5JOBWIDGETS_VERSION=$(get_kxstudio_package_version libkf5jobwidgets5)
+export KF5KIO_VERSION=$(get_kxstudio_package_version libkf5kiocore5)
+export KF5NOTIFICATIONS_VERSION=$(get_kxstudio_package_version libkf5notifications5)
+export KF5SOLID_VERSION=$(get_kxstudio_package_version libkf5solid5)
+export KF5SONNET_VERSION=$(get_kxstudio_package_version libkf5sonnetcore5)
+export KF5TEXTWIDGETS_VERSION=$(get_kxstudio_package_version libkf5textwidgets5)
+export KF5WALLET_VERSION=$(get_kxstudio_package_version libkf5wallet5)
+export KF5WIDGETADDONS_VERSION=$(get_kxstudio_package_version libkf5widgetsaddons5)
+export KF5XMLGUI_VERSION=$(get_kxstudio_package_version libkf5xmlgui5)
+
+# export KF5_VERSION=$(get_kxstudio_package_version )
+
+# TODO KDE packages
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+function patch_single_line_version {
+  local DELIM=${1}
+  local PACKAGE=${2}
+  local VERSION=${3}
+
+  local OLDLINE=$(cat debian/control | head -n ${DELIM} | grep ${PACKAGE} | head -n 1)
+
+  if [ -z "${OLDLINE}" ]; then
+    return
+  fi
+
+  NEWLINE="               ${PACKAGE} (>= ${VERSION}),"
+
+  sed -i "s|${OLDLINE}|${NEWLINE}|" debian/control
+}
+
+function bump_build_dependencies {
+  local DELIM=$(($(cat debian/control | grep -n "Package:" | tr ':' '\n' | head -n 1) - 2 ))
+
+  sed -i "/libpulse-dev/d" debian/control
+
+  patch_single_line_version ${DELIM} qtbase5-dev            ${QT5_VERSION}
+  patch_single_line_version ${DELIM} qtbase5-private-dev    ${QT5_VERSION}
+  patch_single_line_version ${DELIM} libqt5opengl5-dev      ${QT5_VERSION}
+
+  patch_single_line_version ${DELIM} qtdeclarative5-dev         ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qtdeclarative5-dev-tools   ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qtdeclarative5-private-dev ${QT5DECLARATIVE_VERSION}
+
+  patch_single_line_version ${DELIM} qtmultimedia5-dev  ${QT5MULTIMEDIA_VERSION}
+  patch_single_line_version ${DELIM} qtpositioning5-dev ${QT5LOCATION_VERSION}
+  patch_single_line_version ${DELIM} qtscript5-dev      ${QT5SCRIPT_VERSION}
+
+  patch_single_line_version ${DELIM} qttools5-dev       ${QT5TOOLS_VERSION}
+  patch_single_line_version ${DELIM} qttools5-dev-tools ${QT5TOOLS_VERSION}
+
+  patch_single_line_version ${DELIM} libqt5sensors5-dev      ${QT5SENSORS_VERSION}
+  patch_single_line_version ${DELIM} libqt5svg5-dev          ${QT5SVG_VERSION}
+  patch_single_line_version ${DELIM} libqt5texttospeech5-dev ${QT5TEXTTOSPEECH_VERSION}
+  patch_single_line_version ${DELIM} libqt5webchannel5-dev   ${QT5WEBCHANNEL_VERSION}
+  patch_single_line_version ${DELIM} libqt5websockets5-dev   ${QT5WEBSOCKETS_VERSION}
+  patch_single_line_version ${DELIM} libqt5webkit5-dev       ${QT5WEBKIT_VERSION}
+  patch_single_line_version ${DELIM} libqt5xmlpatterns5-dev  ${QT5XMLPATTERNS_VERSION}
+  patch_single_line_version ${DELIM} libqt5x11extras5-dev    ${QT5X11EXTRAS_VERSION}
+
+  patch_single_line_version ${DELIM} libphonon4qt5-dev             ${PHONON_VERSION}
+  patch_single_line_version ${DELIM} libphonon4qt5experimental-dev ${PHONON_VERSION}
+
+  patch_single_line_version ${DELIM} qml-module-qtgraphicaleffects      ${QT5GRAPHICALFX_VERSION}
+  patch_single_line_version ${DELIM} qml-module-qtqml-models2           ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qml-module-qtquick-layouts         ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qml-module-qtquick-window2         ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qml-module-qttest                  ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qml-module-qtquick2                ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qml-module-qt-labs-folderlistmodel ${QT5DECLARATIVE_VERSION}
+  patch_single_line_version ${DELIM} qml-module-qt-labs-settings        ${QT5DECLARATIVE_VERSION}
+
+  patch_single_line_version ${DELIM} extra-cmake-modules ${EXTRA_CMAKE_VERSION}
+
+  patch_single_line_version ${DELIM} libkf5coreaddons-dev   ${KF5COREADDONS_VERSION}
+  patch_single_line_version ${DELIM} libkf5crash-dev        ${KF5CRASH_VERSION}
+  patch_single_line_version ${DELIM} libkf5dbusaddons-dev   ${KF5DBUSADDONS_VERSION}
+  patch_single_line_version ${DELIM} libkf5i18n-dev         ${KF5I18N_VERSION}
+  patch_single_line_version ${DELIM} libkf5windowsystem-dev ${KF5WINDOWSYSTEM_VERSION}
+
+  patch_single_line_version ${DELIM} libkf5attica-dev      ${KF5ATTICA_VERSION}
+  patch_single_line_version ${DELIM} libkf5archive-dev     ${KF5ARCHIVE_VERSION}
+  patch_single_line_version ${DELIM} libkf5config-dev      ${KF5CONFIG_VERSION}
+  patch_single_line_version ${DELIM} libkf5emoticons-dev   ${KF5EMOTICONS_VERSION}
+  patch_single_line_version ${DELIM} libkf5globalaccel-dev ${KF5GLOBALACCEL_VERSION}
+  patch_single_line_version ${DELIM} libkf5service-dev     ${KF5SERVICE_VERSION}
+  patch_single_line_version ${DELIM} libkf5doctools-dev    ${KF5DOCTOOLS_VERSION}
+
+  patch_single_line_version ${DELIM} kdoctools-dev         ${KF5DOCTOOLS_VERSION}
+  patch_single_line_version ${DELIM} kio-dev               ${KF5KIO_VERSION}
+
+  patch_single_line_version ${DELIM} libkf5auth-dev          ${KF5AUTH_VERSION}
+  patch_single_line_version ${DELIM} libkf5bookmarks-dev     ${KF5BOOKMARKS_VERSION}
+  patch_single_line_version ${DELIM} libkf5codecs-dev        ${KF5CODECS_VERSION}
+  patch_single_line_version ${DELIM} libkf5completion-dev    ${KF5COMPLETION_VERSION}
+  patch_single_line_version ${DELIM} libkf5configwidgets-dev ${KF5CONFIGWIDGETS_VERSION}
+  patch_single_line_version ${DELIM} libkf5guiaddons-dev     ${KF5GUIADDONS_VERSION}
+  patch_single_line_version ${DELIM} libkf5iconthemes-dev    ${KF5ICONTHEMES_VERSION}
+  patch_single_line_version ${DELIM} libkf5itemviews-dev     ${KF5ITEMVIEWS_VERSION}
+  patch_single_line_version ${DELIM} libkf5jobwidgets-dev    ${KF5JOBWIDGETS_VERSION}
+  patch_single_line_version ${DELIM} libkf5kio-dev           ${KF5KIO_VERSION}
+  patch_single_line_version ${DELIM} libkf5notifications-dev ${KF5NOTIFICATIONS_VERSION}
+  patch_single_line_version ${DELIM} libkf5solid-dev         ${KF5SOLID_VERSION}
+  patch_single_line_version ${DELIM} libkf5sonnet-dev        ${KF5SONNET_VERSION}
+  patch_single_line_version ${DELIM} libkf5textwidgets-dev   ${KF5TEXTWIDGETS_VERSION}
+  patch_single_line_version ${DELIM} libkf5wallet-dev        ${KF5WALLET_VERSION}
+  patch_single_line_version ${DELIM} libkf5widgetsaddons-dev ${KF5WIDGETADDONS_VERSION}
+  patch_single_line_version ${DELIM} libkf5xmlgui-dev        ${KF5XMLGUI_VERSION}
+
+# KMIX
+
+# libkf5kdelibs4support5
+#                kded5-dev
+#                kdesignerplugin
+#                kgendesignerplugin (== kdesignerplugin),
+#                libkf5parts-dev
+#                libkf5unitconversion-dev
+}
+
+function disable_tests {
+    echo "" >> debian/rules
+    echo "override_dh_auto_test:" >> debian/rules
+    echo "	# Disable dh_auto_test at build time" >> debian/rules
+    echo "	:" >> debian/rules
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+function update_package_if_needed {
+  local PACKAGE=${1}
+
+  if get_current_package_version ${PACKAGE} | grep -q "kxstudio"; then
+    return
+  fi
+
+  local KXV=$(get_kxstudio_package_version ${PACKAGE})
+  echo "Package ${PACKAGE} needs update to ${KXV}"
+
+  local SOURCE=$(dpkg -s ${PACKAGE} | grep "Source:" | awk 'sub("Source: ","")')
+
+  if [ -z "${SOURCE}" ]; then
+    SOURCE=${PACKAGE}
+  fi
+
+  rm -rf ${SOURCE}-* ${SOURCE}_*
+  apt-get source ${PACKAGE}
+
+  pushd ${SOURCE}-*
+  bump_build_dependencies
+  disable_tests
+  dch --force-distribution -D bionic -v ${KXV} "Import into KXStudio repos"
+  debuild --no-lintian -S -sa -d
+  popd
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+update_package_if_needed libblkid1
+
+update_package_if_needed libqt5core5a
+update_package_if_needed libqt5qml5
+update_package_if_needed libqt5x11extras5
+update_package_if_needed libqt5xmlpatterns5
+
+update_package_if_needed libqt5location5
+update_package_if_needed libqt5multimedia5
+update_package_if_needed libqt5quickcontrols2-5
+update_package_if_needed libqt5script5
+update_package_if_needed libqt5sensors5
+update_package_if_needed libqt5texttospeech5
+update_package_if_needed libqt5svg5
+update_package_if_needed libqt5designer5
+update_package_if_needed libqt5webchannel5
+update_package_if_needed libqt5webkit5
+update_package_if_needed libqt5websockets5
+
+update_package_if_needed libphonon4
+
+update_package_if_needed qml-module-qtquick-controls
+update_package_if_needed qml-module-qtgraphicaleffects
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+# update_package_if_needed extra-cmake-modules
+# needs:
+# python3-sphinx
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+# update_package_if_needed libqalculate14 (needs:)
+# libcurl4-gnutls-dev | libcurl4-openssl-dev | libcurl4-nss-dev,
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+update_package_if_needed libkf5coreaddons5
+update_package_if_needed libkf5crash5
+update_package_if_needed libkf5dbusaddons5
+update_package_if_needed libkf5i18n5
+update_package_if_needed libkf5windowsystem5
+
+update_package_if_needed libkf5attica5
+update_package_if_needed libkf5archive5
+update_package_if_needed libkf5configcore5
+update_package_if_needed libkf5doctools5
+update_package_if_needed libkf5emoticons5
+update_package_if_needed libkf5globalaccel5
+update_package_if_needed libkf5service5
+
+update_package_if_needed libkf5auth5
+update_package_if_needed libkf5bookmarks5
+update_package_if_needed libkf5codecs5
+update_package_if_needed libkf5completion5
+update_package_if_needed libkf5configwidgets5
+update_package_if_needed libkf5guiaddons5
+update_package_if_needed libkf5iconthemes5
+update_package_if_needed libkf5itemviews5
+update_package_if_needed libkf5jobwidgets5
+update_package_if_needed libkf5kiocore5
+update_package_if_needed libkf5notifications5
+update_package_if_needed libkf5solid5
+update_package_if_needed libkf5sonnetcore5
+update_package_if_needed libkf5textwidgets5
+update_package_if_needed libkf5wallet5
+update_package_if_needed libkf5widgetsaddons5
+update_package_if_needed libkf5xmlgui5
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+# libkf5style5 # frameworkintegration
+# libkf5activities5
+# libkf5activitiesstats1
+# libkf5kcmutils5
+# libkf5configgui5
+# libkf5declarative5
+# libkf5su5
+# libkf5webkit5
+# libkf5dnssd5
+# libkf5khtml5
+# libkf5idletime5
+# libkf5kirigami2-5
+# libkf5itemmodels5
+# libkf5js5
+# libkf5mediaplayer5
+# libkf5newstuff5
+# libkf5notifyconfig5
+# libkf5package5
+# libkf5parts5
+# libkf5people5
+# libkf5plotting5
+# libkf5pty5
+# libkf5krosscore5
+# libkf5runner5
+# libkf5unitconversion5
+# libkf5waylandclient5
+# libkf5kdcraw5
+# libkf5kexiv2-15.0.0
+# libkf5kipi32.0.0
+# libkf5sysguard5
+# libkf5plasma5 # framework
+# libkf5solid5
+# libkf5sonnetcore5
+# libkf5threadweaver5
+# libkworkspace5-5
+
+# kded5
+# kdesignerplugin
+# kinit
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+# update_package_if_needed mozilla-kde-support
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+# dolphin
+# kinfocenter
+# kmix
+# phonon?
+# plasma-desktop
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+# KMIX_VERSION=$(get_kxstudio_package_version "kmix")
+# echo $KMIX_VERSION
+
+# if ! get_current_package_version "kmix" | grep -q "kxstudio"; then
+#     rm -rf kmix*
+#     apt-get source kmix
+#     pushd kmix-*
+#     sed -i "/libpulse-dev/d" debian/control
+#     VERSION=$(cat debian/changelog | head -n 1 | awk '{printf$2}')
+#     VERSION=$(python3 -c 'import sys; print(sys.argv[1].replace("(","").replace(")","").rsplit("+",1)[0]+"+kxstudio1")' ${VERSION})
+#     dch --force-distribution -D bionic -v ${VERSION} "Build without pulseaudio"
+#     debuild --no-lintian -S -sa -d
+#     popd
+# fi
+
+# ---------------------------------------------------------------------------------------------------------------------
