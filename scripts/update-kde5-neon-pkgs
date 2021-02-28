@@ -13,10 +13,14 @@ cd ~/kde5-pkgs
 
 # ---------------------------------------------------------------------------------------------------------------------
 
+PKG_LIST_FILE=/tmp/dpkg.list
+
+dpkg -l > ${PKG_LIST_FILE}
+
 function get_current_package_version {
   local PACKAGE=${1}
 
-  if ! dpkg -l | grep -q ${PACKAGE}; then
+  if ! cat ${PKG_LIST_FILE} | grep -q ${PACKAGE}; then
     echo "Package ${PACKAGE} is not installed, stop." 1>&2
     kill -s TERM ${TOP_PID}
     exit 1
@@ -242,29 +246,29 @@ function update_package_if_needed {
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-update_package_if_needed libblkid1
-
-update_package_if_needed libqt5core5a
-update_package_if_needed libqt5qml5
-update_package_if_needed libqt5x11extras5
-update_package_if_needed libqt5xmlpatterns5
-
-update_package_if_needed libqt5location5
-update_package_if_needed libqt5multimedia5
-update_package_if_needed libqt5quickcontrols2-5
-update_package_if_needed libqt5script5
-update_package_if_needed libqt5sensors5
-update_package_if_needed libqt5texttospeech5
-update_package_if_needed libqt5svg5
-update_package_if_needed libqt5designer5
-update_package_if_needed libqt5webchannel5
-update_package_if_needed libqt5webkit5
-update_package_if_needed libqt5websockets5
-
-update_package_if_needed libphonon4
-
-update_package_if_needed qml-module-qtquick-controls
-update_package_if_needed qml-module-qtgraphicaleffects
+# update_package_if_needed libblkid1
+#
+# update_package_if_needed libqt5core5a
+# update_package_if_needed libqt5qml5
+# update_package_if_needed libqt5x11extras5
+# update_package_if_needed libqt5xmlpatterns5
+#
+# update_package_if_needed libqt5location5
+# update_package_if_needed libqt5multimedia5
+# update_package_if_needed libqt5quickcontrols2-5
+# update_package_if_needed libqt5script5
+# update_package_if_needed libqt5sensors5
+# update_package_if_needed libqt5texttospeech5
+# update_package_if_needed libqt5svg5
+# update_package_if_needed libqt5designer5
+# update_package_if_needed libqt5webchannel5
+# update_package_if_needed libqt5webkit5
+# update_package_if_needed libqt5websockets5
+#
+# update_package_if_needed libphonon4
+#
+# update_package_if_needed qml-module-qtquick-controls
+# update_package_if_needed qml-module-qtgraphicaleffects
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -279,37 +283,37 @@ update_package_if_needed qml-module-qtgraphicaleffects
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-update_package_if_needed libkf5coreaddons5
-update_package_if_needed libkf5crash5
-update_package_if_needed libkf5dbusaddons5
-update_package_if_needed libkf5i18n5
-update_package_if_needed libkf5windowsystem5
-
-update_package_if_needed libkf5attica5
-update_package_if_needed libkf5archive5
-update_package_if_needed libkf5configcore5
-update_package_if_needed libkf5doctools5
-update_package_if_needed libkf5emoticons5
-update_package_if_needed libkf5globalaccel5
-update_package_if_needed libkf5service5
-
-update_package_if_needed libkf5auth5
-update_package_if_needed libkf5bookmarks5
-update_package_if_needed libkf5codecs5
-update_package_if_needed libkf5completion5
-update_package_if_needed libkf5configwidgets5
-update_package_if_needed libkf5guiaddons5
-update_package_if_needed libkf5iconthemes5
-update_package_if_needed libkf5itemviews5
-update_package_if_needed libkf5jobwidgets5
-update_package_if_needed libkf5kiocore5
-update_package_if_needed libkf5notifications5
-update_package_if_needed libkf5solid5
-update_package_if_needed libkf5sonnetcore5
-update_package_if_needed libkf5textwidgets5
-update_package_if_needed libkf5wallet5
-update_package_if_needed libkf5widgetsaddons5
-update_package_if_needed libkf5xmlgui5
+# update_package_if_needed libkf5coreaddons5
+# update_package_if_needed libkf5crash5
+# update_package_if_needed libkf5dbusaddons5
+# update_package_if_needed libkf5i18n5
+# update_package_if_needed libkf5windowsystem5
+#
+# update_package_if_needed libkf5attica5
+# update_package_if_needed libkf5archive5
+# update_package_if_needed libkf5configcore5
+# update_package_if_needed libkf5doctools5
+# update_package_if_needed libkf5emoticons5
+# update_package_if_needed libkf5globalaccel5
+# update_package_if_needed libkf5service5
+#
+# update_package_if_needed libkf5auth5
+# update_package_if_needed libkf5bookmarks5
+# update_package_if_needed libkf5codecs5
+# update_package_if_needed libkf5completion5
+# update_package_if_needed libkf5configwidgets5
+# update_package_if_needed libkf5guiaddons5
+# update_package_if_needed libkf5iconthemes5
+# update_package_if_needed libkf5itemviews5
+# update_package_if_needed libkf5jobwidgets5
+# update_package_if_needed libkf5kiocore5
+# update_package_if_needed libkf5notifications5
+# update_package_if_needed libkf5solid5
+# update_package_if_needed libkf5sonnetcore5
+# update_package_if_needed libkf5textwidgets5
+# update_package_if_needed libkf5wallet5
+# update_package_if_needed libkf5widgetsaddons5
+# update_package_if_needed libkf5xmlgui5
 
 # ---------------------------------------------------------------------------------------------------------------------
 
